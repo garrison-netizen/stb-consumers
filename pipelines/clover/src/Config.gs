@@ -2,11 +2,10 @@
 // Clover pipeline — configuration.
 // Notion data source IDs confirmed from Brain scaffold 2026-05-11.
 // Exact property names verified against live schema 2026-05-20.
-// Switch API_BASE to "https://api.clover.com" for production.
 // ============================================================
 
 var CLOVER = {
-  API_BASE: "https://sandbox.dev.clover.com", // → https://api.clover.com for prod
+  API_BASE: "https://api.clover.com",
 
   // Notion target data sources
   DAILY_DS:    "eda5f5db-dc7d-4597-9589-04f23a428582",  // Taproom Daily
