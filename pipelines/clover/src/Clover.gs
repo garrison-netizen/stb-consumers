@@ -49,8 +49,8 @@ function CLV_fetchOrders_(startISO, endISO) {
   var end   = new Date(endISO   + "T23:59:59Z").getTime();
   return CLV_fetchAll_(
     "/orders",
-    "filter=createdTime>=" + start +
-    "&filter=createdTime<=" + end +
+    "filter=createdTime%3E%3D" + start +
+    "&filter=createdTime%3C%3D" + end +
     "&expand=lineItems,payments"
   );
 }
@@ -80,8 +80,8 @@ function CLV_fetchShifts_(startISO, endISO) {
   var end   = new Date(endISO   + "T23:59:59Z").getTime();
   return CLV_fetchAll_(
     "/shifts",
-    "filter=inTime>=" + start +
-    "&filter=inTime<=" + end +
+    "filter=inTime%3E%3D" + start +
+    "&filter=inTime%3C%3D" + end +
     "&expand=employee,wage"
   );
 }
