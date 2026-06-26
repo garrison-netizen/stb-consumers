@@ -4,26 +4,28 @@ description: Refresh context — pull code repos current, pull memory from Notio
 
 Refresh context for this session.
 
-All paths are machine-agnostic. Resolve them once with PowerShell and reuse:
-- Memory folder: `"$env:USERPROFILE\.claude\projects\C--Users-$env:USERNAME\memory"`
-- Commands folder: `"$env:USERPROFILE\.claude"` + `\commands`
-- Repo base: `"$env:USERPROFILE"`
-- Machine: `$env:USERNAME` = `garrison` → Machine A; `garri` → Machine B.
+**Paths resolve dynamically** — the same command works whether Code runs from the internal drive or the T7 (no hardcoding). Resolve once in PowerShell and reuse:
+
+```powershell
+$CFG  = if ($env:CLAUDE_CONFIG_DIR) { $env:CLAUDE_CONFIG_DIR } else { "$env:USERPROFILE\.claude" }
+$REPO = if ($env:STB_REPOS)         { $env:STB_REPOS }         else { $env:USERPROFILE }
+$SLUG = (Get-Location).Path -replace '[:\\]','-'   # e.g. C--Users-garrison (internal) or E--repos (T7)
+$MEM  = Join-Path $CFG "projects\$SLUG\memory"
+```
+- `$CFG` = Claude config dir (commands live at `$CFG\commands`)
+- `$REPO` = base folder holding the git repos
+- `$MEM` = this project's memory folder
+- Machine tag (for Source-machine on push): `$env:USERNAME` = `garrison` → Machine A; `garri` → Machine B.
 
 ## Step 0 — Sync code repos (do this FIRST, before any work)
 
-Tracked repos (clone lives at `$env:USERPROFILE\<name>`):
-- `stb-master-calendar`
-- `stb-private-event-calculator`
-- `stb-consumers`
-
-For each tracked repo whose folder exists on this machine, bring it current:
+Tracked repos (each clone lives at `$REPO\<name>`): `stb-master-calendar`, `stb-private-event-calculator`, `stb-consumers`.
 
 ```powershell
-$base = $env:USERPROFILE
+$REPO = if ($env:STB_REPOS) { $env:STB_REPOS } else { $env:USERPROFILE }
 foreach ($r in @('stb-master-calendar','stb-private-event-calculator','stb-consumers')) {
-  $p = Join-Path $base $r
-  if (-not (Test-Path $p)) { Write-Output "SKIP  $r (not on this machine)"; continue }
+  $p = Join-Path $REPO $r
+  if (-not (Test-Path $p)) { Write-Output "SKIP  $r (not present)"; continue }
   $pull = (git -C $p pull --ff-only 2>&1 | Out-String).Trim()
   if ($LASTEXITCODE -eq 0) { Write-Output "OK    $r — $pull"; continue }
   if ($pull -match 'timed out|Could not read from remote|could not resolve host|Connection (closed|reset)') {
@@ -35,19 +37,21 @@ foreach ($r in @('stb-master-calendar','stb-private-event-calculator','stb-consu
 ```
 
 Three outcomes per repo:
-- **OK** — pulled current (or already current). Safe to work/deploy.
-- **OFFLINE** — couldn't reach GitHub (network/SSH timeout), *not* a divergence. Local copy is whatever it was; warn, and **re-pull + verify before any deploy** so you don't ship stale code while offline.
-- **BLOCKED** — local genuinely diverged from GitHub. **STOP and surface to Garrison before any work or deploy** on that repo; resolve first.
+- **OK** — pulled current. Safe to work/deploy.
+- **OFFLINE** — couldn't reach GitHub (network), *not* a divergence. Warn, and **re-pull + verify before any deploy**.
+- **BLOCKED** — local genuinely diverged. **STOP and surface to Garrison** before any work/deploy on that repo.
 
-This is the mechanism that guarantees this machine never silently works on or deploys stale code. (Both apps deploy from GitHub `main`, so `main` is the single source of truth.)
+This guarantees the machine never silently works on or deploys stale code. (Both apps deploy from GitHub `main`, the single source of truth.)
 
 ## Step 0.5 — Self-heal the command files
 
-The CANONICAL copies of `refresh.md` and `pause.md` live in the **stb-consumers** repo at `claude-commands/` (pulled current in Step 0). Sync the live command files from there:
+Canonical copies of `refresh.md`/`pause.md` live in **stb-consumers/claude-commands/** (pulled current in Step 0). Sync the live commands from there:
 
 ```powershell
-$src = Join-Path $env:USERPROFILE 'stb-consumers\claude-commands'
-$dst = Join-Path $env:USERPROFILE '.claude\commands'
+$REPO = if ($env:STB_REPOS) { $env:STB_REPOS } else { $env:USERPROFILE }
+$CFG  = if ($env:CLAUDE_CONFIG_DIR) { $env:CLAUDE_CONFIG_DIR } else { "$env:USERPROFILE\.claude" }
+$src = Join-Path $REPO 'stb-consumers\claude-commands'
+$dst = Join-Path $CFG 'commands'
 if (Test-Path $src) {
   foreach ($f in @('refresh.md','pause.md')) {
     $s = Join-Path $src $f; $d = Join-Path $dst $f
@@ -58,14 +62,14 @@ if (Test-Path $src) {
 }
 ```
 
-This keeps `/pause` and `/refresh` identical on every machine automatically — no per-machine reapply, ever. **To CHANGE a command, edit the copy in `stb-consumers/claude-commands/` and commit it — never the live copy in `.claude\commands\` (this step overwrites it from the repo).**
+Keeps `/pause` and `/refresh` identical on every machine automatically. **To CHANGE a command, edit the copy in `stb-consumers/claude-commands/` and commit — never the live copy (this step overwrites it).**
 
 ## Step 1 — Pull memory from Notion
 
 Query the Code Memory Store (Notion data source `collection://3252204e-561d-47d5-82b8-6521ed678d43`) for all rows where Status = Active.
 
 **If Notion is reachable:**
-- For each row, write a local file to the memory folder with this exact format:
+- For each row, write a file to `$MEM` with this exact format:
   ```
   ---
   name: {Name}
@@ -76,22 +80,20 @@ Query the Code Memory Store (Notion data source `collection://3252204e-561d-47d5
 
   {Body}
   ```
-  Filename = `{Type}_{Name-minus-type-prefix}.md` — strip the leading `{type}-` from the Name slug, then prepend `{type}_`. Example: Name=`feedback-talk-to-garrison-plainly`, Type=`feedback` -> `feedback_talk-to-garrison-plainly.md`. Name=`user-garrison`, Type=`user` -> `user_garrison.md`.
-- Regenerate MEMORY.md as an index: one line per row where "Load at startup" is checked, format `- [{Name}]({filename}) — {Description}`.
+  Filename = `{Type}_{Name-minus-type-prefix}.md` (strip the leading `{type}-` from the Name slug, prepend `{type}_`). E.g. Name=`user-garrison`, Type=`user` → `user_garrison.md`.
+- Regenerate `$MEM\MEMORY.md` as an index: one line per row where "Load at startup" is checked, format `- [{Name}]({filename}) — {Description}`.
 - Report: "Memory pulled from Notion — {N} entries, last synced {most recent Last synced date}."
 
 **If Notion is unreachable:**
-- ALERT prominently: "WARNING: Notion unreachable. Running on cached memory. Cache last modified: {most recent file modification date in the memory folder}. Memory may be stale."
+- ALERT prominently: "WARNING: Notion unreachable. Running on cached memory. Cache last modified: {most recent file mtime in `$MEM`}. Memory may be stale."
 - Proceed with whatever is on disk.
 
 ## Step 2 — Channel walk
 
 Read the Cross-Agent Channel (data source `ecc8ead5-0855-424e-8f2c-33399f28c601`) for rows where `To = Code` AND `Status ∈ {Unread, Acknowledged}`.
 
-If nothing is waiting, say so in one line.
-
-If there is an inbound row: acknowledge it (set Status = Acknowledged, add a brief Reply), report what it contains, and wait for Garrison's direction before acting.
+If nothing is waiting, say so in one line. If there is an inbound row: acknowledge it (set Status = Acknowledged, add a brief Reply), report what it contains, and wait for Garrison's direction before acting.
 
 ## Step 3 — Report and wait
 
-Briefly report the state: code-repo sync result (Step 0), what's in memory that matters for the current session, what (if anything) is waiting on the channel. Then wait for Garrison's direction. Do not start work.
+Briefly report: code-repo sync result (Step 0), what's in memory that matters this session, anything waiting on the channel. Then wait for Garrison's direction. Do not start work.
