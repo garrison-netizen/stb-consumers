@@ -15,7 +15,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 
 const DB_PATH = path.join(__dirname, 'out', 'ekos-mirror.sqlite');
-const APP_URL = (process.env.STB_APP_URL || 'https://stb-exec-console.vercel.app').replace(/\/$/, '');
+const APP_URL = (process.env.STB_APP_URL || 'https://stb-console.vercel.app').replace(/\/$/, '');
 const APP_DIR = process.env.STB_APP_DIR || path.resolve(__dirname, '..', '..', '..', 'stb-exec-console');
 
 function getOidcToken() {
