@@ -1,0 +1,16 @@
+{
+  "name": "ekos-mirror-sync",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pulls trimmed Ekos EDW tables into ekos-mirror.sqlite for the STB production chatbot. Runs on a machine with the Ekos VPN connected.",
+  "scripts": {
+    "sync": "node sync-mirror.js",
+    "upload": "node upload-mirror.js",
+    "sync:full": "node sync-mirror.js && node upload-mirror.js"
+  },
+  "dependencies": {
+    "@vercel/blob": "^0.27.0",
+    "dotenv": "^17.4.2",
+    "mssql": "^11.0.1"
+  }
+}

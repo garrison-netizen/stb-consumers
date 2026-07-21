@@ -19,7 +19,7 @@ Machine tag: `$env:USERNAME` = `garrison` → "Machine A"; `garri` → "Machine 
 
 ```powershell
 $REPO = if ($env:STB_REPOS) { $env:STB_REPOS } else { $env:USERPROFILE }
-foreach ($r in @('stb-master-calendar','stb-private-event-calculator','stb-consumers')) {
+foreach ($r in @('stb-master-calendar','stb-private-event-calculator','stb-consumers','stb-exec-console')) {
   $p = Join-Path $REPO $r
   if (-not (Test-Path $p)) { continue }
   $dirty = git -C $p status --porcelain

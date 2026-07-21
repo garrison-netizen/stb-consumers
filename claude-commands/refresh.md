@@ -19,11 +19,11 @@ $MEM  = Join-Path $CFG "projects\$SLUG\memory"
 
 ## Step 0 — Sync code repos (do this FIRST, before any work)
 
-Tracked repos (each clone lives at `$REPO\<name>`): `stb-master-calendar`, `stb-private-event-calculator`, `stb-consumers`.
+Tracked repos (each clone lives at `$REPO\<name>`): `stb-master-calendar`, `stb-private-event-calculator`, `stb-consumers`, `stb-exec-console`.
 
 ```powershell
 $REPO = if ($env:STB_REPOS) { $env:STB_REPOS } else { $env:USERPROFILE }
-foreach ($r in @('stb-master-calendar','stb-private-event-calculator','stb-consumers')) {
+foreach ($r in @('stb-master-calendar','stb-private-event-calculator','stb-consumers','stb-exec-console')) {
   $p = Join-Path $REPO $r
   if (-not (Test-Path $p)) { Write-Output "SKIP  $r (not present)"; continue }
   $pull = (git -C $p pull --ff-only 2>&1 | Out-String).Trim()
