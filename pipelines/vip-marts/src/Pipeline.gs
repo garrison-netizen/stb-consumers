@@ -322,11 +322,16 @@ function VM_phaseMartB_(st, distMap, year, ex) {
     VM_create_(VIP.MART_B_DS, b.creates[j].props);
     written++;
   }
+  for (var p = 0; p < (b.archives || []).length; p++) {
+    if (VM_timeLeft_() < 45 * 1000) { Logger.log("Mart B paused during pseudo-account archival."); return false; }
+    VM_archive_(b.archives[p]);
+  }
 
   var s = b.stats;
   st.log.push("Mart B (window " + b.windowLabel + "): " + s.matched + " matched, " +
     b.creates.length + " new accounts, " + b.updates.length + " rows updated, " +
-    s.unchanged + " unchanged, " + s.flippedToLapsed + " flipped to Lapsed.");
+    s.unchanged + " unchanged, " + s.flippedToLapsed + " flipped to Lapsed, " +
+    s.pseudoSkipped + " OPEN pseudo-rows skipped in dump, " + s.pseudoArchived + " archived from Mart B.");
   st.log.push("Mart B trajectory buckets: New " + s.newAccts + ", Growing " + s.growing +
     ", Steady " + s.steady + ", Declining " + s.declining +
     ", Lapsed " + (s.lapsedNow + s.lapsedEarlier) + " (this yr " + s.lapsedNow +

@@ -136,6 +136,17 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
   var histCols = [];
   for (var y = VIP.FIRST_HISTORY_YEAR; y < year; y++) histCols.push({ year: y, col: VIP_colHistory_(y) });
 
+  // Architect ruling 2026-07-21: "OPEN" allocation rows (RDD BULK,
+  // SALES REP, etc.) are VIP bookkeeping, not retail accounts —
+  // excluded from Mart B entirely. Existing ones are archived; dump
+  // ones are skipped. Their CE still reaches Mart A via the matrix.
+  function isPseudo(name) { return VM_norm_(name) === "OPEN" || VM_norm_(name).indexOf("OPEN |") === 0; }
+  var pseudoArchives = [];
+  existing = existing.filter(function (ex) {
+    if (isPseudo(ex["Account name"])) { pseudoArchives.push(ex.__id); return false; }
+    return true;
+  });
+
   // Index existing rows by canonical identity and by uid. Secondary
   // index name|city catches rows whose address VIP re-spelled beyond
   // canonicalization — used only when unambiguous AND the addresses
@@ -183,10 +194,12 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
   // Aggregate dump rows by identity (an account can appear once per
   // distributor; sum CE across appearances, keep the active parent).
   var dump = {};
+  var pseudoSkipped = 0;
   for (var r = 1; r < detailCsv.length; r++) {
     var row = detailCsv[r];
     if (!row || row.length < 7 || !String(row[0]).trim()) continue;
     var name = String(row[0]).trim();
+    if (isPseudo(name)) { pseudoSkipped++; continue; }
     var key = dumpKeyFor(name, row[1], row[2]);
     var ytd = VM_num_(row[curCE]) || 0;
     var sp  = VM_num_(row[priCE]) || 0;
@@ -226,7 +239,10 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
     var active = ytd > 0;
     var status;
     if (active) {
-      if (!hasPrior) status = VIP_statusNew_(year);
+      // Architect ruling 2026-07-21: New requires NO prior activity by
+      // BOTH signals — same-period = 0 AND no canonical spine match.
+      // Either signal present → continuing account, classify off delta.
+      if (!hasPrior && !spPrior) status = VIP_statusNew_(year);
       else if (samePeriod > 0) {
         var g = (ytd - samePeriod) / samePeriod;
         status = g > VIP.GROWTH_PCT ? "Growing" : g < -VIP.GROWTH_PCT ? "Declining" : "Steady";
@@ -346,5 +362,7 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
     updates.push({ pageId: ex.__id, props: props, uid: ex["account_uid"] });
   });
 
-  return { updates: updates, creates: creates, stats: stats, dupKeys: dupKeys, windowLabel: win.current.label };
+  stats.pseudoSkipped = pseudoSkipped;
+  stats.pseudoArchived = pseudoArchives.length;
+  return { updates: updates, creates: creates, archives: pseudoArchives, stats: stats, dupKeys: dupKeys, windowLabel: win.current.label };
 }
