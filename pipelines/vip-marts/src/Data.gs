@@ -55,6 +55,17 @@ function VM_norm_(s) {
   return String(s || "").toUpperCase().replace(/\s+/g, " ").trim();
 }
 
+// Distributor-token canonicalization. The raw VIP exports write the
+// state as a comma suffix ("Silver Eagle Dist - Houston, TX") while
+// the VIP Distributor Map's tokens carry the cleaned parenthesized
+// form ("Silver Eagle Dist - Houston (TX)"). Rewrite the comma form
+// to the parenthesized form, then apply VM_norm_ — applied to BOTH
+// sides of the lookup so either spelling matches the same key.
+function VM_normToken_(s) {
+  var t = String(s || "").trim().replace(/,\s*([A-Za-z]{2})\s*$/, " ($1)");
+  return VM_norm_(t);
+}
+
 // ---- Rollup-window header parsing --------------------------------
 
 var VM_WINDOW_RE = /^(\d+)\s+Weeks?\s+(\d{1,2})\/(\d{1,2})\/(\d{4})\s+thru\s+(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(.+)$/;
@@ -122,7 +133,7 @@ function VM_loadDistMap_() {
   var map = {};
   rows.forEach(function (p) {
     var r = VM_row_(p);
-    var token = VM_norm_(r["Raw VIP token"]);
+    var token = VM_normToken_(r["Raw VIP token"]);
     if (!token) return;
     map[token] = {
       parent: r["Parent distributor"] || null,
@@ -136,7 +147,7 @@ function VM_loadDistMap_() {
 
 // Resolve a raw distributor token; fail loudly on unmapped (ADR-010 §4).
 function VM_mapDistributor_(map, rawToken) {
-  var hit = map[VM_norm_(rawToken)];
+  var hit = map[VM_normToken_(rawToken)];
   if (!hit || !hit.parent) {
     throw new Error('UNMAPPED DISTRIBUTOR TOKEN: "' + rawToken + '" is not in the VIP Distributor Map. ' +
       "Add the token to the map (Architect surface), then re-run. Nothing was written.");

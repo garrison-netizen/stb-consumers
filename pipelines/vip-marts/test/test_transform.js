@@ -84,24 +84,34 @@ function toYtdHeader(h) {
 const matrixY = [matrix[0].map(toYtdHeader), ...matrix.slice(1)];
 const detailY = [detail[0].map(toYtdHeader), ...detail.slice(1)];
 
-// Fake distributor map from tokens present in the files.
+// Fake distributor map from tokens present in the files — keyed the
+// way the LIVE VIP Distributor Map spells them: cleaned "(ST)" form
+// ("Silver Eagle Dist - Houston (TX)"), while the export files use
+// the raw comma form ("Silver Eagle Dist - Houston, TX"). Keying via
+// the cleaned form and looking up via the raw form is exactly the
+// production path, so this exercises VM_normToken_'s bridging.
 const tokens = new Set();
-matrixY.slice(1).forEach(r => r[0] && tokens.add(VM_norm_(r[0])));
-detailY.slice(1).forEach(r => r[6] && tokens.add(VM_norm_(r[6])));
+matrixY.slice(1).forEach(r => r[0] && tokens.add(String(r[0]).trim()));
+detailY.slice(1).forEach(r => r[6] && tokens.add(String(r[6]).trim()));
 const distMap = {};
-for (const t of tokens) {
-  distMap[t] = {
-    parent: /GREEN LIGHT/.test(t) ? "Green Light" : /SILVER EAGLE/.test(t) ? "Silver Eagle" : "Dynamo Specialty",
+for (const raw of tokens) {
+  const cleaned = raw.replace(/,\s*([A-Za-z]{2})\s*$/, " ($1)"); // as the live map spells it
+  distMap[VM_normToken_(cleaned)] = {
+    parent: /Green Light/i.test(raw) ? "Green Light" : /Silver Eagle/i.test(raw) ? "Silver Eagle" : "Dynamo Specialty",
     branch: null,
-    footprint: /GREEN LIGHT|CENTRAL/.test(t)
+    footprint: /Green Light|Central/i.test(raw)
   };
 }
 console.log("tokens in files:", tokens.size);
+check("comma-form export token matches (ST)-form map entry",
+  !!distMap[VM_normToken_("Silver Eagle Dist - Houston, TX")] &&
+  VM_normToken_("Silver Eagle Dist - Houston, TX") === VM_normToken_("Silver Eagle Dist - Houston (TX)"));
+check("whitespace variance still collapses", VM_normToken_("Standard Sales Company  LP - Odessa, TX") === VM_normToken_("Standard Sales Company LP - Odessa (TX)"));
 
 // ---- Test 3: unmapped-token gate ---------------------------------
 try {
   const gap = { ...distMap };
-  delete gap[[...tokens][0]];
+  delete gap[VM_normToken_([...tokens][0])];
   VM_computeMartA_(matrixY, gap, 2026);
   check("unmapped-token gate fires", false, "no error thrown");
 } catch (e) {
