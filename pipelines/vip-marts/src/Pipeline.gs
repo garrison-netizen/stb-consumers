@@ -35,6 +35,21 @@ function VM_clearState_() { VM_props_().deleteProperty(VIP.PROP.STATE); }
 
 // ---- entry points -------------------------------------------------
 
+// One-time editor run: seeds the non-secret Script Properties.
+// NOTION_API_KEY must be pasted manually in Project Settings →
+// Script Properties (never lives in code or git).
+function vipBootstrapProperties() {
+  var p = PropertiesService.getScriptProperties();
+  if (!p.getProperty(VIP.PROP.CURRENT_YEAR)) p.setProperty(VIP.PROP.CURRENT_YEAR, "2026");
+  if (!p.getProperty(VIP.PROP.EXPECTED_CE)) p.setProperty(VIP.PROP.EXPECTED_CE, "7243.1");
+  Logger.log("Seeded: VIP_CURRENT_YEAR=" + p.getProperty(VIP.PROP.CURRENT_YEAR) +
+    ", VIP_EXPECTED_CE=" + p.getProperty(VIP.PROP.EXPECTED_CE) +
+    ". DRY_RUN is " + (STB_dryRun_() ? "ON (default)" : "OFF") + ".");
+  if (!p.getProperty("NOTION_API_KEY")) {
+    Logger.log("STILL NEEDED: paste NOTION_API_KEY in Project Settings → Script Properties.");
+  }
+}
+
 function vipSetupTrigger() {
   ScriptApp.getProjectTriggers().forEach(function (t) {
     if (t.getHandlerFunction() === "vipDailyCheck") ScriptApp.deleteTrigger(t);
