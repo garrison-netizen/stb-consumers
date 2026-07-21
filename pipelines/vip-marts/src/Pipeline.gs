@@ -44,7 +44,11 @@ function VM_clearState_() { VM_props_().deleteProperty(VIP.PROP.STATE); }
 //   DRY_RUN = "0"                   → vipRunNow(): the real load.
 function vipVerifySetup() {
   if (STB_dryRun_()) {
-    Logger.log("DRY_RUN is ON — running the no-writes report. Set DRY_RUN=0 for the real load.");
+    Logger.log("DRY_RUN is ON — snapshot + no-writes report. Set DRY_RUN=0 for the real load.");
+    // Exercise the real snapshot path (a Drive CSV, not a Notion
+    // write) so dry mode proves the safety mechanism too.
+    var ex = VM_findExports_();
+    VM_phaseSnapshot_({ runId: "dryrun-" + ex.runId, log: [] }, VIP_currentYear_());
     vipDryRunReport();
   } else {
     Logger.log("DRY_RUN is OFF — running the real load.");
