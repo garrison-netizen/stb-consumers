@@ -68,7 +68,10 @@ function VM_normToken_(s) {
 
 // ---- Rollup-window header parsing --------------------------------
 
-var VM_WINDOW_RE = /^(\d+)\s+Weeks?\s+(\d{1,2})\/(\d{1,2})\/(\d{4})\s+thru\s+(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(.+)$/;
+// VIP writes weekly-report windows as "N Weeks ..." and YTD/monthly
+// windows as "N Months ..." — both shapes observed in live exports
+// (13-week trailing pull 2026-06-03 vs YTD pull 2026-07-21).
+var VM_WINDOW_RE = /^(\d+)\s+(?:Weeks?|Months?)\s+(\d{1,2})\/(\d{1,2})\/(\d{4})\s+thru\s+(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(.+)$/;
 
 var VM_METRIC_MAP = {
   "Case Equivs":          "ce",
@@ -102,8 +105,8 @@ function VM_parseWindows_(header, expectYear) {
     var metric = VM_METRIC_MAP[m[8].trim()];
     if (metric) groups[key].cols[metric] = i;
   }
-  // Only multi-week groups are rollups; 1-week groups were skipped by
-  // requiring weeks > 1 here.
+  // Only multi-period groups are rollups; single-week/single-month
+  // groups are the detail columns and are skipped by requiring > 1.
   var rollups = [];
   for (var k in groups) if (groups[k].weeks > 1) rollups.push(groups[k]);
   if (rollups.length < 2) {

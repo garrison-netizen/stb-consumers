@@ -36,11 +36,20 @@ function VM_clearState_() { VM_props_().deleteProperty(VIP.PROP.STATE); }
 // ---- entry points -------------------------------------------------
 
 // FIRST function in this file on purpose: it's the editor's default
-// Run target, and it's the safe one — parse + compute + log only,
-// writes structurally impossible. Click Run with no dropdown fiddling
-// to sanity-check the whole chain (Drive read, Notion key, gates).
+// Run target (the GAS editor function dropdown resists automation, so
+// the default must be the right thing to click). Dispatches on the
+// DRY_RUN Script Property:
+//   DRY_RUN unset/anything but "0"  → vipDryRunReport(): parse +
+//     compute + log only, writes structurally impossible.
+//   DRY_RUN = "0"                   → vipRunNow(): the real load.
 function vipVerifySetup() {
-  vipDryRunReport();
+  if (STB_dryRun_()) {
+    Logger.log("DRY_RUN is ON — running the no-writes report. Set DRY_RUN=0 for the real load.");
+    vipDryRunReport();
+  } else {
+    Logger.log("DRY_RUN is OFF — running the real load.");
+    vipRunNow();
+  }
 }
 
 // One-time editor run: seeds the non-secret Script Properties.
@@ -64,6 +73,14 @@ function vipSetupTrigger() {
   });
   ScriptApp.newTrigger("vipDailyCheck").timeBased().everyDays(1).atHour(6).create();
   Logger.log("Daily 6am check installed (vipDailyCheck).");
+}
+
+// Idempotent: installs the daily check only if absent.
+function VM_ensureDailyTrigger_() {
+  var exists = ScriptApp.getProjectTriggers().some(function (t) {
+    return t.getHandlerFunction() === "vipDailyCheck";
+  });
+  if (!exists) vipSetupTrigger();
 }
 
 // Runs from the daily trigger: only proceeds when BOTH exports are
@@ -144,6 +161,9 @@ function vipRunNow() {
       VM_phaseReport_(st);
       VM_props_().setProperty(VIP.PROP.LAST_RUN, st.runId);
       VM_clearState_();
+      // A successful live run ensures its own daily check exists —
+      // no separate trigger-installation step to remember.
+      if (!STB_dryRun_()) VM_ensureDailyTrigger_();
     }
   } catch (e) {
     VM_clearState_();

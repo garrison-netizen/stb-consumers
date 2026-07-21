@@ -239,5 +239,41 @@ check("second run is a no-op (idempotent)", b2.updates.length === 0 && b2.create
   `updates ${b2.updates.length} creates ${b2.creates.length}` +
   (b2.updates[0] ? " first: " + b2.updates[0].pageId + " " + JSON.stringify(b2.updates[0].props).slice(0, 200) : ""));
 
+// ---- Test 7: REAL YTD exports (2026-07-21 pull) vs the ADR-010 oracle
+// The acceptance oracle says Mart A total CE (Jan–Jun 2026) = 7,243.1.
+{
+  const ytdMatrix = parseCsv(fs.readFileSync(path.join(SP, "fixtures_ytd_dist_matrix.csv"), "utf8").replace(/^﻿/, ""));
+  const ytdDetail = parseCsv(fs.readFileSync(path.join(SP, "fixtures_ytd_account_detail.csv"), "utf8").replace(/^﻿/, ""));
+
+  // Months-form windows parse and pass the YTD gate.
+  const w = VM_parseWindows_(ytdMatrix[0], 2026);
+  check("YTD export: Months-form windows parse", w.current.label === "1/1/2026 thru 6/30/2026", w.current.label);
+  check("YTD export: prior-year same-period found", w.prior.label === "1/1/2025 thru 6/30/2025", w.prior.label);
+
+  // Distributor map in live cleaned form for tokens in these files.
+  const ytdTokens = new Set();
+  ytdMatrix.slice(1).forEach(r => r[0] && ytdTokens.add(String(r[0]).trim()));
+  ytdDetail.slice(1).forEach(r => r[6] && ytdTokens.add(String(r[6]).trim()));
+  const ytdMap = {};
+  for (const raw of ytdTokens) {
+    const cleaned = raw.replace(/,\s*([A-Za-z]{2})\s*$/, " ($1)");
+    ytdMap[VM_normToken_(cleaned)] = { parent: cleaned.replace(/\s*\([A-Z]{2}\)$/, "").split(" - ")[0], branch: null, footprint: /green light|central/i.test(raw) };
+  }
+  const ay = VM_computeMartA_(ytdMatrix, ytdMap, 2026);
+  console.log("REAL YTD Mart A: cells", Object.keys(ay.cells).length, "total CE", ay.totalCE, "window", ay.windowLabel);
+  check("ORACLE: Mart A total CE = 7,243.1", Math.abs(ay.totalCE - 7243.1) < 0.15, "got " + ay.totalCE);
+
+  // Account-detail current-window sum should reconcile to the same H1 total.
+  const wd = VM_parseWindows_(ytdDetail[0], 2026);
+  let detailCE = 0;
+  for (let r = 1; r < ytdDetail.length; r++) {
+    const row = ytdDetail[r];
+    if (!row || !String(row[0]).trim()) continue;
+    const v = String(row[wd.current.cols.ce] ?? "").replace(/,/g, "").trim();
+    if (v && v !== "--") detailCE += Number(v) || 0;
+  }
+  check("ORACLE: account-detail H1 sum ≈ 7,243.1", Math.abs(detailCE - 7243.1) < 0.15, "got " + Math.round(detailCE * 10) / 10);
+}
+
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
