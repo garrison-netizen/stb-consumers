@@ -35,6 +35,14 @@ function VM_clearState_() { VM_props_().deleteProperty(VIP.PROP.STATE); }
 
 // ---- entry points -------------------------------------------------
 
+// FIRST function in this file on purpose: it's the editor's default
+// Run target, and it's the safe one — parse + compute + log only,
+// writes structurally impossible. Click Run with no dropdown fiddling
+// to sanity-check the whole chain (Drive read, Notion key, gates).
+function vipVerifySetup() {
+  vipDryRunReport();
+}
+
 // One-time editor run: seeds the non-secret Script Properties.
 // NOTION_API_KEY must be pasted manually in Project Settings →
 // Script Properties (never lives in code or git).
