@@ -55,6 +55,39 @@ function VM_norm_(s) {
   return String(s || "").toUpperCase().replace(/\s+/g, " ").trim();
 }
 
+// Address canonicalization for Mart B identity matching. VIP spells
+// the SAME account's address differently across pulls ("S. BROADWAY
+// AVE." vs "S BROADWAY AVE", suite fragments present or absent,
+// "STREET" vs "ST") — verified against the live spine 2026-07-21,
+// where naive matching missed ~30 real accounts. Canonical form:
+// uppercase, punctuation stripped, unit fragments dropped, suffixes
+// abbreviated, single-letter directionals dropped.
+function VM_normAddr_(s) {
+  var t = VM_norm_(s).replace(/[^A-Z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+  t = t.replace(/\b(STE|SUITE|UNIT|BLDG|BUILDING|SPACE|APT)\b\s*[A-Z0-9-]*/g, " ");
+  var SUFFIX = { STREET: "ST", ROAD: "RD", AVENUE: "AVE", BOULEVARD: "BLVD", PARKWAY: "PKWY",
+    HIGHWAY: "HWY", DRIVE: "DR", LANE: "LN", COURT: "CT", PLACE: "PL",
+    EXPRESSWAY: "EXPWY", FREEWAY: "FWY", COUNTRY: "COUNTY" };
+  t = t.split(" ").map(function (w) { return SUFFIX[w] || w; })
+    .filter(function (w) { return w && !(w.length === 1 && "NSEW".indexOf(w) >= 0); })
+    .join(" ");
+  return t;
+}
+
+function VM_identityKey_(name, address) {
+  return VM_norm_(name) + "|" + VM_normAddr_(address);
+}
+
+// Token-overlap similarity of two canonical addresses (0..1).
+function VM_addrOverlap_(a, b) {
+  var A = VM_normAddr_(a).split(" "), B = VM_normAddr_(b).split(" ");
+  var setB = {}, inter = 0;
+  B.forEach(function (t) { setB[t] = true; });
+  A.forEach(function (t) { if (setB[t]) { inter++; delete setB[t]; } });
+  var union = A.length + B.length - inter;
+  return union ? inter / union : 0;
+}
+
 // Distributor-token canonicalization. The raw VIP exports write the
 // state as a comma suffix ("Silver Eagle Dist - Houston, TX") while
 // the VIP Distributor Map's tokens carry the cleaned parenthesized

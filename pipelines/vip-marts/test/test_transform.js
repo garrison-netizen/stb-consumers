@@ -203,14 +203,17 @@ const newCreate = b.creates[0];
 check("creates carry minted uid", /^acct_[0-9a-f]{8}$/.test(newCreate.uid), newCreate.uid);
 check("creates never write history columns",
   b.creates.every(c => Object.keys(c.props).every(k => !/^CE 20(21|22|23|24|25)$/.test(k))));
-check("creates' status consistent with (ytd, same-period)",
+// Conformed vocabulary (ADR-013 oracle): "New {year}" keys on spine
+// history only — a spine-less create with ytd > 0 is New even when
+// same-period > 0. Inactive spine-less creates with same-period > 0
+// are Lapsed {year} (not Never material).
+check("creates' status consistent with conformed vocabulary",
   b.creates.every(c => {
     const s = c.props["Trajectory Status"].select.name;
     const ytd = c.props["CE 2026 YTD"].number, sp = c.props["CE 2025 same-period"].number;
     let ok;
-    if (sp <= 0 && ytd > 0) ok = s === "New 2026";
-    else if (sp > 0 && ytd <= 0) ok = s === "Lapsed 2026";
-    else if (sp > 0 && ytd > 0) ok = ["Growing", "Steady", "Declining"].includes(s);
+    if (ytd > 0) ok = s === "New 2026";
+    else if (sp > 0) ok = s === "Lapsed 2026";
     else ok = false;
     if (!ok) console.log("  violator:", JSON.stringify({ s, ytd, sp, name: c.props["Account name"].title[0].text.content }));
     return ok;

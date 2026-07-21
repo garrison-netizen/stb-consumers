@@ -136,13 +136,49 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
   var histCols = [];
   for (var y = VIP.FIRST_HISTORY_YEAR; y < year; y++) histCols.push({ year: y, col: VIP_colHistory_(y) });
 
-  // Index existing rows by identity and by uid.
-  var byKey = {}, byUid = {}, dupKeys = [];
+  // Index existing rows by canonical identity and by uid. Secondary
+  // index name|city catches rows whose address VIP re-spelled beyond
+  // canonicalization — used only when unambiguous AND the addresses
+  // still overlap (guards multi-location chains: two "BLACK WALNUT
+  // CAFE, HOUSTON" at different streets must NOT merge).
+  // Colliding canonical keys (e.g. VIP bookkeeping pseudo-accounts
+  // like "OPEN | RDD BULK - E" repeated per region, where City is the
+  // real differentiator) are re-keyed with City appended rather than
+  // aborting; only a still-colliding key aborts the run.
+  var byKey = {}, collided = {}, byUid = {}, dupKeys = [], byNameCity = {};
   existing.forEach(function (ex) {
-    var key = VM_norm_(ex["Account name"]) + "|" + VM_norm_(ex["Address"]);
-    if (byKey[key]) dupKeys.push(key); else byKey[key] = ex;
+    var key = VM_identityKey_(ex["Account name"], ex["Address"]);
+    if (collided[key]) {
+      var k2 = key + "|" + VM_norm_(ex["City"]);
+      if (byKey[k2]) dupKeys.push(k2); else byKey[k2] = ex;
+    } else if (byKey[key]) {
+      var orig = byKey[key];
+      delete byKey[key];
+      collided[key] = true;
+      var ko = key + "|" + VM_norm_(orig["City"]);
+      var kn = key + "|" + VM_norm_(ex["City"]);
+      byKey[ko] = orig;
+      if (kn === ko) dupKeys.push(kn); else byKey[kn] = ex;
+    } else {
+      byKey[key] = ex;
+    }
     if (ex["account_uid"]) byUid[ex["account_uid"]] = ex;
+    var nc = VM_norm_(ex["Account name"]) + "|" + VM_norm_(ex["City"]);
+    if (byNameCity[nc] === undefined) byNameCity[nc] = ex; else byNameCity[nc] = null; // null = ambiguous
   });
+
+  function dumpKeyFor(name, address, city) {
+    var key = VM_identityKey_(name, address);
+    return collided[key] ? key + "|" + VM_norm_(city) : key;
+  }
+
+  function findExisting(name, address, city) {
+    var hit = byKey[dumpKeyFor(name, address, city)];
+    if (hit) return hit;
+    var nc = byNameCity[VM_norm_(name) + "|" + VM_norm_(city)];
+    if (nc && VM_addrOverlap_(address, nc["Address"]) >= 0.5) return nc;
+    return null;
+  }
 
   // Aggregate dump rows by identity (an account can appear once per
   // distributor; sum CE across appearances, keep the active parent).
@@ -151,7 +187,7 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
     var row = detailCsv[r];
     if (!row || row.length < 7 || !String(row[0]).trim()) continue;
     var name = String(row[0]).trim();
-    var key = VM_norm_(name) + "|" + VM_norm_(row[1]);
+    var key = dumpKeyFor(name, row[1], row[2]);
     var ytd = VM_num_(row[curCE]) || 0;
     var sp  = VM_num_(row[priCE]) || 0;
     var dist = VM_mapDistributor_(distMap, row[6]);
@@ -178,27 +214,30 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
 
   // Classify + derive for one logical row state.
   function derive(hist, ytd, samePeriod, existingStatus) {
+    // Vocabulary conforms to the Architect's classifier (the ADR-013
+    // acceptance oracle): "New {year}" keys on the SPINE HISTORY only —
+    // an account with no CE 2021..{year-1} history counts as New even
+    // if the dump shows same-period activity last year. Same-period
+    // still (a) drives the Growing/Steady/Declining pct math and
+    // (b) distinguishes "Lapsed {year}" from "Never material" for
+    // inactive rows with no spine history.
     var hasPrior = hist.some(function (h) { return (h.ce || 0) > 0; });
-    // A positive same-period value proves prior-year activity even when
-    // the history columns are empty (e.g. accounts absent from the
-    // original Mart B spine) — without this, such rows would misread
-    // as New/Never material.
     var spPrior = samePeriod > 0;
     var active = ytd > 0;
     var status;
-    if (!hasPrior && !spPrior && active) status = VIP_statusNew_(year);
-    else if (!hasPrior && !spPrior && !active) status = existingStatus || "Never material";
-    else if (!active) {
-      var lastFullCe = hist.length ? (hist[hist.length - 1].ce || 0) : 0; // CE {year-1}
-      status = (lastFullCe > 0 || spPrior) ? VIP_statusLapsed_(year) : "Lapsed earlier";
-      if (existingStatus === "Never material") status = "Never material";
-    } else {
-      if (samePeriod > 0) {
+    if (active) {
+      if (!hasPrior) status = VIP_statusNew_(year);
+      else if (samePeriod > 0) {
         var g = (ytd - samePeriod) / samePeriod;
         status = g > VIP.GROWTH_PCT ? "Growing" : g < -VIP.GROWTH_PCT ? "Declining" : "Steady";
       } else {
-        status = "Growing"; // active now vs zero same-period (incl. win-backs)
+        status = "Growing"; // active now vs zero same-period (win-backs)
       }
+    } else {
+      var lastFullCe = hist.length ? (hist[hist.length - 1].ce || 0) : 0; // CE {year-1}
+      if (hasPrior || spPrior) status = (lastFullCe > 0 || spPrior) ? VIP_statusLapsed_(year) : "Lapsed earlier";
+      else status = existingStatus || "Never material";
+      if (existingStatus === "Never material") status = "Never material";
     }
     // Peak across full history years; count the partial current year
     // only if it already beats every full year.
@@ -212,8 +251,10 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
     hist.forEach(function (h) {
       if ((h.ce || 0) > 0) { if (firstActive === null) firstActive = h.year; lastActive = h.year; }
     });
-    if (spPrior) {
-      if (firstActive === null || firstActive > year - 1) firstActive = firstActive === null ? year - 1 : firstActive;
+    // Same-period evidence extends first/last active ONLY for inactive
+    // rows (a "New {year}" label must not carry First active {year-1}).
+    if (spPrior && !active) {
+      if (firstActive === null) firstActive = year - 1;
       if (lastActive === null || lastActive < year - 1) lastActive = year - 1;
     }
     if (active) { if (firstActive === null) firstActive = year; lastActive = year; }
@@ -235,11 +276,11 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
     else if (status === "Never material") stats.neverMaterial++;
   }
 
-  var seenKeys = {};
+  var seenIds = {};
   for (var dk in dump) {
     var d = dump[dk];
-    var ex = byKey[dk];
-    seenKeys[dk] = true;
+    var ex = findExisting(d.name, d.address, d.city);
+    if (ex) seenIds[ex.__id] = true;
     if (ex) {
       stats.matched++;
       var hist = histCols.map(function (h) { return { year: h.year, ce: ex[h.col] }; });
@@ -292,8 +333,7 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
   // Vanished accounts: in Mart B, absent from dump → current YTD = 0,
   // reclassify (ADR-010 §1.2 step 5). History untouched.
   existing.forEach(function (ex) {
-    var key = VM_norm_(ex["Account name"]) + "|" + VM_norm_(ex["Address"]);
-    if (seenKeys[key]) return;
+    if (seenIds[ex.__id]) return;
     var hist = histCols.map(function (h) { return { year: h.year, ce: ex[h.col] }; });
     var dv = derive(hist, 0, ex[SP] || 0, ex["Trajectory Status"]);
     bump(dv.status);
