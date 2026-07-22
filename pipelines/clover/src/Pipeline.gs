@@ -17,9 +17,8 @@
 // ============================================================
 
 function cloverSync() {
-  var d = new Date();
-  d.setUTCDate(d.getUTCDate() - 1);
-  var iso = d.toISOString().substring(0, 10);
+  // "Yesterday" in Houston local time, not UTC.
+  var iso = Utilities.formatDate(new Date(Date.now() - 86400000), "America/Chicago", "yyyy-MM-dd");
   CLV_runRange_(iso, iso);
 }
 
@@ -36,14 +35,29 @@ function CLV_runRange_(startISO, endISO) {
   Logger.log("[CLV] range=" + startISO + ".." + endISO + " dry=" + dry);
 
   // --- Fetch ---
-  var orders  = CLV_fetchOrders_(startISO, endISO);
-  var itemMap = CLV_fetchItemMap_();
-  var shifts  = CLV_fetchShifts_(startISO, endISO);
+  var orders    = CLV_fetchOrders_(startISO, endISO);
+  var itemMap   = CLV_fetchItemMap_();
+  var shifts    = CLV_fetchShifts_(startISO, endISO);
+  var tenderMap = CLV_fetchTenderMap_();
+
+  // The fetch window is widened ±12h for timezone coverage; trim each
+  // record to the exact Houston-local date range here.
+  orders = orders.filter(function(o) {
+    if (!o.createdTime) return false;
+    var d = CLV_dateISO_(o.createdTime);
+    return d >= startISO && d <= endISO;
+  });
+  shifts = shifts.filter(function(sh) {
+    if (!sh.inTime) return false;
+    var d = CLV_dateISO_(sh.inTime);
+    return d >= startISO && d <= endISO;
+  });
   Logger.log("[CLV] orders=" + orders.length + " shifts=" + shifts.length +
-             " itemMap=" + Object.keys(itemMap).length);
+             " itemMap=" + Object.keys(itemMap).length +
+             " tenders=" + Object.keys(tenderMap).length);
 
   // --- Aggregate ---
-  var dailyAggs = CLV_aggregateDaily_(orders);
+  var dailyAggs = CLV_aggregateDaily_(orders, tenderMap);
   var skuAggs   = CLV_aggregateSkuWeek_(orders, itemMap);
   var laborAggs = CLV_aggregateLabor_(shifts);
 

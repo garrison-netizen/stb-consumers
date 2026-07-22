@@ -14,9 +14,12 @@
 
 var CLV_DAY_NAMES = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-// Convert a Clover millisecond timestamp to YYYY-MM-DD (UTC date).
+// Convert a Clover millisecond timestamp to YYYY-MM-DD in HOUSTON local
+// time (America/Chicago). UTC bucketing shifted all evening sales (after
+// 6-7pm CT) onto the next calendar day — worst possible skew for a taproom
+// whose volume is evenings. Utilities.formatDate handles CST/CDT for us.
 function CLV_dateISO_(ms) {
-  return new Date(parseInt(ms, 10)).toISOString().substring(0, 10);
+  return Utilities.formatDate(new Date(parseInt(ms, 10)), "America/Chicago", "yyyy-MM-dd");
 }
 
 // ISO date of the Monday starting the week for a given YYYY-MM-DD.
@@ -34,7 +37,15 @@ function CLV_weekStart_(dateISO) {
 // Aggregate orders → daily rollup map.
 // Returns: { "YYYY-MM-DD": { grossRev, netRev, txCount, tax, tips, discounts, card, cash, other } }
 // All amounts in dollars (converted from Clover cents).
-function CLV_aggregateDaily_(orders) {
+// tenderMap: { tenderId → { label, labelKey } } from CLV_fetchTenderMap_.
+// Production quirks this handles (all bit us on the 2026-07-22 dry run):
+//   - tax/tips live on each PAYMENT (pmt.taxAmount/pmt.tipAmount), not the order
+//   - payments carry a bare tender reference; classification needs the
+//     tender registry (labelKey like "com.clover.tender.credit_card") or
+//     the presence of pmt.cardTransaction
+//   - order-level discounts arrive via expand=discounts as an elements array
+function CLV_aggregateDaily_(orders, tenderMap) {
+  tenderMap = tenderMap || {};
   var days = {};
   (orders || []).forEach(function(order) {
     if (!order.createdTime) return;
@@ -45,20 +56,30 @@ function CLV_aggregateDaily_(orders) {
     }
     var day = days[d];
     day.txCount++;
-    day.grossRev  += (order.total          || 0) / 100;
-    day.tax       += (order.taxAmount      || 0) / 100;
-    day.tips      += (order.tipAmount      || 0) / 100;
-    day.discounts += (order.discountAmount || 0) / 100;
+    day.grossRev += (order.total || 0) / 100;
+
+    var discs = (order.discounts && order.discounts.elements) || [];
+    if (discs.length > 0) {
+      discs.forEach(function(dc) { day.discounts += Math.abs(dc.amount || 0) / 100; });
+    } else {
+      day.discounts += (order.discountAmount || 0) / 100;
+    }
+
     ((order.payments && order.payments.elements) || []).forEach(function(pmt) {
-      var amt   = (pmt.amount || 0) / 100;
-      var label = String((pmt.tender && pmt.tender.label) || "").toLowerCase();
-      if (label.indexOf("card") >= 0 || label.indexOf("credit") >= 0 || label.indexOf("debit") >= 0) {
-        day.card  += amt;
-      } else if (label === "cash") {
-        day.cash  += amt;
-      } else {
-        day.other += amt;
-      }
+      var amt = (pmt.amount || 0) / 100;
+      day.tax  += (pmt.taxAmount || 0) / 100;
+      day.tips += (pmt.tipAmount || 0) / 100;
+
+      var reg   = (pmt.tender && tenderMap[pmt.tender.id]) || {};
+      var label = String(reg.label || (pmt.tender && pmt.tender.label) || "").toLowerCase();
+      var lkey  = String(reg.labelKey || "").toLowerCase();
+      var isCard = lkey.indexOf("credit") >= 0 || lkey.indexOf("debit") >= 0 ||
+                   label.indexOf("card") >= 0 || label.indexOf("credit") >= 0 ||
+                   label.indexOf("debit") >= 0 || !!pmt.cardTransaction;
+      var isCash = lkey.indexOf("com.clover.tender.cash") >= 0 || label === "cash";
+      if (isCard)      day.card  += amt;
+      else if (isCash) day.cash  += amt;
+      else             day.other += amt;
     });
     day.netRev = day.grossRev - day.tax;
   });

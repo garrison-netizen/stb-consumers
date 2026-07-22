@@ -42,17 +42,32 @@ function CLV_fetchAll_(endpoint, filterQS) {
   return all;
 }
 
-// Fetch all paid orders in a date range, expanding lineItems and payments.
-// Clover createdTime filters are in milliseconds (Unix epoch).
+// Fetch all paid orders in a date range, expanding lineItems, payments,
+// and discounts. Clover createdTime filters are in milliseconds (Unix epoch).
+// The fetch window is widened ±12h around the UTC day boundaries so that
+// Houston-local days (UTC-5/-6) are fully covered; Pipeline.gs re-filters
+// each order to the exact local-date range after fetch.
 function CLV_fetchOrders_(startISO, endISO) {
-  var start = new Date(startISO + "T00:00:00Z").getTime();
-  var end   = new Date(endISO   + "T23:59:59Z").getTime();
+  var start = new Date(startISO + "T00:00:00Z").getTime() - 12 * 3600000;
+  var end   = new Date(endISO   + "T23:59:59Z").getTime() + 12 * 3600000;
   return CLV_fetchAll_(
     "/orders",
     "filter=createdTime%3E%3D" + start +
     "&filter=createdTime%3C%3D" + end +
-    "&expand=lineItems,payments"
+    "&expand=lineItems,payments,discounts"
   );
+}
+
+// Fetch the merchant's tender registry: { tenderId → { label, labelKey } }.
+// Production payments carry only a bare tender reference (id) — the
+// label/labelKey needed for card-vs-cash classification live here.
+function CLV_fetchTenderMap_() {
+  var tenders = CLV_fetchAll_("/tenders", "");
+  var map = {};
+  (tenders || []).forEach(function(t) {
+    map[t.id] = { label: t.label || "", labelKey: t.labelKey || "" };
+  });
+  return map;
 }
 
 // Fetch all inventory items with their categories.
@@ -76,8 +91,8 @@ function CLV_fetchItemMap_() {
 // Fetch all employee shifts in a date range.
 // inTime (clock-in) is used for date bucketing; outTime for hours calc.
 function CLV_fetchShifts_(startISO, endISO) {
-  var start = new Date(startISO + "T00:00:00Z").getTime();
-  var end   = new Date(endISO   + "T23:59:59Z").getTime();
+  var start = new Date(startISO + "T00:00:00Z").getTime() - 12 * 3600000;
+  var end   = new Date(endISO   + "T23:59:59Z").getTime() + 12 * 3600000;
   return CLV_fetchAll_(
     "/shifts",
     // Filter fields are snake_case (in_time) even though the response JSON
