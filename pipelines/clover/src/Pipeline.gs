@@ -35,6 +35,60 @@ function cloverBackfill() {
   CLV_runRange_(start, end);
 }
 
+// Self-chaining backfill: processes ONE month per execution, saves its
+// cursor, and schedules its own next run 30s out via a one-shot trigger.
+// Editor-started long runs proved fragile (canceled by code deploys and
+// browser-session churn, 2026-07-22); trigger-run chunks are fully
+// server-side and each finishes in minutes. Run cloverBackfillAuto()
+// once to start; watch progress in the Executions panel.
+// To abort a chain: delete the BACKFILL_CURSOR Script Property, then
+// delete any pending cloverBackfillAuto trigger in the Triggers panel.
+function cloverBackfillAuto() {
+  // Clear this handler's spent/pending one-shot triggers so they never pile up.
+  ScriptApp.getProjectTriggers().forEach(function(t) {
+    if (t.getHandlerFunction() === "cloverBackfillAuto") ScriptApp.deleteTrigger(t);
+  });
+
+  var props    = PropertiesService.getScriptProperties();
+  var start    = props.getProperty("BACKFILL_CURSOR") ||
+                 props.getProperty("BACKFILL_START") || "2025-05-01";
+  var finalEnd = props.getProperty("BACKFILL_END") || CLV_yesterdayLocal_();
+  if (start > finalEnd) {
+    props.deleteProperty("BACKFILL_CURSOR");
+    Logger.log("[CLV] Backfill chain COMPLETE (cursor " + start + " past end " + finalEnd + ")");
+    return;
+  }
+
+  var chunkEnd = CLV_monthEndISO_(start);
+  if (chunkEnd > finalEnd) chunkEnd = finalEnd;
+  Logger.log("[CLV] Backfill chunk " + start + " → " + chunkEnd + " (chain end " + finalEnd + ")");
+  CLV_runRange_(start, chunkEnd);
+
+  var next = CLV_addDaysISO_(chunkEnd, 1);
+  if (next <= finalEnd) {
+    props.setProperty("BACKFILL_CURSOR", next);
+    ScriptApp.newTrigger("cloverBackfillAuto").timeBased().after(30 * 1000).create();
+    Logger.log("[CLV] Next chunk (" + next + " →) scheduled in ~30s");
+  } else {
+    props.deleteProperty("BACKFILL_CURSOR");
+    Logger.log("[CLV] Backfill chain COMPLETE through " + chunkEnd);
+  }
+}
+
+// Last day of the month containing the given YYYY-MM-DD.
+function CLV_monthEndISO_(iso) {
+  var d = new Date(iso.substring(0, 7) + "-01T12:00:00Z");
+  d.setUTCMonth(d.getUTCMonth() + 1);
+  d.setUTCDate(0);
+  return d.toISOString().substring(0, 10);
+}
+
+function CLV_addDaysISO_(iso, n) {
+  var d = new Date(iso + "T12:00:00Z");
+  d.setUTCDate(d.getUTCDate() + n);
+  return d.toISOString().substring(0, 10);
+}
+
 function CLV_yesterdayLocal_() {
   return Utilities.formatDate(new Date(Date.now() - 86400000), "America/Chicago", "yyyy-MM-dd");
 }
