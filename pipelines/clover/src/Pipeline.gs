@@ -148,6 +148,9 @@ function CLV_runRange_(startISO, endISO) {
   // --- Taproom Daily ---
   Object.keys(dailyAggs).forEach(function(dateISO) {
     try {
+      // Refund-only / test-ring days aggregate to $0 even after the
+      // paid-order filter ($0-amount payments). No revenue, no row.
+      if (dailyAggs[dateISO].grossRev === 0) return;
       var id = STB_notionFindOne_(CLOVER.DAILY_DS, CLV_dailyFilter_(dateISO));
       if (id) { s.ds++; return; } // idempotent: daily totals don't change after close
       STB_notionCreate_(CLOVER.DAILY_DS, CLV_dailyProps_(dateISO, dailyAggs[dateISO]));
