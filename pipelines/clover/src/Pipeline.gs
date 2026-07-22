@@ -75,6 +75,65 @@ function cloverBackfillAuto() {
   }
 }
 
+// Payments-based history rebuild for the window where Clover purged order
+// records (pre 2026-03-01). Self-chaining like cloverBackfillAuto: one
+// month per execution, cursor in PAYFILL_CURSOR, re-triggers itself.
+// Writes Taproom Daily ONLY (SKU detail lived on the purged orders and is
+// not recoverable via API). Hard-stops before 2026-03-01 — order-based
+// rows own everything from there.
+function cloverPaymentsBackfillAuto() {
+  ScriptApp.getProjectTriggers().forEach(function(t) {
+    if (t.getHandlerFunction() === "cloverPaymentsBackfillAuto") ScriptApp.deleteTrigger(t);
+  });
+
+  var HARD_END = "2026-02-28";
+  var props    = PropertiesService.getScriptProperties();
+  var start    = props.getProperty("PAYFILL_CURSOR") ||
+                 props.getProperty("PAYFILL_START") || "2025-04-01";
+  var finalEnd = props.getProperty("PAYFILL_END") || HARD_END;
+  if (finalEnd > HARD_END) finalEnd = HARD_END;
+  if (start > finalEnd) {
+    props.deleteProperty("PAYFILL_CURSOR");
+    Logger.log("[CLV] Payments backfill chain COMPLETE");
+    return;
+  }
+
+  var chunkEnd = CLV_monthEndISO_(start);
+  if (chunkEnd > finalEnd) chunkEnd = finalEnd;
+  var dry = STB_dryRun_();
+  Logger.log("[CLV] Payments backfill chunk " + start + " → " + chunkEnd + " dry=" + dry);
+
+  var payments  = CLV_fetchPayments_(start, chunkEnd);
+  var tenderMap = CLV_fetchTenderMap_();
+  var aggs      = CLV_aggregateDailyFromPayments_(payments, tenderMap);
+  var s = { created: 0, skipped: 0, err: 0 };
+  Object.keys(aggs).forEach(function(dateISO) {
+    if (dateISO < start || dateISO > chunkEnd) return;   // ±12h fetch spill
+    if (aggs[dateISO].grossRev === 0) return;
+    try {
+      var id = STB_notionFindOne_(CLOVER.DAILY_DS, CLV_dailyFilter_(dateISO));
+      if (id) { s.skipped++; return; }
+      STB_notionCreate_(CLOVER.DAILY_DS, CLV_dailyProps_(dateISO, aggs[dateISO]));
+      s.created++;
+    } catch(e) {
+      Logger.log("[CLV payfill ERR] " + dateISO + ": " + e.message);
+      s.err++;
+    }
+  });
+  Logger.log("[CLV] payments=" + payments.length + " | daily=" + s.created +
+             " created/" + s.skipped + " skip | errors=" + s.err);
+
+  var next = CLV_addDaysISO_(chunkEnd, 1);
+  if (next <= finalEnd) {
+    props.setProperty("PAYFILL_CURSOR", next);
+    ScriptApp.newTrigger("cloverPaymentsBackfillAuto").timeBased().after(30 * 1000).create();
+    Logger.log("[CLV] Next chunk (" + next + " →) scheduled in ~30s");
+  } else {
+    props.deleteProperty("PAYFILL_CURSOR");
+    Logger.log("[CLV] Payments backfill chain COMPLETE through " + chunkEnd);
+  }
+}
+
 // TEMPORARY diagnostic (2026-07-22): the dashboard shows June-2025 sales
 // but /orders returns nothing before 2026-03-01. Asks Clover for its
 // oldest orders directly, three different ways, and logs what comes back.

@@ -56,24 +56,38 @@ function CLV_fetchOrders_(startISO, endISO) {
 // Clover's offset pagination silently stops at ~1000 records — the
 // 2026-07-22 backfill "completed" with only the most recent 1000 orders
 // (nothing before 2026-03-01). Any window that comes back with >= 1000
-// orders is treated as truncated and split in half recursively until
+// records is treated as truncated and split in half recursively until
 // every window fits under the cap.
 function CLV_fetchOrdersWindow_(startMs, endMs) {
+  return CLV_fetchWindowed_("/orders", "expand=lineItems,payments,discounts", startMs, endMs);
+}
+
+function CLV_fetchWindowed_(endpoint, extraQS, startMs, endMs) {
   var res = CLV_fetchAll_(
-    "/orders",
+    endpoint,
     "filter=createdTime%3E%3D" + startMs +
     "&filter=createdTime%3C%3D" + endMs +
-    "&expand=lineItems,payments,discounts"
+    (extraQS ? "&" + extraQS : "")
   );
   if (res.length >= 1000 && (endMs - startMs) > 3600000) {
     var mid = Math.floor((startMs + endMs) / 2);
-    Logger.log("[CLV] order window hit pagination cap (" + res.length +
+    Logger.log("[CLV] " + endpoint + " window hit pagination cap (" + res.length +
                "); splitting " + new Date(startMs).toISOString().substring(0, 10) +
                ".." + new Date(endMs).toISOString().substring(0, 10));
-    return CLV_fetchOrdersWindow_(startMs, mid)
-      .concat(CLV_fetchOrdersWindow_(mid + 1, endMs));
+    return CLV_fetchWindowed_(endpoint, extraQS, startMs, mid)
+      .concat(CLV_fetchWindowed_(endpoint, extraQS, mid + 1, endMs));
   }
   return res;
+}
+
+// Fetch all payments in a date range. Used for the pre-2026-03 history
+// rebuild: Clover purged old ORDER records from the API but kept payment
+// records (verified by cloverProbe2025 on 2026-07-22 — June 2025 orders
+// return 0, June 2025 payments return data).
+function CLV_fetchPayments_(startISO, endISO) {
+  var start = new Date(startISO + "T00:00:00Z").getTime() - 12 * 3600000;
+  var end   = new Date(endISO   + "T23:59:59Z").getTime() + 12 * 3600000;
+  return CLV_fetchWindowed_("/payments", "expand=tender", start, end);
 }
 
 // Fetch the merchant's tender registry: { tenderId → { label, labelKey } }.

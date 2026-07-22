@@ -104,6 +104,51 @@ function CLV_aggregateDaily_(orders, tenderMap) {
   return days;
 }
 
+// Payments-only variant of the daily aggregation, for the pre-2026-03
+// history rebuild (order records purged from the API; payments survive).
+// Same output shape as CLV_aggregateDaily_ with two limitations:
+//   - discounts unknowable without orders → 0
+//   - txCount = distinct order refs on payments (equals order count for
+//     fully-paid orders, which is all that paid orders can be)
+function CLV_aggregateDailyFromPayments_(payments, tenderMap) {
+  tenderMap = tenderMap || {};
+  var days = {};
+  var seenOrders = {};
+  (payments || []).forEach(function(pmt) {
+    if (!pmt.createdTime) return;
+    if (pmt.result && pmt.result !== "SUCCESS") return;    // declined/voided
+    var amt = (pmt.amount || 0) / 100;
+    var tip = (pmt.tipAmount || 0) / 100;
+    if (amt === 0 && tip === 0) return;                    // test rings
+    var d = CLV_dateISO_(pmt.createdTime);
+    if (!days[d]) {
+      days[d] = { grossRev: 0, netRev: 0, txCount: 0, tax: 0, tips: 0,
+                  discounts: 0, card: 0, cash: 0, other: 0 };
+      seenOrders[d] = {};
+    }
+    var day = days[d];
+    day.grossRev += amt;
+    day.tax      += (pmt.taxAmount || 0) / 100;
+    day.tips     += tip;
+    var oid = pmt.order && pmt.order.id;
+    if (oid) { if (!seenOrders[d][oid]) { seenOrders[d][oid] = 1; day.txCount++; } }
+    else day.txCount++;
+
+    var reg   = (pmt.tender && tenderMap[pmt.tender.id]) || {};
+    var label = String(reg.label || (pmt.tender && pmt.tender.label) || "").toLowerCase();
+    var lkey  = String(reg.labelKey || (pmt.tender && pmt.tender.labelKey) || "").toLowerCase();
+    var isCard = lkey.indexOf("credit") >= 0 || lkey.indexOf("debit") >= 0 ||
+                 label.indexOf("card") >= 0 || label.indexOf("credit") >= 0 ||
+                 label.indexOf("debit") >= 0 || !!pmt.cardTransaction;
+    var isCash = lkey.indexOf("com.clover.tender.cash") >= 0 || label === "cash";
+    if (isCard)      day.card  += amt;
+    else if (isCash) day.cash  += amt;
+    else             day.other += amt;
+    day.netRev = day.grossRev - day.tax;
+  });
+  return days;
+}
+
 function CLV_dailyProps_(dateISO, agg) {
   var dow = CLV_DAY_NAMES[new Date(dateISO + "T12:00:00Z").getUTCDay()];
   var p   = {};
