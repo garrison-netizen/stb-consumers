@@ -75,6 +75,51 @@ function cloverBackfillAuto() {
   }
 }
 
+// TEMPORARY diagnostic (2026-07-22): the dashboard shows June-2025 sales
+// but /orders returns nothing before 2026-03-01. Asks Clover for its
+// oldest orders directly, three different ways, and logs what comes back.
+function cloverProbe2025() {
+  var mId  = CLOVER_merchantId_();
+  var base = CLOVER.API_BASE + "/v3/merchants/" + mId;
+
+  // A: oldest orders on this merchant, no time filter at all
+  var respA = UrlFetchApp.fetch(base + "/orders?limit=5&orderBy=createdTime%20ASC",
+    { method: "GET", headers: CLV_headers_(), muteHttpExceptions: true });
+  Logger.log("[PROBE A] oldest orders (orderBy ASC): HTTP " + respA.getResponseCode());
+  try {
+    (JSON.parse(respA.getContentText()).elements || []).forEach(function(o) {
+      Logger.log("  id=" + o.id + " createdTime=" + o.createdTime +
+                 " (" + (o.createdTime ? new Date(o.createdTime).toISOString() : "null") + ")" +
+                 " total=" + o.total + " state=" + o.state);
+    });
+  } catch(e) { Logger.log("  parse: " + respA.getContentText().substring(0, 300)); }
+
+  // B: a known-good June 2025 week, same filter style the pipeline uses
+  var s = new Date("2025-06-02T00:00:00Z").getTime();
+  var e = new Date("2025-06-09T00:00:00Z").getTime();
+  var respB = UrlFetchApp.fetch(base + "/orders?limit=5&filter=createdTime%3E%3D" + s +
+    "&filter=createdTime%3C%3D" + e,
+    { method: "GET", headers: CLV_headers_(), muteHttpExceptions: true });
+  Logger.log("[PROBE B] June 2025 week, pipeline-style filter: HTTP " + respB.getResponseCode());
+  try {
+    var elB = JSON.parse(respB.getContentText()).elements || [];
+    Logger.log("  count=" + elB.length +
+               (elB.length ? " first createdTime=" + new Date(elB[0].createdTime).toISOString() : ""));
+  } catch(e2) { Logger.log("  parse: " + respB.getContentText().substring(0, 300)); }
+
+  // C: payments endpoint for the same week (different record type, in case
+  // order retention differs from payment retention)
+  var respC = UrlFetchApp.fetch(base + "/payments?limit=5&filter=createdTime%3E%3D" + s +
+    "&filter=createdTime%3C%3D" + e,
+    { method: "GET", headers: CLV_headers_(), muteHttpExceptions: true });
+  Logger.log("[PROBE C] June 2025 payments: HTTP " + respC.getResponseCode());
+  try {
+    var elC = JSON.parse(respC.getContentText()).elements || [];
+    Logger.log("  count=" + elC.length +
+               (elC.length ? " first createdTime=" + new Date(elC[0].createdTime).toISOString() : ""));
+  } catch(e3) { Logger.log("  parse: " + respC.getContentText().substring(0, 300)); }
+}
+
 // Last day of the month containing the given YYYY-MM-DD.
 function CLV_monthEndISO_(iso) {
   var d = new Date(iso.substring(0, 7) + "-01T12:00:00Z");
