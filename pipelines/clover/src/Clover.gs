@@ -23,13 +23,23 @@ function CLV_fetchAll_(endpoint, filterQS) {
   var limit  = 200;
   while (true) {
     var url = base + "?limit=" + limit + "&offset=" + offset + (filterQS ? "&" + filterQS : "");
-    var resp = UrlFetchApp.fetch(url, {
-      method: "GET",
-      headers: CLV_headers_(),
-      muteHttpExceptions: true
-    });
-    var code = resp.getResponseCode();
-    if (code !== 200) {
+    // Retry 429/5xx with exponential backoff — a Clover 429 killed the
+    // payments backfill chain mid-fetch on 2026-07-22.
+    var resp, code;
+    for (var attempt = 0; ; attempt++) {
+      resp = UrlFetchApp.fetch(url, {
+        method: "GET",
+        headers: CLV_headers_(),
+        muteHttpExceptions: true
+      });
+      code = resp.getResponseCode();
+      if (code === 200) break;
+      if ((code === 429 || code >= 500) && attempt < 4) {
+        var waitMs = Math.pow(2, attempt) * 2000; // 2s, 4s, 8s, 16s
+        Logger.log("[CLV] " + code + " on " + endpoint + " — backing off " + (waitMs/1000) + "s");
+        Utilities.sleep(waitMs);
+        continue;
+      }
       throw new Error("Clover " + code + " on " + endpoint + ": " +
         resp.getContentText().substring(0, 300));
     }

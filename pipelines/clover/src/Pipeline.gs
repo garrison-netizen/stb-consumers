@@ -86,7 +86,11 @@ function cloverPaymentsBackfillAuto() {
     if (t.getHandlerFunction() === "cloverPaymentsBackfillAuto") ScriptApp.deleteTrigger(t);
   });
 
-  var HARD_END = "2026-02-28";
+  // Extended from 2026-02-28 on 2026-07-22: Clover's dashboard Sales
+  // Reports proved the ORDER purge bleeds into March-April 2026 (March had
+  // 1,181 orders; the orders API served fragments). Order data is solid
+  // from May 2026; payments rebuild owns everything through April.
+  var HARD_END = "2026-04-30";
   var props    = PropertiesService.getScriptProperties();
   var start    = props.getProperty("PAYFILL_CURSOR") ||
                  props.getProperty("PAYFILL_START") || "2025-04-01";
