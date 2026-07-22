@@ -165,9 +165,17 @@ function vipRunNow() {
       VM_phaseReport_(st);
       VM_props_().setProperty(VIP.PROP.LAST_RUN, st.runId);
       VM_clearState_();
-      // A successful live run ensures its own daily check exists —
-      // no separate trigger-installation step to remember.
-      if (!STB_dryRun_()) VM_ensureDailyTrigger_();
+      if (!STB_dryRun_()) {
+        // A successful live run ensures its own daily check exists —
+        // no separate trigger-installation step to remember.
+        VM_ensureDailyTrigger_();
+        // The expected-total oracle is a one-run acceptance gate;
+        // clear it so next month's (different) total isn't rejected.
+        if (VM_props_().getProperty(VIP.PROP.EXPECTED_CE)) {
+          VM_props_().deleteProperty(VIP.PROP.EXPECTED_CE);
+          Logger.log("Acceptance oracle " + VIP.PROP.EXPECTED_CE + " cleared after successful live run.");
+        }
+      }
     }
   } catch (e) {
     VM_clearState_();
