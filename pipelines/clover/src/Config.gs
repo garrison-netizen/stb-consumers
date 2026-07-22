@@ -5,7 +5,7 @@
 // ============================================================
 
 var CLOVER = {
-  API_BASE: "https://sandbox.dev.clover.com",
+  API_BASE: "https://api.clover.com",
 
   // Notion target data sources
   DAILY_DS:    "eda5f5db-dc7d-4597-9589-04f23a428582",  // Taproom Daily
