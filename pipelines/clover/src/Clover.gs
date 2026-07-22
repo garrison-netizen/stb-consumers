@@ -50,12 +50,30 @@ function CLV_fetchAll_(endpoint, filterQS) {
 function CLV_fetchOrders_(startISO, endISO) {
   var start = new Date(startISO + "T00:00:00Z").getTime() - 12 * 3600000;
   var end   = new Date(endISO   + "T23:59:59Z").getTime() + 12 * 3600000;
-  return CLV_fetchAll_(
+  return CLV_fetchOrdersWindow_(start, end);
+}
+
+// Clover's offset pagination silently stops at ~1000 records — the
+// 2026-07-22 backfill "completed" with only the most recent 1000 orders
+// (nothing before 2026-03-01). Any window that comes back with >= 1000
+// orders is treated as truncated and split in half recursively until
+// every window fits under the cap.
+function CLV_fetchOrdersWindow_(startMs, endMs) {
+  var res = CLV_fetchAll_(
     "/orders",
-    "filter=createdTime%3E%3D" + start +
-    "&filter=createdTime%3C%3D" + end +
+    "filter=createdTime%3E%3D" + startMs +
+    "&filter=createdTime%3C%3D" + endMs +
     "&expand=lineItems,payments,discounts"
   );
+  if (res.length >= 1000 && (endMs - startMs) > 3600000) {
+    var mid = Math.floor((startMs + endMs) / 2);
+    Logger.log("[CLV] order window hit pagination cap (" + res.length +
+               "); splitting " + new Date(startMs).toISOString().substring(0, 10) +
+               ".." + new Date(endMs).toISOString().substring(0, 10));
+    return CLV_fetchOrdersWindow_(startMs, mid)
+      .concat(CLV_fetchOrdersWindow_(mid + 1, endMs));
+  }
+  return res;
 }
 
 // Fetch the merchant's tender registry: { tenderId → { label, labelKey } }.

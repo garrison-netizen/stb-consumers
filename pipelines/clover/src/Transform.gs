@@ -14,6 +14,17 @@
 
 var CLV_DAY_NAMES = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
+// A real sale = an order that was actually paid. Clover's orders feed
+// includes abandoned register carts, test rings, and never-paid tabs;
+// counting them produced $0-revenue ghost days on dates the taproom was
+// closed, and inflated gross on real days (orders with a total but no
+// payment). Trade-off: a 100%-comped order (total 0, no payment) drops
+// out, so its discount isn't tracked — acceptable for a signal layer.
+function CLV_isRealSale_(order) {
+  return !!(order.payments && order.payments.elements &&
+            order.payments.elements.length > 0);
+}
+
 // Convert a Clover millisecond timestamp to YYYY-MM-DD in HOUSTON local
 // time (America/Chicago). UTC bucketing shifted all evening sales (after
 // 6-7pm CT) onto the next calendar day — worst possible skew for a taproom
@@ -55,7 +66,7 @@ function CLV_aggregateDaily_(orders, tenderMap) {
   tenderMap = tenderMap || {};
   var days = {};
   (orders || []).forEach(function(order) {
-    if (!order.createdTime) return;
+    if (!order.createdTime || !CLV_isRealSale_(order)) return;
     var d = CLV_dateISO_(order.createdTime);
     if (!days[d]) {
       days[d] = { grossRev: 0, netRev: 0, txCount: 0, tax: 0, tips: 0,
@@ -123,7 +134,7 @@ function CLV_dailyFilter_(dateISO) {
 function CLV_aggregateSkuWeek_(orders, itemMap) {
   var buckets = {};
   (orders || []).forEach(function(order) {
-    if (!order.createdTime) return;
+    if (!order.createdTime || !CLV_isRealSale_(order)) return;
     var week = CLV_weekStart_(CLV_dateISO_(order.createdTime));
     ((order.lineItems && order.lineItems.elements) || []).forEach(function(li) {
       var itemId = li.item && li.item.id;
