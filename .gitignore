@@ -16,3 +16,6 @@ build/
 coverage/
 .DS_Store
 Thumbs.db
+
+# Per-session repo claim (multi-session protocol)
+.session-lock.json

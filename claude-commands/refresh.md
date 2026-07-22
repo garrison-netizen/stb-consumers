@@ -64,12 +64,22 @@ if (Test-Path $src) {
 
 Keeps `/pause` and `/refresh` identical on every machine automatically. **To CHANGE a command, edit the copy in `stb-consumers/claude-commands/` and commit — never the live copy (this step overwrites it).**
 
+## Step 0.7 — Multi-session protocol (repo claims + presence)
+
+Garrison runs multiple Code sessions at once. Three collisions have actually happened (commit-sweeps via the shared git index ×2, a memory-file clobber via blind sync), so these guards are mandatory, not etiquette:
+
+1. **Presence:** list other CCD sessions (`list_sessions`); report any with activity in the last 6 hours by title. If one is plausibly working in a repo you need, message it (`send_message`) before touching that repo.
+2. **Claims:** before the session's FIRST write in a repo, check `<repo>\.session-lock.json`. If it exists with a heartbeat under 4 hours old and another session's id → that repo is CLAIMED: either coordinate a handoff via `send_message`, or work in a worktree (`git -C <repo> worktree add <repo>-wt-<yourslug> main`, copy `.env`/`.clasp.json` in manually if needed; remove the worktree at /pause). If unclaimed, write your own lock `{ "session": "<id>", "title": "<title>", "heartbeat": "<ISO now>" }` and refresh the heartbeat when convenient. Locks are gitignored (ensure `.session-lock.json` is in the repo's `.gitignore` on first use).
+3. **Commit hygiene in ANY shared clone:** stage explicit paths, never `git add -A`/`git commit -a`, and read `git status --short` for foreign staged files before every commit. The index is shared; a foreign `A`/`M` line means another session is mid-work — stop and coordinate.
+
 ## Step 1 — Pull memory from Notion
 
 Query the Code Memory Store (Notion data source `collection://3252204e-561d-47d5-82b8-6521ed678d43`) for all rows where Status = Active.
 
-**If Notion is reachable:**
-- For each row, write a file to `$MEM` with this exact format:
+**If Notion is reachable — MERGE-SAFE rules (a blind overwrite destroyed a session's memory on 2026-07-22; never again):**
+- **Keep-local-if-newer:** before overwriting an existing file, compare the local file's LastWriteTime against the row's "Last synced" date. If local is NEWER and the content differs, KEEP the local file and log `KEPT-LOCAL {name}` — the local edits will delta-push at /pause.
+- **Never empty-over-content:** if the row's Body is empty/whitespace and the local file has a non-empty body, keep the local file and log `SKIPPED-EMPTY {name}`.
+- Otherwise, for each row, write a file to `$MEM` with this exact format:
   ```
   ---
   name: {Name}

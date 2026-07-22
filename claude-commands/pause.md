@@ -33,6 +33,7 @@ foreach ($r in @('stb-master-calendar','stb-private-event-calculator','stb-consu
 Rules:
 - **Push** any repo that is ahead (committed but unpushed). NOTE: both apps deploy from GitHub `main`, so pushing `main` triggers a production deploy — intended for committed work, but say so in the report.
 - **Do NOT auto-commit** uncommitted edits (could deploy half-finished work). List every repo with UNCOMMITTED changes prominently and ask Garrison whether to commit + push or leave them.
+- **Release claims:** delete any `<repo>\.session-lock.json` owned by this session, and `git worktree remove` any worktree this session created (after its work is committed).
 
 ## Step 1 — Identify changed memory files (delta push)
 
@@ -50,7 +51,7 @@ For each changed file only:
 1. Read it. Parse YAML frontmatter: `name`, `description`, `metadata.type`. Body = everything after the second `---`.
 2. Detect machine: `$env:USERNAME` = "garrison" → "Machine A"; "garri" → "Machine B".
 3. Search the Code Memory Store (`collection://3252204e-561d-47d5-82b8-6521ed678d43`) for a row matching the `name` slug.
-   - Found: update Description, Type, Body, Source machine, Last synced (today).
+   - Found: **conflict check first** (concurrent sessions push too): if the row's "Last synced" is NEWER than this session's sentinel AND its Body differs from what this session last saw, another session updated it mid-flight — read the row's current Body and MERGE (union of the two, newest facts win) instead of overwriting; note the merge in the report. Never push an empty Body over a non-empty row. Then update Description, Type, Body, Source machine, Last synced (today).
    - Not found: create a row with Status = Active, Load at startup = checked.
 4. After all pushes, write the current ISO-8601 timestamp to `$SENT`.
 5. Report: "Pushed N changed entr(y/ies) to Notion. Sentinel updated."
