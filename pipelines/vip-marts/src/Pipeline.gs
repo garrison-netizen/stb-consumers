@@ -266,8 +266,13 @@ function VM_phaseMartA_(st, distMap, year, ex) {
     throw new Error("Mart A reconcile FAILED: aggregated total CE " + a.totalCE +
       " != raw dump total CE " + a.rawTotalCE + ". Nothing was written.");
   }
+  // The expected-total oracle is an ACCEPTANCE gate: it applies only
+  // until the first successful live run (LAST_RUN set). After that a
+  // lingering value is ignored (months legitimately differ) and gets
+  // cleaned up by the REPORT phase.
   var expected = VM_props_().getProperty(VIP.PROP.EXPECTED_CE);
-  if (expected && Math.abs(a.totalCE - Number(expected)) > 0.1) {
+  var accepted = VM_props_().getProperty(VIP.PROP.LAST_RUN);
+  if (expected && !accepted && Math.abs(a.totalCE - Number(expected)) > 0.1) {
     throw new Error("Mart A total CE " + a.totalCE + " does not match " + VIP.PROP.EXPECTED_CE +
       " = " + expected + " (acceptance oracle). Nothing was written.");
   }
