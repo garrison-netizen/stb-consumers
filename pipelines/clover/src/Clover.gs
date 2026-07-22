@@ -80,8 +80,10 @@ function CLV_fetchShifts_(startISO, endISO) {
   var end   = new Date(endISO   + "T23:59:59Z").getTime();
   return CLV_fetchAll_(
     "/shifts",
-    "filter=inTime%3E%3D" + start +
-    "&filter=inTime%3C%3D" + end +
+    // Filter fields are snake_case (in_time) even though the response JSON
+    // is camelCase (inTime) — production API rejects camelCase filters.
+    "filter=in_time%3E%3D" + start +
+    "&filter=in_time%3C%3D" + end +
     "&expand=employee,wage"
   );
 }
