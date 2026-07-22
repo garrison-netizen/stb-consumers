@@ -17,51 +17,79 @@
 // ============================================================
 
 function cloverSync() {
-  // "Yesterday" in Houston local time, not UTC.
-  var iso = Utilities.formatDate(new Date(Date.now() - 86400000), "America/Chicago", "yyyy-MM-dd");
-  CLV_runRange_(iso, iso);
+  // "Yesterday" in Houston local time, not UTC. The range starts at the
+  // week's Monday (not just yesterday) so SKU-week rows are recomputed
+  // with full week-to-date data — see the update-or-create in the SKU
+  // section of CLV_runRange_.
+  var yest = CLV_yesterdayLocal_();
+  CLV_runRange_(CLV_weekStart_(yest), yest);
 }
 
 function cloverBackfill() {
   var props = PropertiesService.getScriptProperties();
   var start = props.getProperty("BACKFILL_START") || "2025-05-01";
-  var end   = props.getProperty("BACKFILL_END")   || new Date().toISOString().substring(0, 10);
+  // Default end = Houston YESTERDAY. A run that includes today writes a
+  // partial daily row that idempotency would then freeze forever.
+  var end   = props.getProperty("BACKFILL_END")   || CLV_yesterdayLocal_();
   Logger.log("[CLV] Backfill " + start + " → " + end);
   CLV_runRange_(start, end);
 }
 
-function CLV_runRange_(startISO, endISO) {
-  var dry = STB_dryRun_();
-  Logger.log("[CLV] range=" + startISO + ".." + endISO + " dry=" + dry);
+function CLV_yesterdayLocal_() {
+  return Utilities.formatDate(new Date(Date.now() - 86400000), "America/Chicago", "yyyy-MM-dd");
+}
 
-  // --- Fetch ---
-  var orders    = CLV_fetchOrders_(startISO, endISO);
+function CLV_runRange_(startISO, endISO) {
+  var dry  = STB_dryRun_();
+  var yest = CLV_yesterdayLocal_();
+
+  // Never process today: the day is still open and idempotency would
+  // freeze a partial daily row permanently.
+  if (endISO > yest) endISO = yest;
+  if (startISO > endISO) { Logger.log("[CLV] nothing to do (range is all today/future)"); return; }
+
+  // SKU-week rows must always be computed from FULL week windows (clamped
+  // to yesterday), or a range boundary mid-week would write a partial week
+  // that a later update-or-create couldn't distinguish from a complete one.
+  var skuStart = CLV_weekStart_(startISO);
+  var skuEnd   = CLV_weekEnd_(endISO);
+  if (skuEnd > yest) skuEnd = yest;
+
+  Logger.log("[CLV] range=" + startISO + ".." + endISO +
+             " skuRange=" + skuStart + ".." + skuEnd + " dry=" + dry);
+
+  // --- Fetch (one fetch covers the wider SKU window) ---
+  var orders    = CLV_fetchOrders_(skuStart, skuEnd);
   var itemMap   = CLV_fetchItemMap_();
   var shifts    = CLV_fetchShifts_(startISO, endISO);
   var tenderMap = CLV_fetchTenderMap_();
 
   // The fetch window is widened ±12h for timezone coverage; trim each
-  // record to the exact Houston-local date range here.
-  orders = orders.filter(function(o) {
-    if (!o.createdTime) return false;
+  // record to the exact Houston-local date ranges here.
+  var dailyOrders = [];
+  var skuOrders   = [];
+  orders.forEach(function(o) {
+    if (!o.createdTime) return;
     var d = CLV_dateISO_(o.createdTime);
-    return d >= startISO && d <= endISO;
+    if (d >= skuStart  && d <= skuEnd) skuOrders.push(o);
+    if (d >= startISO  && d <= endISO) dailyOrders.push(o);
   });
   shifts = shifts.filter(function(sh) {
     if (!sh.inTime) return false;
     var d = CLV_dateISO_(sh.inTime);
     return d >= startISO && d <= endISO;
   });
-  Logger.log("[CLV] orders=" + orders.length + " shifts=" + shifts.length +
+  Logger.log("[CLV] orders=" + dailyOrders.length + " (sku window " + skuOrders.length + ")" +
+             " shifts=" + shifts.length +
              " itemMap=" + Object.keys(itemMap).length +
              " tenders=" + Object.keys(tenderMap).length);
 
   // --- Aggregate ---
-  var dailyAggs = CLV_aggregateDaily_(orders, tenderMap);
-  var skuAggs   = CLV_aggregateSkuWeek_(orders, itemMap);
+  var dailyAggs = CLV_aggregateDaily_(dailyOrders, tenderMap);
+  var skuAggs   = CLV_aggregateSkuWeek_(skuOrders, itemMap);
   var laborAggs = CLV_aggregateLabor_(shifts);
 
-  var s = { dc: 0, ds: 0, sc: 0, ss: 0, lc: 0, ls: 0, err: 0 };
+  var s = { dc: 0, ds: 0, sc: 0, su: 0, lc: 0, ls: 0, err: 0 };
 
   // --- Taproom Daily ---
   Object.keys(dailyAggs).forEach(function(dateISO) {
@@ -76,13 +104,17 @@ function CLV_runRange_(startISO, endISO) {
     }
   });
 
-  // --- Taproom SKU by Week ---
+  // --- Taproom SKU by Week (update-or-create) ---
+  // Existing rows are UPDATED, not skipped: the daily sync recomputes the
+  // live week every morning, so a week row grows until its week closes.
+  // Values are always full-window recomputes (skuStart..skuEnd), so the
+  // update is idempotent for completed weeks.
   Object.keys(skuAggs).forEach(function(key) {
     try {
+      var props = CLV_skuWeekProps_(key, skuAggs[key]);
       var id = STB_notionFindOne_(CLOVER.SKU_WEEK_DS, CLV_skuWeekFilter_(key));
-      if (id) { s.ss++; return; }
-      STB_notionCreate_(CLOVER.SKU_WEEK_DS, CLV_skuWeekProps_(key, skuAggs[key]));
-      s.sc++;
+      if (id) { STB_notionUpdate_(id, props); s.su++; }
+      else    { STB_notionCreate_(CLOVER.SKU_WEEK_DS, props); s.sc++; }
     } catch(e) {
       Logger.log("[CLV sku ERR] " + key + ": " + e.message);
       s.err++;
@@ -103,7 +135,7 @@ function CLV_runRange_(startISO, endISO) {
   });
 
   Logger.log("[CLV] daily=" + s.dc + " created/" + s.ds + " skip" +
-             " | sku=" + s.sc + "/" + s.ss +
+             " | sku=" + s.sc + " created/" + s.su + " updated" +
              " | labor=" + s.lc + "/" + s.ls +
              " | errors=" + s.err);
 }

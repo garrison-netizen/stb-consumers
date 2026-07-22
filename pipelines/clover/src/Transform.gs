@@ -32,6 +32,13 @@ function CLV_weekStart_(dateISO) {
   return d.toISOString().substring(0, 10);
 }
 
+// ISO date of the Sunday ending the week containing a given YYYY-MM-DD.
+function CLV_weekEnd_(dateISO) {
+  var d = new Date(CLV_weekStart_(dateISO) + "T12:00:00Z");
+  d.setUTCDate(d.getUTCDate() + 6);
+  return d.toISOString().substring(0, 10);
+}
+
 // --- Taproom Daily aggregation ---
 
 // Aggregate orders → daily rollup map.
