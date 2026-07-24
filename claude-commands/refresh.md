@@ -59,6 +59,28 @@ if (Test-Path $src) {
       Copy-Item $s $d -Force; Write-Output "Updated command file: $f"
     }
   }
+  # Desktop utilities (tools\*.ps1) + their shortcuts
+  $tsrc = Join-Path $src 'tools'
+  $tdst = Join-Path $env:USERPROFILE 'Tools'
+  if (Test-Path $tsrc) {
+    if (-not (Test-Path $tdst)) { New-Item -ItemType Directory -Path $tdst -Force | Out-Null }
+    foreach ($t in Get-ChildItem $tsrc -Filter *.ps1) {
+      $d = Join-Path $tdst $t.Name
+      if (-not (Test-Path $d) -or (Get-FileHash $t.FullName).Hash -ne (Get-FileHash $d).Hash) {
+        Copy-Item $t.FullName $d -Force; Write-Output "Updated tool: $($t.Name)"
+      }
+    }
+    $ejt = Join-Path $tdst 'Eject-T7.ps1'
+    $lnk = Join-Path ([Environment]::GetFolderPath('Desktop')) 'Eject T7.lnk'
+    if ((Test-Path $ejt) -and -not (Test-Path $lnk)) {
+      $ws = New-Object -ComObject WScript.Shell; $sc = $ws.CreateShortcut($lnk)
+      $sc.TargetPath = 'powershell.exe'
+      $sc.Arguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$ejt`""
+      $sc.WorkingDirectory = $tdst; $sc.IconLocation = 'shell32.dll,222'
+      $sc.Description = 'Safely eject the Samsung T7'; $sc.Save()
+      Write-Output "Created desktop shortcut: Eject T7"
+    }
+  }
 }
 ```
 
