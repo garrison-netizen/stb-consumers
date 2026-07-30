@@ -99,3 +99,57 @@ right), and each year's `CE prior year` equals the previous year's gross exactly
 - **2026 is never touched** — it is pipeline-written and already exact.
 - Unmapped distributor tokens throw. Add them to the VIP Distributor Map (an Architect
   surface) and re-run; do not special-case them here.
+
+## generate-merge-candidates.mjs — duplicate-account candidates (Architect ruling 2026-07-30)
+
+**Generates. Never merges.** Writes nothing to Notion. It emits a candidate list; the
+Architect adjudicates; a separate executor applies only the ruled set, the way
+`merge-goody-goody.mjs` did.
+
+Goody Goody had a genuine invariant (the store number), so auto-merge was safe there. This
+class has none — street number transposes (`350` → `305 N GUADALUPE`), city flips
+(`1761 S Hwy 46` reads SEGUIN and NEW BRAUNFELS), name re-spells. Merging two real stores is
+the unrecoverable direction, and *a rule with two known holes gets trusted as though it has
+none.*
+
+### The four ruled criteria (deliberately loose)
+
+chain-name family · **AND** ≥1 significant street-name token · **AND** city or an adjacent
+city · **AND** distributor differs.
+
+- **Family** comes from VIP's `Chain` field where the row is a chain account — it is stable
+  across every spelling (all 15 Skip's identities read `SKIPS BEER WINE AND LIQUOR`).
+  `INDEPENDENTS` is a catch-all bucket, not a chain, so those fall back to a two-token name
+  prefix.
+- **Significant street token** drops the LEADING numeric (the street number — it transposes)
+  and all suffix/directional tokens, but KEEPS a non-leading numeric: `46` is the only thing
+  tying `1761 S ST HWY 46` to `1761 S STATE HWY 46` once `ST`/`HWY` are gone.
+- **Adjacency** uses a metro table that is incomplete by construction, so a pair failing
+  *only* the city test is reported under NEAR MISSES rather than dropped.
+- **Distributor differs** is applied per cluster. A single-distributor cluster is reported
+  separately, not discarded — Cibolo proves one distributor can enter one store twice via
+  two branches.
+
+### ⛔ No handover assumption
+
+An earlier framing claimed "Dynamo handed Central TX to Green Light in 2024." That is FALSE
+and was retracted 2026-07-30 (Dynamo was flat across 2024: 7,200.6 → 7,020.9). The real shape
+is **concurrent** — a second distributor booking occasional out-of-territory sales into a
+store its true distributor still serves. So the generator must NOT look for "A ends, B
+begins": same-year co-occurrence is normal here, and year adjacency is a confirming signal
+that SORTS, never a filter that removes.
+
+### Store-code guard (precision, added by Code)
+
+The first run chained four different HEB stores (#110/#474/#553/#627) into one candidate
+because they all sit on `HWY 6`, burying the one real pair (#760). Where a chain carries a
+store code in the name, a **differing** code proves a different store. Used only to BLOCK an
+edge, never to create one — it can only split a cluster, never cause a bad merge. Narrow by
+design (3–4 digits only) so Skip's `#1` and VIP's `_2` row suffix never block.
+
+### Output
+
+`output/merge-candidates.md` (adjudication) and `output/merge-candidates.json` (executor).
+Sections: **A** all four criteria met · **B** same-distributor clusters · **C** near misses
+(city test only) · **D** same address / different store code — not candidates, but likely a
+mis-addressed row.
