@@ -341,7 +341,7 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
         "Class of Trade": STB_pRichText_(d.classOfTrade),
         "Chain":        STB_pRichText_(d.chain),
         "Chain account": VM_pCheckbox_(d.chain && VM_norm_(d.chain) !== "INDEPENDENTS"),
-        "Airport cluster": VM_pCheckbox_(VM_norm_(d.address).indexOf("7800 AIRPORT BLVD") === 0),
+        "Airport cluster": VM_pCheckbox_(VM_isAirportAccount_(d.address, d.city)),
         "Distributor (parent, last-active)": STB_pSelect_(d.activeParent),
         "account_uid":  STB_pRichText_(uid)
       };

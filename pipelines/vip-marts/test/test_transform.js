@@ -230,6 +230,39 @@ check("creates' status consistent with two-signal vocabulary",
 // accounts in dump with ytd>0 → create count + matched should ≈ dump size
 console.log("sample create:", JSON.stringify(newCreate.props).slice(0, 400));
 
+// ---- Airport cluster on the create path (Architect rule 2026-07-29) ----
+// The create path previously tested only the "7800 AIRPORT BLVD" prefix,
+// which let a Hobby address with no HOUF code through and could never
+// flag a Bush terminal account. The flag is the Channel derivation
+// source, so a miss silently understates airport volume.
+check("airport: Hobby with HOUF code flagged",
+  VM_isAirportAccount_("7800 AIRPORT BLVD HOUF16", "HOUSTON") === true);
+check("airport: 7800 Airport Blvd WITHOUT a HOUF code not flagged",
+  VM_isAirportAccount_("7800 AIRPORT BLVD", "HOUSTON") === false);
+check("airport: Bush terminal in range flagged",
+  VM_isAirportAccount_("3870 TERMINAL RD", "HOUSTON") === true);
+check("airport: Bush terminal below the 3100 range not flagged",
+  VM_isAirportAccount_("2100 TERMINAL WAY", "HOUSTON") === false);
+check("airport: TERMINAL address outside Houston not flagged",
+  VM_isAirportAccount_("3870 TERMINAL RD", "DALLAS") === false);
+check("airport: CITY KITCHEN at 8101 Airport Blvd stays unflagged (Arch ruling)",
+  VM_isAirportAccount_("8101 AIRPORT BLVD", "HOUSTON") === false);
+check("airport: street-named 'Airport' false positives stay unflagged",
+  !VM_isAirportAccount_("1612 AIRPORT FREEWAY", "BEDFORD") &&
+  !VM_isAirportAccount_("5510 W AIRPORT BLVD", "STAFFORD") &&
+  !VM_isAirportAccount_("9500 AIRPORT BLVD", "AUSTIN"));
+// The create path must use that rule, not its own predicate.
+const hobbyCreate = b.creates.find(c =>
+  /HOUF/i.test(c.props["Address"].rich_text[0].text.content || ""));
+if (hobbyCreate) {
+  check("create path flags a HOUF account via the approved rule",
+    hobbyCreate.props["Airport cluster"].checkbox === true,
+    hobbyCreate.props["Account name"].title[0].text.content);
+}
+check("create path leaves non-airport accounts unflagged",
+  b.creates.filter(c => !/HOUF|TERMINAL/i.test(c.props["Address"].rich_text[0].text.content || ""))
+    .every(c => c.props["Airport cluster"].checkbox === false));
+
 // ---- Test 6: idempotence — re-run overlay with updates applied ----
 const applied = existing.map(r => ({ ...r }));
 for (const u of b.updates) {

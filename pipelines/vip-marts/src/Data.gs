@@ -78,6 +78,27 @@ function VM_identityKey_(name, address) {
   return VM_norm_(name) + "|" + VM_normAddr_(address);
 }
 
+// Airport-cluster membership, per the Architect-approved rule
+// (2026-07-29, after the old flag was found contaminated):
+//   Hobby = address starts "7800 AIRPORT BLVD" AND carries a HOUF code
+//   Bush  = Houston address on TERMINAL RD/ROAD/WAY in the 3100-3999 range
+// Everything else is unflagged. CITY KITCHEN (8101 Airport Blvd) stays
+// off per that ruling.
+//
+// This replaced a create-path predicate that tested only the
+// "7800 AIRPORT BLVD" prefix — which let a Hobby address with no HOUF
+// code through and could never flag a Bush terminal account at all. The
+// flag is the Channel derivation source, so a miss here silently
+// understates airport volume. Matches identity.js in tools/vip-regrind;
+// keep the two in step.
+function VM_isAirportAccount_(address, city) {
+  var a = String(address || "");
+  var isHobby = /^7800 AIRPORT BLVD/i.test(a) && /HOUF/i.test(a);
+  var isBush = /HOUSTON/i.test(String(city || "")) &&
+    /\bTERMINAL (RD|ROAD|WAY|B\b)/i.test(a) && /\b3[1-9]\d{2}\b/.test(a);
+  return isHobby || isBush;
+}
+
 // Token-overlap similarity of two canonical addresses (0..1).
 function VM_addrOverlap_(a, b) {
   var A = VM_normAddr_(a).split(" "), B = VM_normAddr_(b).split(" ");
