@@ -45,7 +45,7 @@ This guarantees the machine never silently works on or deploys stale code. (Both
 
 ## Step 0.5 — Self-heal the command files
 
-Canonical copies of `refresh.md`/`pause.md` live in **stb-consumers/claude-commands/** (pulled current in Step 0). Sync the live commands from there:
+Canonical copies of `refresh.md`/`pause.md`/`watch.md` live in **stb-consumers/claude-commands/** (pulled current in Step 0). Sync the live commands from there:
 
 ```powershell
 $REPO = if ($env:STB_REPOS) { $env:STB_REPOS } else { $env:USERPROFILE }
@@ -53,7 +53,7 @@ $CFG  = if ($env:CLAUDE_CONFIG_DIR) { $env:CLAUDE_CONFIG_DIR } else { "$env:USER
 $src = Join-Path $REPO 'stb-consumers\claude-commands'
 $dst = Join-Path $CFG 'commands'
 if (Test-Path $src) {
-  foreach ($f in @('refresh.md','pause.md')) {
+  foreach ($f in @('refresh.md','pause.md','watch.md')) {
     $s = Join-Path $src $f; $d = Join-Path $dst $f
     if ((Test-Path $s) -and (-not (Test-Path $d) -or (Get-FileHash $s).Hash -ne (Get-FileHash $d).Hash)) {
       Copy-Item $s $d -Force; Write-Output "Updated command file: $f"
@@ -84,7 +84,7 @@ if (Test-Path $src) {
 }
 ```
 
-Keeps `/pause` and `/refresh` identical on every machine automatically. **To CHANGE a command, edit the copy in `stb-consumers/claude-commands/` and commit — never the live copy (this step overwrites it).**
+Keeps `/pause`, `/refresh` and `/watch` identical on every machine automatically. **To CHANGE a command, edit the copy in `stb-consumers/claude-commands/` and commit — never the live copy (this step overwrites it).**
 
 ## Step 0.7 — Multi-session protocol (repo claims + presence)
 
@@ -120,12 +120,30 @@ Query the Code Memory Store (Notion data source `collection://3252204e-561d-47d5
 - ALERT prominently: "WARNING: Notion unreachable. Running on cached memory. Cache last modified: {most recent file mtime in `$MEM`}. Memory may be stale."
 - Proceed with whatever is on disk.
 
-## Step 2 — Channel walk
+## Step 2 — Channel walk (BOTH DIRECTIONS — this is not optional)
 
-Read the Cross-Agent Channel (data source `ecc8ead5-0855-424e-8f2c-33399f28c601`) for rows where `To = Code` AND `Status ∈ {Unread, Acknowledged}`.
+The Cross-Agent Channel is data source `ecc8ead5-0855-424e-8f2c-33399f28c601`.
 
-If nothing is waiting, say so in one line. If there is an inbound row: acknowledge it (set Status = Acknowledged, add a brief Reply), report what it contains, and wait for Garrison's direction before acting.
+**Query A — inbound.** Rows where `To = Code` AND `Status ∈ {Unread, Acknowledged}`.
+
+**Query B — replies on Code's OWN outbound rows.** Rows where `From = Code`, created in roughly the last 14 days, where the **`Reply` property is non-empty** OR `Status ∈ {Acknowledged, Acted on}`. **Read the `Reply` property, not just the Body.**
+
+> ⚠️ **Query B is where the Architect's rulings actually arrive.** He answers by writing into the `Reply` property of the row Code sent him and flipping that row's status — he often does *not* create a new inbound row. A `To = Code` query structurally cannot see those answers. Skipping Query B produced two false "blocked on Architect" reports in one session on 2026-07-29, cost Garrison two relay trips he didn't need to make, and forced the Architect to send a row titled *"UNBLOCK — you are not blocked on me."* Never report a block without having run Query B in the same turn.
+
+Handling:
+- Inbound rows (A): acknowledge (Status = Acknowledged, brief Reply), report the contents, and wait for Garrison's direction before acting.
+- Replies (B): report the ruling and treat it as **received** — do not re-ask, and do not describe yourself as waiting on it.
+
+**Report the result as explicit ownership lines, never as narrative Garrison has to decode:**
+
+```
+Waiting on Architect: <items, or "nothing">
+Waiting on Code:      <items, or "nothing">
+Waiting on Garrison:  <items, or "nothing">
+```
+
+If nothing is waiting on Garrison, say that outright — it is the single most useful line in the report.
 
 ## Step 3 — Report and wait
 
-Briefly report: code-repo sync result (Step 0), what's in memory that matters this session, anything waiting on the channel. Then wait for Garrison's direction. Do not start work.
+Briefly report: code-repo sync result (Step 0), what's in memory that matters this session, and the three ownership lines from Step 2. Then wait for Garrison's direction. Do not start work.

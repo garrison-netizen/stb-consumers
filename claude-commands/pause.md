@@ -61,3 +61,13 @@ For each changed file only:
 **Only post if the session touched the Brain or something the Architect owns.** Pure app/infra work (calendar, calculator, Vercel, GitHub, the machine-sync setup) does NOT need a channel post — skip it and say so.
 
 When you do post, add a row to the Cross-Agent Channel (data source `ecc8ead5-0855-424e-8f2c-33399f28c601`): From = Code, To = Architect, Type = FYI, Status = Unread, Subject = `Code session pause {YYYY-MM-DD} — {2-4 word summary}`, Body = tight orientation summary. **Draft it and present to Garrison for release before posting** (draft-then-release). Do not post without explicit release.
+
+**Before drafting, run the Step 2 channel walk from `/refresh` — BOTH directions.** A pause post that says "waiting on Architect" for something he already answered in the `Reply` property of Code's own outbound row is worse than no post: it hands the next session a false block. Check replies on Code's outbound rows before claiming anything is outstanding.
+
+**Every pause post must carry the three ownership lines**, so the Architect sees the whole split rather than only his own item:
+
+```
+Waiting on Architect: <items, or "nothing">
+Waiting on Code:      <items, or "nothing">
+Waiting on Garrison:  <items, or "nothing">
+```
