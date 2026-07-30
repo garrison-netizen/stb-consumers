@@ -122,7 +122,8 @@ for (const p of pages) {
   const name = plain(p.properties['Account name'])
   if (isPseudo(name)) continue
   const addr = plain(p.properties['Address']) || ''
-  const city = normName(plain(p.properties['City']))
+  // "THE WOODLANDS" and "WOODLANDS" are one city; a leading article is noise.
+  const city = normName(plain(p.properties['City'])).replace(/^THE /, '')
   const chain = normName(plain(p.properties['Chain']))
   const ce = {}
   for (const y of YEARS) ce[y] = plain(p.properties[`CE ${y}`]) || 0
@@ -191,6 +192,16 @@ function codeBlocks(a, b) {
   const ca = storeCode(a.name), cb = storeCode(b.name)
   return ca && cb && ca !== cb
 }
+// The same guard used POSITIVELY. Within one chain family, a MATCHING store
+// code is the Goody Goody invariant — it identifies the store more strongly
+// than city adjacency does, so it stands in for the city test. Added because
+// the first clean run pushed two real pairs into NEAR MISSES on nothing but a
+// city typo: HEB #431 (EDINBURG vs EDINGBURG) and TOTAL WINE 524 (WOODLANDS
+// vs THE WOODLANDS). Both are the same store code inside the same chain.
+function codeMatches(a, b) {
+  const ca = storeCode(a.name), cb = storeCode(b.name)
+  return !!(ca && cb && ca === cb)
+}
 
 // PATH 1 — the ruled discriminator, deliberately loose:
 //   chain-name family matches
@@ -208,9 +219,12 @@ for (const [fam, fr] of byFamily) {
   if (fr.length < 2) continue
   for (let i = 0; i < fr.length; i++) for (let j = i + 1; j < fr.length; j++) {
     const a = fr[i], b = fr[j]
+    if (codeBlocks(a, b)) continue
+    // Matching store code inside one chain: identity is settled, city and
+    // street-token spelling are both allowed to differ.
+    if (codeMatches(a, b)) { union(a.id, b.id); edges.push({ a, b, tok: `store #${storeCode(a.name)}`, via: 'store-code' }); continue }
     const tok = shareToken(a, b)
     if (!tok) continue
-    if (codeBlocks(a, b)) continue
     if (cityAdjacent(a.city, b.city)) { union(a.id, b.id); edges.push({ a, b, tok, via: 'family' }) }
     else if (a.dist !== b.dist) nearMiss.push({ a, b, tok, fam })   // city test is the only failure
   }
@@ -221,12 +235,17 @@ for (const [fam, fr] of byFamily) {
 // carries a fourth row under a different name (BIG HOPS CIBOLO) that no
 // family-keyed rule can reach. Same door, same city, different sign is worth
 // a review line under the same false-positive-is-cheap logic.
+// Keyed on the address ALONE, deliberately not address+city. Two real pairs
+// sat in NEAR MISSES on nothing but an enclave city label: WHOLE FOODS at
+// 4100 LOMO ALTO DR (DALLAS vs HIGHLAND PARK, an enclave inside Dallas) and
+// FOSSIL CREEK at 4130 S BOWEN RD (ARLINGTON vs DALWORTHINGTON GARDENS). The
+// metro table will never be complete, so the full street address carries the
+// match and any city disagreement is TAGGED for review instead of excluded.
 const byAddr = new Map()
 for (const r of rows) {
   if (!r.canonAddr) continue
-  const k = `${r.canonAddr}|${r.city}`
-  if (!byAddr.has(k)) byAddr.set(k, [])
-  byAddr.get(k).push(r)
+  if (!byAddr.has(r.canonAddr)) byAddr.set(r.canonAddr, [])
+  byAddr.get(r.canonAddr).push(r)
 }
 const addrOnly = new Set()
 const codeAnomaly = []
@@ -236,7 +255,7 @@ for (const [, g] of byAddr) {
     // Two different store codes at ONE address is not a merge candidate — but
     // it is not nothing either, so it is surfaced separately rather than lost.
     if (codeBlocks(g[i], g[j])) { codeAnomaly.push({ a: g[i], b: g[j] }); continue }
-    if (find(g[i].id) !== find(g[j].id)) addrOnly.add(`${g[i].canonAddr}|${g[i].city}`)
+    if (find(g[i].id) !== find(g[j].id)) addrOnly.add(g[i].canonAddr)
     union(g[i].id, g[j].id)
   }
 }
@@ -268,6 +287,12 @@ for (const c of cands) {
 // discarded — the Cibolo case proves same-distributor duplicates are real
 // (two Green Light branches entered one store in one year) — it is reported
 // separately so the Architect sees it as a distinct, weaker class.
+// A pair flagged as a near miss during the family pass may have been united
+// afterwards by the address path. Those are candidates, not misses.
+const stillMissed = nearMiss.filter(p => find(p.a.id) !== find(p.b.id))
+nearMiss.length = 0
+nearMiss.push(...stillMissed)
+
 const multiDist = cands.filter(c => c.dists.length > 1)
 const singleDist = cands.filter(c => c.dists.length === 1)
 const goodyLeft = cands.filter(c => c.goody)
@@ -302,7 +327,8 @@ function dump(title, list, note) {
     if (c.exactAddr) tags.push('IDENTICAL ADDRESS')
     if (c.cities.length > 1) tags.push(`CITY VARIES: ${c.cities.join(' / ')}`)
     if (c.overlap) tags.push('YEARS OVERLAP')
-    if (addrOnly.has(`${c[0].canonAddr}|${c[0].city}`)) tags.push('ADDRESS-ONLY PATH (cross-family)')
+    if (addrOnly.has(c[0].canonAddr)) tags.push('ADDRESS-ONLY PATH (cross-family)')
+    if (c.cities.length > 1 && !c.cities.every(x => cityAdjacent(x, c.cities[0]))) tags.push('CITIES NOT ADJACENT — rests on address alone')
     say('')
     say(`[${i + 1}] ${c.length} rows | ${c[0].family} | ${c.dists.join(' + ')}${tags.length ? '  <' + tags.join('; ') + '>' : ''}`)
     c.forEach(r => say(`      ${fmt(r)}`))

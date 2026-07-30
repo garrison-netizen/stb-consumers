@@ -190,6 +190,68 @@
    ]
   },
   {
+   "family": "CHAIN:TOTAL WINE MORE",
+   "distributors": [
+    "Silver Eagle",
+    "Green Light"
+   ],
+   "cities": [
+    "WOODLANDS"
+   ],
+   "exactAddress": true,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 194.33,
+    "2022": 139.33,
+    "2023": 80,
+    "2024": 69.67,
+    "2025": 59,
+    "2026 YTD": 18.6667
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8191-b634-f8f3b7eaeb68",
+     "uid": "acct_a765dd5d",
+     "name": "TOTAL WINE & SPIRITS 524",
+     "address": "1900 LAKE WOODLANDS DR",
+     "city": "WOODLANDS",
+     "distributor": "Silver Eagle",
+     "first": 2021,
+     "last": 2026,
+     "peak": 194.33,
+     "trajectory": "Declining",
+     "ce": {
+      "2021": 194.33,
+      "2022": 139.33,
+      "2023": 80,
+      "2024": 69.67,
+      "2025": 58,
+      "2026 YTD": 18.6667
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81b9-a4b2-c26ef1efacd8",
+     "uid": "acct_75533cbd",
+     "name": "TOTAL WINE & MORE 524",
+     "address": "1900 LAKE WOODLANDS DR. SUITE 900",
+     "city": "WOODLANDS",
+     "distributor": "Green Light",
+     "first": 2025,
+     "last": 2025,
+     "peak": 1,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 0,
+      "2025": 1,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "CHAIN:H E B CENTRAL MARKET",
    "distributors": [
     "FullClip",
@@ -1432,6 +1494,69 @@
    ]
   },
   {
+   "family": "CHAIN:TOTAL WINE MORE",
+   "distributors": [
+    "Silver Eagle",
+    "Green Light"
+   ],
+   "cities": [
+    "SUGAR LAND",
+    "SUGARLAND"
+   ],
+   "exactAddress": false,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 101.29,
+    "2022": 66.63,
+    "2023": 55.33,
+    "2024": 38.33,
+    "2025": 25,
+    "2026 YTD": 13.6667
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-81bf-b781-de1619ab7be5",
+     "uid": "acct_04f39664",
+     "name": "TOTAL WINE & SPIRITS 527",
+     "address": "16762 SW FRWY STE500",
+     "city": "SUGAR LAND",
+     "distributor": "Silver Eagle",
+     "first": 2021,
+     "last": 2026,
+     "peak": 101.29,
+     "trajectory": "Growing",
+     "ce": {
+      "2021": 101.29,
+      "2022": 66.63,
+      "2023": 55.33,
+      "2024": 38.33,
+      "2025": 24,
+      "2026 YTD": 13.6667
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-818d-b9ac-d58e56f85dee",
+     "uid": "acct_42d3b262",
+     "name": "TOTAL WINE & MORE 527",
+     "address": "16762 SOUTHWEST FREEWAY",
+     "city": "SUGARLAND",
+     "distributor": "Green Light",
+     "first": 2025,
+     "last": 2025,
+     "peak": 1,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 0,
+      "2025": 1,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "NAME:NOBI ASIAN",
    "distributors": [
     "Silver Eagle",
@@ -1611,6 +1736,69 @@
       "2022": 0,
       "2023": 0,
       "2024": 2,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
+   "family": "CHAIN:H E B FOOD STORE",
+   "distributors": [
+    "Dynamo Specialty",
+    "L&F"
+   ],
+   "cities": [
+    "EDINGBURG",
+    "EDINBURG"
+   ],
+   "exactAddress": false,
+   "yearsOverlap": false,
+   "combinedCE": {
+    "2021": 19.67,
+    "2022": 75.33,
+    "2023": 94.07,
+    "2024": 35.4,
+    "2025": 0,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8100-b8c7-e449a58a83c5",
+     "uid": "acct_676de5f5",
+     "name": "HEB #431",
+     "address": "2700 W FREDDY GONZALEZ",
+     "city": "EDINGBURG",
+     "distributor": "Dynamo Specialty",
+     "first": 2021,
+     "last": 2021,
+     "peak": 19.67,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 19.67,
+      "2022": 0,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8189-857c-cf9573c2bbb1",
+     "uid": "acct_24d1e8c7",
+     "name": "HEB FOOD STORE #431",
+     "address": "2700 WEST FREDDY GONZALEZ",
+     "city": "EDINBURG",
+     "distributor": "L&F",
+     "first": 2022,
+     "last": 2024,
+     "peak": 94.07,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 75.33,
+      "2023": 94.07,
+      "2024": 35.4,
       "2025": 0,
       "2026 YTD": 0
      }
@@ -1866,6 +2054,89 @@
    ]
   },
   {
+   "family": "NAME:AB BEER",
+   "distributors": [
+    "FullClip",
+    "Green Light"
+   ],
+   "cities": [
+    "ROYSE CITY",
+    "FORT WORTH"
+   ],
+   "exactAddress": true,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 29.76,
+    "2022": 89.25,
+    "2023": 17.36,
+    "2024": 6.88,
+    "2025": 5.59,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8173-ab26-f009060a60f2",
+     "uid": "acct_aec36094",
+     "name": "AB BEER AND WINE - ROYSE CITY",
+     "address": "125 E MAIN STREET",
+     "city": "ROYSE CITY",
+     "distributor": "FullClip",
+     "first": 2021,
+     "last": 2023,
+     "peak": 3.33,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 1,
+      "2022": 2.33,
+      "2023": 3.33,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81b6-a553-e58b79073a49",
+     "uid": "acct_83b6c657",
+     "name": "SOUTHSIDE CELLAR - FORT WORTH",
+     "address": "125 S MAIN ST",
+     "city": "FORT WORTH",
+     "distributor": "Green Light",
+     "first": 2021,
+     "last": 2025,
+     "peak": 86.92,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 28.76,
+      "2022": 86.92,
+      "2023": 13.03,
+      "2024": 6.88,
+      "2025": 5.59,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81e8-bda4-f0d248167a6f",
+     "uid": "acct_2ae405f5",
+     "name": "AB BEER & WINE",
+     "address": "125 E MAIN ST.",
+     "city": "ROYSE CITY",
+     "distributor": "Green Light",
+     "first": 2023,
+     "last": 2023,
+     "peak": 1,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 1,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -1984,6 +2255,68 @@
       "2023": 0,
       "2024": 1,
       "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
+   "family": "CHAIN:H E B CENTRAL MARKET",
+   "distributors": [
+    "FullClip",
+    "Green Light"
+   ],
+   "cities": [
+    "DALLAS"
+   ],
+   "exactAddress": false,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 18,
+    "2022": 78.33,
+    "2023": 78.22,
+    "2024": 39.67,
+    "2025": 11.33,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-818b-8c16-cbeef4527ca1",
+     "uid": "acct_35c1c565",
+     "name": "CENTRAL MARKET #747 - MIDWAY",
+     "address": "4349 W NW HWY",
+     "city": "DALLAS",
+     "distributor": "FullClip",
+     "first": 2021,
+     "last": 2023,
+     "peak": 78.33,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 18,
+      "2022": 78.33,
+      "2023": 55.33,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-813d-96a9-ce33a140583c",
+     "uid": "acct_8db27e8e",
+     "name": "CENTRAL MARKET 747",
+     "address": "4349 W NORTHWEST HWY",
+     "city": "DALLAS",
+     "distributor": "Green Light",
+     "first": 2023,
+     "last": 2025,
+     "peak": 39.67,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 22.89,
+      "2024": 39.67,
+      "2025": 11.33,
       "2026 YTD": 0
      }
     }
@@ -3334,6 +3667,69 @@
    ]
   },
   {
+   "family": "CHAIN:WHOLE FOODS MARKET",
+   "distributors": [
+    "FullClip",
+    "Green Light"
+   ],
+   "cities": [
+    "HIGHLAND PARK",
+    "DALLAS"
+   ],
+   "exactAddress": true,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 10.33,
+    "2022": 48.67,
+    "2023": 36,
+    "2024": 33,
+    "2025": 0,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-816c-b259-d25ffc952af3",
+     "uid": "acct_22f4906d",
+     "name": "WFM #346 - HIGHLAND PARK",
+     "address": "4100 LOMO ALTO DRIVE",
+     "city": "HIGHLAND PARK",
+     "distributor": "FullClip",
+     "first": 2021,
+     "last": 2023,
+     "peak": 48.67,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 10.33,
+      "2022": 48.67,
+      "2023": 19,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-812a-a257-cde786557d5e",
+     "uid": "acct_a29ff360",
+     "name": "WHOLE FOODS HPK-LOMO ALTO",
+     "address": "4100 LOMO ALTO DR",
+     "city": "DALLAS",
+     "distributor": "Green Light",
+     "first": 2023,
+     "last": 2024,
+     "peak": 33,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 17,
+      "2024": 33,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "NAME:GROWLER SPOT",
    "distributors": [
     "Silver Eagle",
@@ -3978,18 +4374,19 @@
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "Dynamo Specialty",
+    "FullClip",
     "L&F",
     "Green Light"
    ],
    "cities": [
     "CORPUS CHRISTI"
    ],
-   "exactAddress": true,
+   "exactAddress": false,
    "yearsOverlap": true,
    "combinedCE": {
     "2021": 7.67,
-    "2022": 16,
-    "2023": 42,
+    "2022": 22,
+    "2023": 44,
     "2024": 18,
     "2025": 0,
     "2026 YTD": 0
@@ -4010,6 +4407,26 @@
       "2021": 7.67,
       "2022": 0,
       "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81f4-bc87-c863849c8d6c",
+     "uid": "acct_e125077f",
+     "name": "HEB 069 SARARTOGA",
+     "address": "5313 SARARTOGA",
+     "city": "CORPUS CHRISTI",
+     "distributor": "FullClip",
+     "first": 2022,
+     "last": 2023,
+     "peak": 6,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 6,
+      "2023": 2,
       "2024": 0,
       "2025": 0,
       "2026 YTD": 0
@@ -4704,17 +5121,18 @@
     "Green Light"
    ],
    "cities": [
-    "BELTON"
+    "BELTON",
+    "KERRVILLE"
    ],
    "exactAddress": true,
    "yearsOverlap": true,
    "combinedCE": {
     "2021": 20.67,
-    "2022": 60,
+    "2022": 62.67,
     "2023": 22.0033,
-    "2024": 11,
-    "2025": 1,
-    "2026 YTD": 0
+    "2024": 29,
+    "2025": 2.33,
+    "2026 YTD": 1.33
    },
    "rows": [
     {
@@ -4735,6 +5153,26 @@
       "2024": 4,
       "2025": 0,
       "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8165-be23-edc555bfa7fb",
+     "uid": "acct_55d80f6a",
+     "name": "HEB #770 - DRIVER MERCH",
+     "address": "300 MAIN STREET",
+     "city": "KERRVILLE",
+     "distributor": "Dynamo Specialty",
+     "first": 2022,
+     "last": 2026,
+     "peak": 18,
+     "trajectory": "Steady",
+     "ce": {
+      "2021": 0,
+      "2022": 2.67,
+      "2023": 0,
+      "2024": 18,
+      "2025": 1.33,
+      "2026 YTD": 1.33
      }
     },
     {
@@ -6123,6 +6561,90 @@
    ]
   },
   {
+   "family": "CHAIN:ARAMARK",
+   "distributors": [
+    "Silver Eagle",
+    "International Wine and Spirits"
+   ],
+   "cities": [
+    "HOUSTON",
+    "SUGAR LAND",
+    "BATON ROUGE"
+   ],
+   "exactAddress": false,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 0,
+    "2022": 1,
+    "2023": 4,
+    "2024": 12.59,
+    "2025": 34.23,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-819d-8796-d37f5ae107e0",
+     "uid": "acct_da45e4bc",
+     "name": "ARAMARK @ NRG STAD BG",
+     "address": "ONE RELIANT STADIUM",
+     "city": "HOUSTON",
+     "distributor": "Silver Eagle",
+     "first": 2022,
+     "last": 2025,
+     "peak": 27.56,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 1,
+      "2023": 0,
+      "2024": 4.59,
+      "2025": 27.56,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8191-bdd3-c8cb689fd09d",
+     "uid": "acct_bfadd365",
+     "name": "CONSTELLATION FIELD 19585",
+     "address": "1 STADIUM DR",
+     "city": "SUGAR LAND",
+     "distributor": "Silver Eagle",
+     "first": 2023,
+     "last": 2025,
+     "peak": 6.67,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 4,
+      "2024": 0,
+      "2025": 6.67,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-813e-b131-d17507fb12e9",
+     "uid": "acct_05ff6d87",
+     "name": "LSU CONCESSIONS",
+     "address": "1 N STADIUM DRIVE",
+     "city": "BATON ROUGE",
+     "distributor": "International Wine and Spirits",
+     "first": 2024,
+     "last": 2024,
+     "peak": 8,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 8,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -6253,7 +6775,7 @@
     "Green Light"
    ],
    "cities": [
-    "THE COLONY"
+    "COLONY"
    ],
    "exactAddress": false,
    "yearsOverlap": true,
@@ -6271,7 +6793,7 @@
      "uid": "acct_43afb8e0",
      "name": "SPEC S #163 - THE COLONY",
      "address": "4901 SH 121",
-     "city": "THE COLONY",
+     "city": "COLONY",
      "distributor": "FullClip",
      "first": 2021,
      "last": 2023,
@@ -6291,7 +6813,7 @@
      "uid": "acct_037a308b",
      "name": "SPEC S 163",
      "address": "4901 HIGHWAY 121",
-     "city": "THE COLONY",
+     "city": "COLONY",
      "distributor": "Green Light",
      "first": 2023,
      "last": 2023,
@@ -6907,6 +7429,69 @@
    ]
   },
   {
+   "family": "NAME:DISTRICT",
+   "distributors": [
+    "Silver Eagle",
+    "L&F"
+   ],
+   "cities": [
+    "HOUSTON",
+    "MCALLEN"
+   ],
+   "exactAddress": true,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 0,
+    "2022": 5,
+    "2023": 21.21,
+    "2024": 2.5,
+    "2025": 18.35,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8132-a96e-e626449ed771",
+     "uid": "acct_723d403d",
+     "name": "THE DISTRICT",
+     "address": "610 MAIN STREET",
+     "city": "HOUSTON",
+     "distributor": "Silver Eagle",
+     "first": 2022,
+     "last": 2025,
+     "peak": 18.35,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 5,
+      "2023": 1,
+      "2024": 0,
+      "2025": 18.35,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8155-a500-fc07012b6415",
+     "uid": "acct_b9564f60",
+     "name": "DEPOSITO EL NOPALITO",
+     "address": "610 N MAIN ST STE A",
+     "city": "MCALLEN",
+     "distributor": "L&F",
+     "first": 2023,
+     "last": 2024,
+     "peak": 20.21,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 20.21,
+      "2024": 2.5,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "CHAIN:SPECS WHOLESALE",
    "distributors": [
     "FullClip",
@@ -6963,6 +7548,68 @@
       "2023": 2,
       "2024": 5,
       "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
+   "family": "CHAIN:TOTAL WINE MORE",
+   "distributors": [
+    "FullClip",
+    "Green Light"
+   ],
+   "cities": [
+    "ARLINGTON"
+   ],
+   "exactAddress": false,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 4.33,
+    "2022": 19.67,
+    "2023": 20,
+    "2024": 8,
+    "2025": 5,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8118-84cc-db6b7c9cabd9",
+     "uid": "acct_4475843b",
+     "name": "TOTAL WINE #508 - ARLINGTON SOUTH",
+     "address": "981 I-20 W",
+     "city": "ARLINGTON",
+     "distributor": "FullClip",
+     "first": 2021,
+     "last": 2023,
+     "peak": 19.67,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 4.33,
+      "2022": 19.67,
+      "2023": 13,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-812f-9efc-d96abf0019d7",
+     "uid": "acct_2035e8b3",
+     "name": "TOTAL WINE & MORE 508",
+     "address": "981 W. I20",
+     "city": "ARLINGTON",
+     "distributor": "Green Light",
+     "first": 2023,
+     "last": 2025,
+     "peak": 8,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 7,
+      "2024": 8,
+      "2025": 5,
       "2026 YTD": 0
      }
     }
@@ -8270,6 +8917,89 @@
    ]
   },
   {
+   "family": "NAME:LLANO BEER",
+   "distributors": [
+    "FullClip",
+    "Dynamo Specialty"
+   ],
+   "cities": [
+    "LLANO",
+    "ROYSE CITY"
+   ],
+   "exactAddress": true,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 0,
+    "2022": 16.07,
+    "2023": 9.18,
+    "2024": 0,
+    "2025": 0,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8118-b87f-e3b0e4d9f48c",
+     "uid": "acct_6804fd95",
+     "name": "LLANO BEER CO - LLANO",
+     "address": "105 E MAIN ST",
+     "city": "LLANO",
+     "distributor": "FullClip",
+     "first": 2022,
+     "last": 2023,
+     "peak": 6.89,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 2.29,
+      "2023": 6.89,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8195-af7d-f2e9888f2147",
+     "uid": "acct_fe1131f8",
+     "name": "NATIVE STATION BEER GARDEN",
+     "address": "105 W MAIN ST",
+     "city": "ROYSE CITY",
+     "distributor": "FullClip",
+     "first": 2022,
+     "last": 2022,
+     "peak": 13.78,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 13.78,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81ab-82ff-f39452393ec4",
+     "uid": "acct_0f144168",
+     "name": "LLANO BEER COMPANY",
+     "address": "105 E MAIN ST",
+     "city": "LLANO",
+     "distributor": "Dynamo Specialty",
+     "first": 2023,
+     "last": 2023,
+     "peak": 2.29,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 2.29,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty",
@@ -8885,6 +9615,69 @@
       "2024": 0,
       "2025": 2.29,
       "2026 YTD": 2.2933
+     }
+    }
+   ]
+  },
+  {
+   "family": "CHAIN:FOSSIL CREEK LIQUOR",
+   "distributors": [
+    "FullClip",
+    "Green Light"
+   ],
+   "cities": [
+    "DALWORTHINGTON GARDENS",
+    "ARLINGTON"
+   ],
+   "exactAddress": true,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 4,
+    "2022": 11.33,
+    "2023": 15,
+    "2024": 5,
+    "2025": 0,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8179-b76e-f7215a2f9da2",
+     "uid": "acct_1e6c2464",
+     "name": "FOSSIL CREEK LIQUOR - DALWORTHINGTO",
+     "address": "4130 S. BOWEN ROAD",
+     "city": "DALWORTHINGTON GARDENS",
+     "distributor": "FullClip",
+     "first": 2021,
+     "last": 2023,
+     "peak": 11.33,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 4,
+      "2022": 11.33,
+      "2023": 9,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8179-bd2f-f0a3a15c85b6",
+     "uid": "acct_17fa2ef1",
+     "name": "FOSSIL CREEK ARLINGTON",
+     "address": "4130 S BOWEN RD",
+     "city": "ARLINGTON",
+     "distributor": "Green Light",
+     "first": 2023,
+     "last": 2024,
+     "peak": 6,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 6,
+      "2024": 5,
+      "2025": 0,
+      "2026 YTD": 0
      }
     }
    ]
@@ -10074,12 +10867,13 @@
     "L&F"
    ],
    "cities": [
+    "ALAMO",
     "HARLINGEN"
    ],
-   "exactAddress": true,
-   "yearsOverlap": false,
+   "exactAddress": false,
+   "yearsOverlap": true,
    "combinedCE": {
-    "2021": 2.67,
+    "2021": 6,
     "2022": 5,
     "2023": 7,
     "2024": 3,
@@ -10087,6 +10881,26 @@
     "2026 YTD": 0
    },
    "rows": [
+    {
+     "id": "37c1c57a-c02b-81d9-b50b-f5cc4d554962",
+     "uid": "acct_8666053e",
+     "name": "LIQUOR 101 ALAMO",
+     "address": "450 E FRONTAGE RD",
+     "city": "ALAMO",
+     "distributor": "Dynamo Specialty",
+     "first": 2021,
+     "last": 2021,
+     "peak": 3.33,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 3.33,
+      "2022": 0,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
     {
      "id": "37c1c57a-c02b-81bf-a6cb-c4ef24b7ceef",
      "uid": "acct_e781fccf",
@@ -10186,68 +11000,6 @@
       "2023": 0,
       "2024": 0,
       "2025": 6.89,
-      "2026 YTD": 0
-     }
-    }
-   ]
-  },
-  {
-   "family": "NAME:LLANO BEER",
-   "distributors": [
-    "FullClip",
-    "Dynamo Specialty"
-   ],
-   "cities": [
-    "LLANO"
-   ],
-   "exactAddress": true,
-   "yearsOverlap": true,
-   "combinedCE": {
-    "2021": 0,
-    "2022": 2.29,
-    "2023": 9.18,
-    "2024": 0,
-    "2025": 0,
-    "2026 YTD": 0
-   },
-   "rows": [
-    {
-     "id": "37c1c57a-c02b-8118-b87f-e3b0e4d9f48c",
-     "uid": "acct_6804fd95",
-     "name": "LLANO BEER CO - LLANO",
-     "address": "105 E MAIN ST",
-     "city": "LLANO",
-     "distributor": "FullClip",
-     "first": 2022,
-     "last": 2023,
-     "peak": 6.89,
-     "trajectory": "Lapsed earlier",
-     "ce": {
-      "2021": 0,
-      "2022": 2.29,
-      "2023": 6.89,
-      "2024": 0,
-      "2025": 0,
-      "2026 YTD": 0
-     }
-    },
-    {
-     "id": "37c1c57a-c02b-81ab-82ff-f39452393ec4",
-     "uid": "acct_0f144168",
-     "name": "LLANO BEER COMPANY",
-     "address": "105 E MAIN ST",
-     "city": "LLANO",
-     "distributor": "Dynamo Specialty",
-     "first": 2023,
-     "last": 2023,
-     "peak": 2.29,
-     "trajectory": "Lapsed earlier",
-     "ce": {
-      "2021": 0,
-      "2022": 0,
-      "2023": 2.29,
-      "2024": 0,
-      "2025": 0,
       "2026 YTD": 0
      }
     }
@@ -11867,51 +12619,95 @@
    ]
   },
   {
-   "family": "NAME:AB BEER",
+   "family": "NAME:BIG S",
    "distributors": [
-    "FullClip",
-    "Green Light"
+    "Dynamo Specialty",
+    "FullClip"
    ],
    "cities": [
-    "ROYSE CITY"
+    "FREDERICKSBURG",
+    "WINONA"
    ],
    "exactAddress": true,
    "yearsOverlap": true,
    "combinedCE": {
-    "2021": 1,
-    "2022": 2.33,
-    "2023": 4.33,
+    "2021": 2.33,
+    "2022": 5,
+    "2023": 0,
     "2024": 0,
     "2025": 0,
     "2026 YTD": 0
    },
    "rows": [
     {
-     "id": "37c1c57a-c02b-8173-ab26-f009060a60f2",
-     "uid": "acct_aec36094",
-     "name": "AB BEER AND WINE - ROYSE CITY",
-     "address": "125 E MAIN STREET",
-     "city": "ROYSE CITY",
-     "distributor": "FullClip",
+     "id": "37c1c57a-c02b-8186-91e3-d7b916e757eb",
+     "uid": "acct_650c1bfc",
+     "name": "BIG S #102",
+     "address": "528 W MAIN ST",
+     "city": "FREDERICKSBURG",
+     "distributor": "Dynamo Specialty",
      "first": 2021,
-     "last": 2023,
-     "peak": 3.33,
+     "last": 2022,
+     "peak": 4,
      "trajectory": "Lapsed earlier",
      "ce": {
-      "2021": 1,
-      "2022": 2.33,
-      "2023": 3.33,
+      "2021": 2.33,
+      "2022": 4,
+      "2023": 0,
       "2024": 0,
       "2025": 0,
       "2026 YTD": 0
      }
     },
     {
-     "id": "37c1c57a-c02b-81e8-bda4-f0d248167a6f",
-     "uid": "acct_2ae405f5",
-     "name": "AB BEER & WINE",
-     "address": "125 E MAIN ST.",
-     "city": "ROYSE CITY",
+     "id": "37c1c57a-c02b-819e-ac42-d9fd9fcc498a",
+     "uid": "acct_58836cb1",
+     "name": "CRYSTAL SPRINGS LIQUOR - WINONA",
+     "address": "528 S MAIN ST",
+     "city": "WINONA",
+     "distributor": "FullClip",
+     "first": 2022,
+     "last": 2022,
+     "peak": 1,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 1,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
+   "family": "NAME:GAME THEORY",
+   "distributors": [
+    "Green Light",
+    "International Wine and Spirits"
+   ],
+   "cities": [
+    "FORT WORTH",
+    "BATON ROUGE"
+   ],
+   "exactAddress": true,
+   "yearsOverlap": false,
+   "combinedCE": {
+    "2021": 0,
+    "2022": 0,
+    "2023": 1,
+    "2024": 3.67,
+    "2025": 0,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8174-aad4-dee3b65d7085",
+     "uid": "acct_7c38801d",
+     "name": "GAME THEORY - FORT WORTH",
+     "address": "804 S MAIN ST",
+     "city": "FORT WORTH",
      "distributor": "Green Light",
      "first": 2023,
      "last": 2023,
@@ -11922,6 +12718,26 @@
       "2022": 0,
       "2023": 1,
       "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81c1-ba31-e36ad24043f9",
+     "uid": "acct_be66a2f9",
+     "name": "CAP CITY BEER FEST",
+     "address": "804 MAIN STREET",
+     "city": "BATON ROUGE",
+     "distributor": "International Wine and Spirits",
+     "first": 2024,
+     "last": 2024,
+     "peak": 3.67,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 3.67,
       "2025": 0,
       "2026 YTD": 0
      }
@@ -12239,6 +13055,69 @@
    ]
   },
   {
+   "family": "NAME:DER DAIWEL",
+   "distributors": [
+    "Dynamo Specialty",
+    "Green Light"
+   ],
+   "cities": [
+    "FREDERICKSBURG",
+    "GRAND PRAIRIE"
+   ],
+   "exactAddress": true,
+   "yearsOverlap": true,
+   "combinedCE": {
+    "2021": 0,
+    "2022": 3,
+    "2023": 3,
+    "2024": 2,
+    "2025": 0,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8111-93a8-fe1de76e38e2",
+     "uid": "acct_6d8da508",
+     "name": "DER DAIWEL",
+     "address": "321 E MAIN STREET",
+     "city": "FREDERICKSBURG",
+     "distributor": "Dynamo Specialty",
+     "first": 2022,
+     "last": 2022,
+     "peak": 1,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 1,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8137-9b28-c240fc9dec17",
+     "uid": "acct_1209a309",
+     "name": "FIREHOUSE GASTRO PARK",
+     "address": "321 W MAIN ST",
+     "city": "GRAND PRAIRIE",
+     "distributor": "Green Light",
+     "first": 2022,
+     "last": 2024,
+     "peak": 3,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 2,
+      "2023": 3,
+      "2024": 2,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "NAME:LUCY S",
    "distributors": [
     "Dynamo Specialty",
@@ -12293,6 +13172,69 @@
       "2021": 0,
       "2022": 1.33,
       "2023": 3,
+      "2024": 2,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
+   "family": "NAME:MIKEY V",
+   "distributors": [
+    "Dynamo Specialty",
+    "Green Light"
+   ],
+   "cities": [
+    "GEORGETOWN",
+    "TYLER"
+   ],
+   "exactAddress": true,
+   "yearsOverlap": false,
+   "combinedCE": {
+    "2021": 0,
+    "2022": 0,
+    "2023": 2.29,
+    "2024": 2,
+    "2025": 0,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-8140-9111-c4e1848fa9ef",
+     "uid": "acct_273da82c",
+     "name": "MIKEY V S HOT SAUCE",
+     "address": "112 W 8TH ST.",
+     "city": "GEORGETOWN",
+     "distributor": "Dynamo Specialty",
+     "first": 2023,
+     "last": 2023,
+     "peak": 2.29,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 2.29,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81f2-8073-e171a78c8bcf",
+     "uid": "acct_cf2ef04c",
+     "name": "NOURISH ETX",
+     "address": "112 E 8TH ST.",
+     "city": "TYLER",
+     "distributor": "Green Light",
+     "first": 2024,
+     "last": 2024,
+     "peak": 2,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
       "2024": 2,
       "2025": 0,
       "2026 YTD": 0
@@ -14071,6 +15013,87 @@
    ]
   },
   {
+   "family": "NAME:600 DEGREES",
+   "distributors": [
+    "Dynamo Specialty"
+   ],
+   "cities": [
+    "GEORGETOWN",
+    "ROUND ROCK"
+   ],
+   "exactAddress": false,
+   "combinedCE": {
+    "2021": 32.84,
+    "2022": 97.25,
+    "2023": 86.18,
+    "2024": 42.25,
+    "2025": 10.89,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-81b8-b8db-d8ba7a4be2a8",
+     "uid": "acct_fe6b4058",
+     "name": "600 DEGREES - GEORGETOWN",
+     "address": "124 EAST 8TH STREET",
+     "city": "GEORGETOWN",
+     "distributor": "Dynamo Specialty",
+     "first": 2021,
+     "last": 2025,
+     "peak": 65.29,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 20.66,
+      "2022": 50.51,
+      "2023": 65.29,
+      "2024": 25.25,
+      "2025": 6.89,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81e0-a213-f8f7b75c58b8",
+     "uid": "acct_b5ff32af",
+     "name": "600 DEGREES - ROUND ROCK",
+     "address": "201 E. MAIN STREET  STE 102",
+     "city": "ROUND ROCK",
+     "distributor": "Dynamo Specialty",
+     "first": 2021,
+     "last": 2023,
+     "peak": 18.07,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 2.29,
+      "2022": 18.07,
+      "2023": 6.89,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8131-bcc2-e40683a0dddf",
+     "uid": "acct_a24f6329",
+     "name": "600 DEGREES MARKETPLACE",
+     "address": "114 EAST 7TH STREET  STE. 110",
+     "city": "GEORGETOWN",
+     "distributor": "Dynamo Specialty",
+     "first": 2021,
+     "last": 2025,
+     "peak": 28.67,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 9.89,
+      "2022": 28.67,
+      "2023": 14,
+      "2024": 17,
+      "2025": 4,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "NAME:CALANDRO S",
    "distributors": [
     "International Wine and Spirits"
@@ -14635,12 +15658,93 @@
    ]
   },
   {
+   "family": "CHAIN:VIA 313 PIZZERIA",
+   "distributors": [
+    "Silver Eagle"
+   ],
+   "cities": [
+    "HOUSTON",
+    "WEBSTER"
+   ],
+   "exactAddress": false,
+   "combinedCE": {
+    "2021": 0,
+    "2022": 0,
+    "2023": 0,
+    "2024": 73.4767,
+    "2025": 6.89,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "3ad1c57a-c02b-8153-9727-e806c298537d",
+     "uid": "acct_021f8cff",
+     "name": "VIA 313",
+     "address": "1541 N SHEPHERD DR STE 10",
+     "city": "HOUSTON",
+     "distributor": "Silver Eagle",
+     "first": 2024,
+     "last": 2024,
+     "peak": 20.6667,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 20.6667,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81c2-8f4a-dff94820f45b",
+     "uid": "acct_3f31cc23",
+     "name": "VIA 313",
+     "address": "1065 W BAY AREA BLD #200",
+     "city": "WEBSTER",
+     "distributor": "Silver Eagle",
+     "first": 2024,
+     "last": 2024,
+     "peak": 13.78,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 13.78,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81d3-beee-e021663b1581",
+     "uid": "acct_afb60056",
+     "name": "VIA 313",
+     "address": "10201 KATY FRWY STE 350",
+     "city": "HOUSTON",
+     "distributor": "Silver Eagle",
+     "first": 2024,
+     "last": 2025,
+     "peak": 39.03,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 39.03,
+      "2025": 6.89,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "CHAIN:PARRYS PIZZERIA AND TAPHOUSE",
    "distributors": [
     "Green Light"
    ],
    "cities": [
-    "THE COLONY"
+    "COLONY"
    ],
    "exactAddress": true,
    "combinedCE": {
@@ -14657,7 +15761,7 @@
      "uid": "acct_ee1fb34e",
      "name": "PARRY S PIZZERIA - THE COLONY",
      "address": "5752 GRANDSCAPE BOULEVARD SUITE 140",
-     "city": "THE COLONY",
+     "city": "COLONY",
      "distributor": "Green Light",
      "first": 2022,
      "last": 2025,
@@ -14677,7 +15781,7 @@
      "uid": "acct_d8dd0dff",
      "name": "LSA BURGER CO - THE COLONY",
      "address": "5752 GRANDSCAPE BOULEVARD",
-     "city": "THE COLONY",
+     "city": "COLONY",
      "distributor": "Green Light",
      "first": 2023,
      "last": 2024,
@@ -14697,7 +15801,7 @@
      "uid": "acct_adbe7e1b",
      "name": "BARLEY & BOARD - THE COLONY",
      "address": "5752 GRANDSCAPE BLVD",
-     "city": "THE COLONY",
+     "city": "COLONY",
      "distributor": "Green Light",
      "first": 2024,
      "last": 2024,
@@ -14720,12 +15824,13 @@
     "Dynamo Specialty"
    ],
    "cities": [
-    "SUNSET VALLEY"
+    "SUNSET VALLEY",
+    "AUSTIN"
    ],
    "exactAddress": true,
    "combinedCE": {
     "2021": 16,
-    "2022": 32.33,
+    "2022": 35.33,
     "2023": 26,
     "2024": 12.33,
     "2025": 20.29,
@@ -14750,6 +15855,26 @@
       "2024": 12.33,
       "2025": 17.29,
       "2026 YTD": 6
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-818c-a03a-f6da7b89e2f8",
+     "uid": "acct_c3a76535",
+     "name": "WORLD MARKET - COST PLUS - SUNSET V",
+     "address": "5601 BRODIE LANE",
+     "city": "AUSTIN",
+     "distributor": "Dynamo Specialty",
+     "first": 2022,
+     "last": 2022,
+     "peak": 3,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 3,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
      }
     },
     {
@@ -14950,67 +16075,6 @@
       "2024": 8,
       "2025": 11,
       "2026 YTD": 4
-     }
-    }
-   ]
-  },
-  {
-   "family": "CHAIN:ARAMARK",
-   "distributors": [
-    "Silver Eagle"
-   ],
-   "cities": [
-    "HOUSTON",
-    "SUGAR LAND"
-   ],
-   "exactAddress": false,
-   "combinedCE": {
-    "2021": 0,
-    "2022": 1,
-    "2023": 4,
-    "2024": 4.59,
-    "2025": 34.23,
-    "2026 YTD": 0
-   },
-   "rows": [
-    {
-     "id": "37c1c57a-c02b-819d-8796-d37f5ae107e0",
-     "uid": "acct_da45e4bc",
-     "name": "ARAMARK @ NRG STAD BG",
-     "address": "ONE RELIANT STADIUM",
-     "city": "HOUSTON",
-     "distributor": "Silver Eagle",
-     "first": 2022,
-     "last": 2025,
-     "peak": 27.56,
-     "trajectory": "Lapsed 2026",
-     "ce": {
-      "2021": 0,
-      "2022": 1,
-      "2023": 0,
-      "2024": 4.59,
-      "2025": 27.56,
-      "2026 YTD": 0
-     }
-    },
-    {
-     "id": "37c1c57a-c02b-8191-bdd3-c8cb689fd09d",
-     "uid": "acct_bfadd365",
-     "name": "CONSTELLATION FIELD 19585",
-     "address": "1 STADIUM DR",
-     "city": "SUGAR LAND",
-     "distributor": "Silver Eagle",
-     "first": 2023,
-     "last": 2025,
-     "peak": 6.67,
-     "trajectory": "Lapsed 2026",
-     "ce": {
-      "2021": 0,
-      "2022": 0,
-      "2023": 4,
-      "2024": 0,
-      "2025": 6.67,
-      "2026 YTD": 0
      }
     }
    ]
@@ -16053,6 +17117,66 @@
       "2024": 2.8,
       "2025": 1,
       "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
+   "family": "NAME:FM 1660",
+   "distributors": [
+    "Dynamo Specialty"
+   ],
+   "cities": [
+    "HUTTO"
+   ],
+   "exactAddress": false,
+   "combinedCE": {
+    "2021": 5,
+    "2022": 14,
+    "2023": 8.33,
+    "2024": 7,
+    "2025": 5,
+    "2026 YTD": 1
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-81c1-9041-fe73dff94d7c",
+     "uid": "acct_ea734da6",
+     "name": "FM 1660 XPRESS #1",
+     "address": "133 E FRONT ST",
+     "city": "HUTTO",
+     "distributor": "Dynamo Specialty",
+     "first": 2021,
+     "last": 2023,
+     "peak": 2,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 1,
+      "2022": 2,
+      "2023": 1,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8113-a380-feb26ad0565e",
+     "uid": "acct_17095782",
+     "name": "FM 1660 XPRESS #2",
+     "address": "6081 FM 1660",
+     "city": "HUTTO",
+     "distributor": "Dynamo Specialty",
+     "first": 2021,
+     "last": 2026,
+     "peak": 12,
+     "trajectory": "Declining",
+     "ce": {
+      "2021": 4,
+      "2022": 12,
+      "2023": 7.33,
+      "2024": 7,
+      "2025": 5,
+      "2026 YTD": 1
      }
     }
    ]
@@ -17441,6 +18565,67 @@
    ]
   },
   {
+   "family": "NAME:RAMIREZ JUSTIN",
+   "distributors": [
+    "Silver Eagle"
+   ],
+   "cities": [
+    "REGION 1",
+    "BULK REGION 1"
+   ],
+   "exactAddress": true,
+   "combinedCE": {
+    "2021": 0,
+    "2022": 0,
+    "2023": 0.88,
+    "2024": 0,
+    "2025": 0,
+    "2026 YTD": 0
+   },
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-81ad-abd8-ea7eccbdfcf7",
+     "uid": "acct_bbcf6730",
+     "name": "RAMIREZ  JUSTIN D.",
+     "address": "RDD BULK - E",
+     "city": "REGION 1",
+     "distributor": "Silver Eagle",
+     "first": 0,
+     "last": 0,
+     "peak": 0,
+     "trajectory": "Never material",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": -1,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8160-b1ce-eb541384a436",
+     "uid": "acct_2ad61bb9",
+     "name": "KIVEL  KEVIN R.",
+     "address": "RDD BULK - E",
+     "city": "BULK REGION 1",
+     "distributor": "Silver Eagle",
+     "first": 2023,
+     "last": 2023,
+     "peak": 1.88,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 1.88,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ]
+  },
+  {
    "family": "NAME:RAYMOND S",
    "distributors": [
     "Green Light"
@@ -17983,52 +19168,6 @@
  ],
  "sectionC": [
   {
-   "family": "CHAIN:TOTAL WINE MORE",
-   "token": "LAKE",
-   "rows": [
-    {
-     "id": "37c1c57a-c02b-81b9-a4b2-c26ef1efacd8",
-     "uid": "acct_75533cbd",
-     "name": "TOTAL WINE & MORE 524",
-     "address": "1900 LAKE WOODLANDS DR. SUITE 900",
-     "city": "WOODLANDS",
-     "distributor": "Green Light",
-     "first": 2025,
-     "last": 2025,
-     "peak": 1,
-     "trajectory": "Lapsed 2026",
-     "ce": {
-      "2021": 0,
-      "2022": 0,
-      "2023": 0,
-      "2024": 0,
-      "2025": 1,
-      "2026 YTD": 0
-     }
-    },
-    {
-     "id": "37c1c57a-c02b-8191-b634-f8f3b7eaeb68",
-     "uid": "acct_a765dd5d",
-     "name": "TOTAL WINE & SPIRITS 524",
-     "address": "1900 LAKE WOODLANDS DR",
-     "city": "THE WOODLANDS",
-     "distributor": "Silver Eagle",
-     "first": 2021,
-     "last": 2026,
-     "peak": 194.33,
-     "trajectory": "Declining",
-     "ce": {
-      "2021": 194.33,
-      "2022": 139.33,
-      "2023": 80,
-      "2024": 69.67,
-      "2025": 58,
-      "2026 YTD": 18.6667
-     }
-    }
-   ]
-  },
-  {
    "family": "CHAIN:WHOLE FOODS MARKET",
    "token": "LAMAR",
    "rows": [
@@ -18116,98 +19255,6 @@
       "2024": 59.84,
       "2025": 42.21,
       "2026 YTD": 17.3333
-     }
-    }
-   ]
-  },
-  {
-   "family": "CHAIN:H E B FOOD STORE",
-   "token": "FREDDY",
-   "rows": [
-    {
-     "id": "37c1c57a-c02b-8189-857c-cf9573c2bbb1",
-     "uid": "acct_24d1e8c7",
-     "name": "HEB FOOD STORE #431",
-     "address": "2700 WEST FREDDY GONZALEZ",
-     "city": "EDINBURG",
-     "distributor": "L&F",
-     "first": 2022,
-     "last": 2024,
-     "peak": 94.07,
-     "trajectory": "Lapsed earlier",
-     "ce": {
-      "2021": 0,
-      "2022": 75.33,
-      "2023": 94.07,
-      "2024": 35.4,
-      "2025": 0,
-      "2026 YTD": 0
-     }
-    },
-    {
-     "id": "37c1c57a-c02b-8100-b8c7-e449a58a83c5",
-     "uid": "acct_676de5f5",
-     "name": "HEB #431",
-     "address": "2700 W FREDDY GONZALEZ",
-     "city": "EDINGBURG",
-     "distributor": "Dynamo Specialty",
-     "first": 2021,
-     "last": 2021,
-     "peak": 19.67,
-     "trajectory": "Lapsed earlier",
-     "ce": {
-      "2021": 19.67,
-      "2022": 0,
-      "2023": 0,
-      "2024": 0,
-      "2025": 0,
-      "2026 YTD": 0
-     }
-    }
-   ]
-  },
-  {
-   "family": "CHAIN:WHOLE FOODS MARKET",
-   "token": "LOMO",
-   "rows": [
-    {
-     "id": "37c1c57a-c02b-812a-a257-cde786557d5e",
-     "uid": "acct_a29ff360",
-     "name": "WHOLE FOODS HPK-LOMO ALTO",
-     "address": "4100 LOMO ALTO DR",
-     "city": "DALLAS",
-     "distributor": "Green Light",
-     "first": 2023,
-     "last": 2024,
-     "peak": 33,
-     "trajectory": "Lapsed earlier",
-     "ce": {
-      "2021": 0,
-      "2022": 0,
-      "2023": 17,
-      "2024": 33,
-      "2025": 0,
-      "2026 YTD": 0
-     }
-    },
-    {
-     "id": "37c1c57a-c02b-816c-b259-d25ffc952af3",
-     "uid": "acct_22f4906d",
-     "name": "WFM #346 - HIGHLAND PARK",
-     "address": "4100 LOMO ALTO DRIVE",
-     "city": "HIGHLAND PARK",
-     "distributor": "FullClip",
-     "first": 2021,
-     "last": 2023,
-     "peak": 48.67,
-     "trajectory": "Lapsed earlier",
-     "ce": {
-      "2021": 10.33,
-      "2022": 48.67,
-      "2023": 19,
-      "2024": 0,
-      "2025": 0,
-      "2026 YTD": 0
      }
     }
    ]
@@ -18343,52 +19390,6 @@
       "2021": 15,
       "2022": 11,
       "2023": 3,
-      "2024": 0,
-      "2025": 0,
-      "2026 YTD": 0
-     }
-    }
-   ]
-  },
-  {
-   "family": "CHAIN:FOSSIL CREEK LIQUOR",
-   "token": "BOWEN",
-   "rows": [
-    {
-     "id": "37c1c57a-c02b-8179-bd2f-f0a3a15c85b6",
-     "uid": "acct_17fa2ef1",
-     "name": "FOSSIL CREEK ARLINGTON",
-     "address": "4130 S BOWEN RD",
-     "city": "ARLINGTON",
-     "distributor": "Green Light",
-     "first": 2023,
-     "last": 2024,
-     "peak": 6,
-     "trajectory": "Lapsed earlier",
-     "ce": {
-      "2021": 0,
-      "2022": 0,
-      "2023": 6,
-      "2024": 5,
-      "2025": 0,
-      "2026 YTD": 0
-     }
-    },
-    {
-     "id": "37c1c57a-c02b-8179-b76e-f7215a2f9da2",
-     "uid": "acct_1e6c2464",
-     "name": "FOSSIL CREEK LIQUOR - DALWORTHINGTO",
-     "address": "4130 S. BOWEN ROAD",
-     "city": "DALWORTHINGTON GARDENS",
-     "distributor": "FullClip",
-     "first": 2021,
-     "last": 2023,
-     "peak": 11.33,
-     "trajectory": "Lapsed earlier",
-     "ce": {
-      "2021": 4,
-      "2022": 11.33,
-      "2023": 9,
       "2024": 0,
       "2025": 0,
       "2026 YTD": 0
