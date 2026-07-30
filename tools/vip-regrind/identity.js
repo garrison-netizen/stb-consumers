@@ -31,6 +31,34 @@ export function normAddr(s) {
 
 export const idKey = (n, a) => `${norm(n)}|${normAddr(a)}`
 
+// ---- Chain store-number identity (Architect merge rule, 2026-07-30) ----
+//
+// VIP changed its naming convention for the Goody Goody chain partway
+// through the series. The name+address key read the rename as churn, so
+// every store in the chain has its history SEVERED at the rename: the
+// pre-rename years sit on a row that looks long-dead and the post-rename
+// years on a row that looks new and small. #44 is the clearest case —
+// "GOODY GOODY 44" files as Lapsed earlier while "GOODY GOODY LIQUOR #44"
+// is Growing with 7 CE in 2026. Same store, half of it filed as dead.
+//
+// The store number survives every spelling, so it is the key. Address
+// does NOT work for this class: #12 reads "1950 JUSTIN RD" against
+// "1950 FM 407 E." — in Highland Village, Justin Road IS FM 407, and no
+// address canonicaliser will ever catch that.
+//
+// Forms covered:  GOODY GOODY {n} · GOODY GOODY {n} - STORE
+//                 GOODY GOODY - 0?{n} - {LOC} · GOODY GOODY BUCKEYE - {n} - {LOC}
+//                 GOODY GOODY LIQUOR #{n}
+// Returns e.g. "GOODY GOODY#15", or null when the name is not in the chain.
+export function chainStoreKey(name) {
+  const n = norm(name)
+  const m = /^GOODY GOODY\b(.*)$/.exec(n)
+  if (!m) return null
+  const d = /(\d+)/.exec(m[1])
+  if (!d) return null
+  return `GOODY GOODY#${parseInt(d[1], 10)}`
+}
+
 // Token-overlap similarity of two canonical addresses (0..1).
 // Mirrors VM_addrOverlap_ in pipelines/vip-marts/src/Data.gs.
 export function addrOverlap(a, b) {

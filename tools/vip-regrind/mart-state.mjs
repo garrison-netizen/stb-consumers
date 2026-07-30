@@ -1,7 +1,7 @@
 // Read-only state-of-the-marts check. Answers "are all three marts correct
 // right now" from live data rather than from run reports. Writes nothing.
 import { queryAll, plain } from './notion.js'
-import { idKey, ceCol } from './identity.js'
+import { idKey, ceCol, norm, chainStoreKey, buildResolver } from './identity.js'
 
 const MART_A = 'dffa9e55b1df445ca00c84f0da92c142'
 const MART_B = 'e75409d7238a49cea390bbfe123bfc45'
@@ -57,29 +57,56 @@ gate(weeks.size === 13 ? 'OK' : 'FAIL')
 // ---- MART B ----
 const B = await queryAll(MART_B)
 console.log(`\n=== MART B — ${B.length} rows ===`)
-const bByKey = new Map()
-for (const p of B) { const k = idKey(plain(p.properties['Account name']), plain(p.properties['Address'])); if (!bByKey.has(k)) bByKey.set(k, p) }
+// Resolve raw identities the way the LIVE PIPELINE does — exact key, then
+// chain store number (city-qualified), then the name|city fallback. This
+// has to be merge-aware: after the 2026-07-30 Goody Goody merge one Mart B
+// row legitimately represents two raw identities, so a strict-key `absent`
+// term counts the absorbed spelling as missing while the survivor already
+// holds its volume. That is a bug in the CHECK, not in the mart.
+const resolve = buildResolver(B,
+  p => plain(p.properties['Account name']),
+  p => plain(p.properties['Address']),
+  p => plain(p.properties['City']))
+const byChainStore = new Map()
+for (const p of B) {
+  const csk = chainStoreKey(plain(p.properties['Account name']))
+  if (!csk) continue
+  const ck = `${csk}|${norm(plain(p.properties['City']))}`
+  byChainStore.set(ck, byChainStore.has(ck) ? null : p)
+}
+function resolveRow(name, address, city) {
+  const hit = resolve(name, address, city)
+  if (hit) return hit.row
+  const csk = chainStoreKey(name)
+  if (csk) { const cs = byChainStore.get(`${csk}|${norm(city)}`); if (cs) return cs }
+  return null
+}
+
+// Accounting identity, exact by construction:
+//   oracle = Σ(raw CE) = Σ(raw resolving to a row) + absent
+//   phantom := stored − Σ(raw resolving to a row)   [drift, either sign]
+//   ⇒ stored + absent − phantom = oracle
 console.log('  year    stored    +absent   -phantom   =total     oracle')
 for (const year of YEARS) {
   let stored = 0
   for (const p of B) stored += plain(p.properties[`CE ${year}`]) || 0
   const raw = await queryAll(DETAIL[year])
   const col = ceCol(year)
-  const agg = new Map()
+  const agg = new Map(), meta = new Map()
   for (const p of raw) {
-    const k = idKey(plain(p.properties['Retail Accounts']), plain(p.properties['Address']))
+    const nm = plain(p.properties['Retail Accounts']), ad = plain(p.properties['Address'])
+    const k = idKey(nm, ad)
     agg.set(k, (agg.get(k) || 0) + (plain(p.properties[col]) || 0))
+    if (!meta.has(k)) meta.set(k, { nm, ad, city: plain(p.properties['City']) })
   }
-  let absent = 0
-  for (const [k, s] of agg) if (s > 0 && !bByKey.has(k)) absent += s
-  let phantom = 0
-  for (const p of B) {
-    const v = plain(p.properties[`CE ${year}`]) || 0
-    if (v <= 0) continue
-    const k = idKey(plain(p.properties['Account name']), plain(p.properties['Address']))
-    if (bByKey.get(k) !== p) continue
-    if ((agg.get(k) || 0) <= 0) phantom += v
+  let matched = 0, absent = 0
+  for (const [k, s] of agg) {
+    if (s <= 0) continue
+    const m = meta.get(k)
+    if (resolveRow(m.nm, m.ad, m.city)) matched += s
+    else absent += s
   }
+  const phantom = stored - matched
   const t = stored + absent - phantom
   console.log(`  ${year} ${r1(stored).padStart(9)} ${r1(absent).padStart(9)} ${r1(phantom).padStart(9)} ${r1(t).padStart(9)} ${r1(ORACLE[year]).padStart(9)}  ${gate(ok(t, ORACLE[year], ORACLE[year] * 0.001))}`)
 }

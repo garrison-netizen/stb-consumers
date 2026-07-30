@@ -78,6 +78,31 @@ function VM_identityKey_(name, address) {
   return VM_norm_(name) + "|" + VM_normAddr_(address);
 }
 
+// Chain store-number identity (Architect merge rule, 2026-07-30).
+//
+// VIP renamed the Goody Goody chain partway through the series. The
+// name+address key read the rename as churn, so every store's history
+// was SEVERED at the rename — pre-rename years on a row that looked
+// long-dead, post-rename years on one that looked new and small. The
+// chain read as having died earlier and harder than it did. 15 stores
+// were merged 2026-07-30; this keeps the loader from re-splitting them
+// on the next run, since the loader is the only writer and a hand-merge
+// alone would not survive a rebuild.
+//
+// The store number survives every spelling, so it is the key. Address
+// does NOT work for this class: #12 reads "1950 JUSTIN RD" against
+// "1950 FM 407 E." and in Highland Village those are the same road.
+//
+// Forms: GOODY GOODY {n} · {n} - STORE · - 0?{n} - {LOC} ·
+//        BUCKEYE - {n} - {LOC} · LIQUOR #{n}
+// Returns "GOODY GOODY#15" or null when the name is not in the chain.
+function VM_chainStoreKey_(name) {
+  var n = VM_norm_(name);
+  if (n.indexOf("GOODY GOODY") !== 0) return null;
+  var d = /(\d+)/.exec(n.slice("GOODY GOODY".length));
+  return d ? "GOODY GOODY#" + parseInt(d[1], 10) : null;
+}
+
 // Airport-cluster membership, per the Architect-approved rule
 // (2026-07-29, after the old flag was found contaminated):
 //   Hobby = address starts "7800 AIRPORT BLVD" AND carries a HOUF code

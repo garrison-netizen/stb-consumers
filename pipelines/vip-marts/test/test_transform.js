@@ -259,6 +259,23 @@ if (hobbyCreate) {
     hobbyCreate.props["Airport cluster"].checkbox === true,
     hobbyCreate.props["Account name"].title[0].text.content);
 }
+// ---- Chain store-number key (Architect merge rule 2026-07-30) ----
+// Every spelling VIP has used for the chain must reduce to one key, or
+// the loader re-splits the 15 stores merged on 2026-07-30.
+check("chain key: bare numbered form", VM_chainStoreKey_("GOODY GOODY 15") === "GOODY GOODY#15");
+check("chain key: dashed location form", VM_chainStoreKey_("GOODY GOODY - 15 - OAK LAWN") === "GOODY GOODY#15");
+check("chain key: zero-padded number", VM_chainStoreKey_("GOODY GOODY - 03 - GREENVILLE AVE.") === "GOODY GOODY#3");
+check("chain key: BUCKEYE variant", VM_chainStoreKey_("GOODY GOODY BUCKEYE - 14 - LAKE DAL") === "GOODY GOODY#14");
+check("chain key: LIQUOR # variant", VM_chainStoreKey_("GOODY GOODY LIQUOR #40") === "GOODY GOODY#40");
+check("chain key: '- STORE' suffix", VM_chainStoreKey_("GOODY GOODY 12 - STORE") === "GOODY GOODY#12");
+check("chain key: the two forms of #44 agree",
+  VM_chainStoreKey_("GOODY GOODY 44") === VM_chainStoreKey_("GOODY GOODY LIQUOR #44"));
+check("chain key: distinct stores stay distinct",
+  VM_chainStoreKey_("GOODY GOODY 3") !== VM_chainStoreKey_("GOODY GOODY 30"));
+check("chain key: null outside the chain",
+  VM_chainStoreKey_("SPEC'S 44") === null && VM_chainStoreKey_("GOODY GOODY") === null &&
+  VM_chainStoreKey_("") === null && VM_chainStoreKey_(null) === null);
+
 check("create path leaves non-airport accounts unflagged",
   b.creates.filter(c => !/HOUF|TERMINAL/i.test(c.props["Address"].rich_text[0].text.content || ""))
     .every(c => c.props["Airport cluster"].checkbox === false));

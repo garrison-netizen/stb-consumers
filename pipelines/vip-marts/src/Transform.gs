@@ -167,7 +167,7 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
   // like "OPEN | RDD BULK - E" repeated per region, where City is the
   // real differentiator) are re-keyed with City appended rather than
   // aborting; only a still-colliding key aborts the run.
-  var byKey = {}, collided = {}, byUid = {}, dupKeys = [], byNameCity = {};
+  var byKey = {}, collided = {}, byUid = {}, dupKeys = [], byNameCity = {}, byChainStore = {};
   existing.forEach(function (ex) {
     var key = VM_identityKey_(ex["Account name"], ex["Address"]);
     if (collided[key]) {
@@ -187,6 +187,14 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
     if (ex["account_uid"]) byUid[ex["account_uid"]] = ex;
     var nc = VM_norm_(ex["Account name"]) + "|" + VM_norm_(ex["City"]);
     if (byNameCity[nc] === undefined) byNameCity[nc] = ex; else byNameCity[nc] = null; // null = ambiguous
+    // Chain store-number index, city-qualified (Architect rule 2026-07-30).
+    // Without this the loader re-splits the 15 merged Goody Goody stores on
+    // the next run, because the two VIP spellings canonicalize differently.
+    var csk = VM_chainStoreKey_(ex["Account name"]);
+    if (csk) {
+      var ck = csk + "|" + VM_norm_(ex["City"]);
+      if (byChainStore[ck] === undefined) byChainStore[ck] = ex; else byChainStore[ck] = null;
+    }
   });
 
   function dumpKeyFor(name, address, city) {
@@ -197,6 +205,15 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
   function findExisting(name, address, city) {
     var hit = byKey[dumpKeyFor(name, address, city)];
     if (hit) return hit;
+    // Chain store number beats address similarity: it is the only signal
+    // that survives a VIP naming-convention change, and for this class the
+    // address is re-spelled at the same moment as the name. City must still
+    // corroborate, and an ambiguous (multi-row) store number never matches.
+    var csk = VM_chainStoreKey_(name);
+    if (csk) {
+      var cs = byChainStore[csk + "|" + VM_norm_(city)];
+      if (cs) return cs;
+    }
     var nc = byNameCity[VM_norm_(name) + "|" + VM_norm_(city)];
     if (nc && VM_addrOverlap_(address, nc["Address"]) >= 0.5) return nc;
     return null;
