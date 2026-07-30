@@ -209,7 +209,8 @@ function VIPW_phaseSnapshot_(st) {
   }
 
   var cols = ["__id", "Cell", "Brand", "Distributor (parent)", "Branch", "Segment",
-    "Week", "Week label", "CE", "Units", "Did Buys", "Effective", "Placements", "Footprint artifact"];
+    "Week", "Week label", "CE", "Units", "Did Buys", "Effective", "Placements",
+    "Carve class", "Footprint artifact"];
   var csv = [cols.map(VIPW_csvEsc_).join(",")];
   rows.forEach(function (r) {
     csv.push(cols.map(function (c) { return VIPW_csvEsc_(r[c]); }).join(","));

@@ -22,6 +22,13 @@ var VIP = {
   MART_A_DS:   "e974a77b-17c4-4fb2-9871-d5ce32734367",  // VIP Mart A - Depletion Trend
   MART_B_DS:   "f308e753-805b-4ce9-9ae9-d08695f56db8",  // VIP Mart B - Account Trajectory
 
+  // Distributor-level carve, per the Architect's 2026-07-30 spec. This
+  // replaced the `Footprint artifact` boolean as the carve definition:
+  // "field" is core, the other two are carved out. Account-level classes
+  // (stb_self_account, airport/concession channel) are Mart B and are
+  // deliberately NOT part of this axis.
+  CARVE_CLASSES: ["field", "transferred_territory", "lapsed_out_of_state"],
+
   // Mart B history starts here; history columns are CE {FIRST_HISTORY_YEAR}..CE {year-1}.
   FIRST_HISTORY_YEAR: 2021,
 

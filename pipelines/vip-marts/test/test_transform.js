@@ -96,10 +96,18 @@ detailY.slice(1).forEach(r => r[6] && tokens.add(String(r[6]).trim()));
 const distMap = {};
 for (const raw of tokens) {
   const cleaned = raw.replace(/,\s*([A-Za-z]{2})\s*$/, " ($1)"); // as the live map spells it
+  // Parent and carve class must agree: carve class is a property OF the
+  // parent, so the fixture cannot give one parent two classes — the
+  // mixed-cell guard in VM_computeMartA_ (correctly) treats that as fatal.
+  const carveClass = /Green Light/i.test(raw) ? "transferred_territory"
+    : /Central/i.test(raw) ? "lapsed_out_of_state" : "field";
   distMap[VM_normToken_(cleaned)] = {
-    parent: /Green Light/i.test(raw) ? "Green Light" : /Silver Eagle/i.test(raw) ? "Silver Eagle" : "Dynamo Specialty",
+    parent: /Green Light/i.test(raw) ? "Green Light"
+      : /Central/i.test(raw) ? "Central Distributors"
+      : /Silver Eagle/i.test(raw) ? "Silver Eagle" : "Dynamo Specialty",
     branch: null,
-    footprint: /Green Light|Central/i.test(raw)
+    carveClass: carveClass,
+    footprint: carveClass !== "field"
   };
 }
 console.log("tokens in files:", tokens.size);
@@ -261,7 +269,11 @@ check("second run is a no-op (idempotent)", b2.updates.length === 0 && b2.create
   const ytdMap = {};
   for (const raw of ytdTokens) {
     const cleaned = raw.replace(/,\s*([A-Za-z]{2})\s*$/, " ($1)");
-    ytdMap[VM_normToken_(cleaned)] = { parent: cleaned.replace(/\s*\([A-Z]{2}\)$/, "").split(" - ")[0], branch: null, footprint: /green light|central/i.test(raw) };
+    // Parent here is derived from the token itself, so each parent already
+    // maps to exactly one class — no mixed cells.
+    const kls = /green light/i.test(raw) ? "transferred_territory"
+      : /central/i.test(raw) ? "lapsed_out_of_state" : "field";
+    ytdMap[VM_normToken_(cleaned)] = { parent: cleaned.replace(/\s*\([A-Z]{2}\)$/, "").split(" - ")[0], branch: null, carveClass: kls, footprint: kls !== "field" };
   }
   const ay = VM_computeMartA_(ytdMatrix, ytdMap, 2026);
   console.log("REAL YTD Mart A: cells", Object.keys(ay.cells).length, "total CE", ay.totalCE, "window", ay.windowLabel);

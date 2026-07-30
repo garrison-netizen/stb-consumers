@@ -101,10 +101,13 @@ console.log("distributor tokens:", tokens.size, "| raw brands:", brands.size);
 const distMap = {};
 for (const raw of tokens) {
   const cleaned = raw.replace(/,\s*([A-Za-z]{2})\s*$/, " ($1)"); // as the live map spells it
+  const carveClass = /Green Light/i.test(raw) ? "transferred_territory"
+    : /Central/i.test(raw) ? "lapsed_out_of_state" : "field";
   distMap[VIPW_normToken_(cleaned)] = {
     parent: /Silver Eagle/i.test(raw) ? "Silver Eagle" : /Green Light/i.test(raw) ? "Green Light" : "Dynamo Specialty",
     branch: raw.split(" - ")[1] || null,
-    footprint: /Green Light|Central/i.test(raw)
+    carveClass: carveClass,
+    footprint: carveClass !== "field"
   };
 }
 const brandMap = {};
@@ -162,7 +165,8 @@ const exRow = {
   "Effective": sample.effective, "Placements": sample.placements,
   "Brand": sample.brand, "Distributor (parent)": sample.parent,
   "Segment": sample.segment, "Week": sample.weekIso, "Week label": sample.weekLabel,
-  "Branch": sample.branch, "Footprint artifact": sample.footprint
+  "Branch": sample.branch, "Carve class": sample.carveClass,
+  "Footprint artifact": sample.footprint
 };
 check("round-trip equality (skip-unchanged)", VIPW_martCEqual_(sample, exRow));
 check("changed CE detected", !VIPW_martCEqual_(sample, { ...exRow, "CE": (sample.ce || 0) + 1 }));

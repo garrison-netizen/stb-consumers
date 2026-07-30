@@ -50,9 +50,18 @@ function VM_computeMartA_(csv, distMap, year) {
     if (!cell) {
       cell = cells[key] = {
         cell: key, year: year, brand: brand, parent: dist.parent, segment: segment,
-        footprint: dist.footprint,
+        carveClass: dist.carveClass, footprint: dist.footprint,
         ce: 0, units: 0, didBuys: 0, effective: 0, placements: 0, priorCE: 0
       };
+    }
+    // Carve class is a property of the PARENT, and parent is part of the
+    // cell key — so a cell can never legitimately mix classes. If that
+    // ever stops holding, the cell's carve is ambiguous and the number
+    // it feeds is meaningless; halt rather than pick one silently.
+    if (cell.carveClass !== dist.carveClass) {
+      throw new Error('MIXED CARVE CLASS in cell "' + key + '": "' + cell.carveClass +
+        '" vs "' + dist.carveClass + '" from token "' + row[0] + '". Mart A keys on parent, ' +
+        "so this cell cannot be carved. Needs an Architect ruling. Nothing was written.");
     }
     cell.footprint = cell.footprint || dist.footprint;
     var ce = VM_num_(row[cur.ce]) || 0;
@@ -100,6 +109,7 @@ function VM_martAProps_(c) {
     "CE prior year":        STB_pNumber_(c.priorCE),
     "CE YoY delta":         STB_pNumber_(c.delta),
     "CE YoY pct":           STB_pNumber_(c.pct),
+    "Carve class":          STB_pSelect_(c.carveClass),
     "Footprint artifact":   VM_pCheckbox_(c.footprint)
   };
 }
@@ -111,7 +121,8 @@ function VM_martAEqual_(c, ex) {
     VM_eq_(c.placements, ex["Placements"]) && VM_eq_(c.priorCE, ex["CE prior year"]) &&
     VM_eq_(c.delta, ex["CE YoY delta"]) && VM_eq_(c.pct, ex["CE YoY pct"]) &&
     VM_eq_(c.brand, ex["Brand"]) && VM_eq_(c.parent, ex["Distributor (parent)"]) &&
-    VM_eq_(c.segment, ex["Segment"]) && (!!c.footprint === !!ex["Footprint artifact"]);
+    VM_eq_(c.segment, ex["Segment"]) && VM_eq_(c.carveClass, ex["Carve class"]) &&
+    (!!c.footprint === !!ex["Footprint artifact"]);
 }
 
 // ---- MART B: overlay-and-preserve (ADR-010 §1.2) -----------------

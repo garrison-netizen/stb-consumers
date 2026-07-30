@@ -106,14 +106,26 @@ function findYearColumns(props, year) {
 async function loadDistMap() {
   const rows = await queryAll(DIST_MAP_DB)
   const map = {}
+  const unclassed = []
   for (const p of rows) {
     const token = normToken(plain(p.properties['Raw VIP token']))
     if (!token) continue
+    // `Carve class` replaced the `Footprint artifact` boolean as the carve
+    // definition (Architect spec 2026-07-30). The boolean is derived from
+    // it, never read on its own — reading the boolean is what let FullClip
+    // and Modern Hops sit inside core.
+    const klass = plain(p.properties['Carve class'])
+    if (!klass) unclassed.push(plain(p.properties['Raw VIP token']))
     map[token] = {
       parent: plain(p.properties['Parent distributor']),
       branch: plain(p.properties['Branch']),
-      footprint: !!plain(p.properties['Footprint artifact'])
+      carveClass: klass,
+      footprint: klass !== 'field'
     }
+  }
+  if (unclassed.length) {
+    throw new Error(`VIP Distributor Map has ${unclassed.length} token(s) with an empty Carve class: ` +
+      `${unclassed.join(', ')}. Populate them on the Map (an Architect surface), then re-run. Nothing was written.`)
   }
   if (!Object.keys(map).length) throw new Error('VIP Distributor Map is empty.')
   return map
@@ -168,9 +180,13 @@ async function computeYear(year, distMap) {
     if (!cell) {
       cell = cells[key] = {
         cell: key, year, brand, parent: dist.parent, segment,
-        footprint: dist.footprint,
+        carveClass: dist.carveClass, footprint: dist.footprint,
         ce: 0, units: 0, didBuys: 0, effective: 0, placements: 0, priorCE: 0
       }
+    }
+    if (cell.carveClass !== dist.carveClass) {
+      throw new Error(`MIXED CARVE CLASS in cell "${key}": "${cell.carveClass}" vs "${dist.carveClass}" ` +
+        `from token "${rawDist}". Mart A keys on parent, so this cell cannot be carved. Nothing written.`)
     }
     cell.footprint = cell.footprint || dist.footprint
 
@@ -248,6 +264,7 @@ function props(c) {
     'CE prior year': { number: c.priorCE },
     'CE YoY delta': { number: c.delta },
     'CE YoY pct': { number: c.pct },
+    'Carve class': { select: { name: c.carveClass } },
     'Footprint artifact': { checkbox: !!c.footprint }
   }
 }

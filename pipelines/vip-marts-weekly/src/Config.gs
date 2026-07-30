@@ -41,6 +41,10 @@ var VIPW = {
   // pipeline loads (e.g. a YTD export has ~N-weeks-of-year of them).
   WEEKS_EXPECTED: 13,
 
+  // Distributor-level carve (Architect spec 2026-07-30). Mirrors
+  // VIP.CARVE_CLASSES in the monthly pipeline — "field" is core.
+  CARVE_CLASSES: ["field", "transferred_territory", "lapsed_out_of_state"],
+
   // Numeric comparison epsilon for skip-unchanged.
   EPSILON: 0.005,
 

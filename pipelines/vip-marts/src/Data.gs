@@ -163,20 +163,41 @@ function VM_parseWindows_(header, expectYear) {
 
 // ---- Distributor map ---------------------------------------------
 
-// Load VIP Distributor Map → { normToken: {parent, branch, footprint} }.
+// Load VIP Distributor Map → { normToken: {parent, branch, carveClass, footprint} }.
+//
+// `Carve class` (field / transferred_territory / lapsed_out_of_state)
+// is the carve definition as of the Architect's 2026-07-30 spec; it
+// REPLACES the `Footprint artifact` boolean, which had FullClip and
+// Modern Hops inside core and was worth 11,467.5 CE of error on 2022.
+// The boolean is still read and still written to the marts so that a
+// consumer mid-cutover sees the same carve either way — it is derived
+// from the class here, never trusted on its own.
 function VM_loadDistMap_() {
   var rows = VM_queryAll_(VIP.DIST_MAP_DS, null);
   var map = {};
+  var unclassed = [];
   rows.forEach(function (p) {
     var r = VM_row_(p);
     var token = VM_normToken_(r["Raw VIP token"]);
     if (!token) return;
+    var klass = r["Carve class"] || null;
+    if (!klass) { unclassed.push(r["Raw VIP token"]); return; }
+    if (VIP.CARVE_CLASSES.indexOf(klass) === -1) {
+      throw new Error('UNKNOWN CARVE CLASS "' + klass + '" on token "' + r["Raw VIP token"] +
+        '". Expected one of: ' + VIP.CARVE_CLASSES.join(", ") + ". Nothing was written.");
+    }
     map[token] = {
       parent: r["Parent distributor"] || null,
       branch: r["Branch"] || null,
-      footprint: !!r["Footprint artifact"]
+      carveClass: klass,
+      footprint: klass !== "field"
     };
   });
+  // Fail loud rather than silently carving an unclassified token into core.
+  if (unclassed.length) {
+    throw new Error("VIP Distributor Map has " + unclassed.length + " token(s) with an empty Carve class: " +
+      unclassed.join(", ") + ". Populate them on the Map (an Architect surface), then re-run. Nothing was written.");
+  }
   if (Object.keys(map).length === 0) throw new Error("VIP Distributor Map is empty — cannot map tokens.");
   return map;
 }

@@ -180,20 +180,35 @@ function VIPW_parseWeeklyWindows_(header) {
 
 // ---- Conforming maps (shared Brain surfaces, read-only here) -------
 
-// VIP Distributor Map → { normToken: {parent, branch, footprint} }.
+// VIP Distributor Map → { normToken: {parent, branch, carveClass, footprint} }.
+// See VM_loadDistMap_ in pipelines/vip-marts — `Carve class` replaced the
+// `Footprint artifact` boolean as the carve definition on 2026-07-30, and
+// the boolean is now derived from it rather than read independently.
 function VIPW_loadDistMap_() {
   var rows = VIPW_queryAll_(VIPW.DIST_MAP_DS, null);
   var map = {};
+  var unclassed = [];
   rows.forEach(function (p) {
     var r = VIPW_row_(p);
     var token = VIPW_normToken_(r["Raw VIP token"]);
     if (!token) return;
+    var klass = r["Carve class"] || null;
+    if (!klass) { unclassed.push(r["Raw VIP token"]); return; }
+    if (VIPW.CARVE_CLASSES.indexOf(klass) === -1) {
+      throw new Error('UNKNOWN CARVE CLASS "' + klass + '" on token "' + r["Raw VIP token"] +
+        '". Expected one of: ' + VIPW.CARVE_CLASSES.join(", ") + ". Nothing was written.");
+    }
     map[token] = {
       parent: r["Parent distributor"] || null,
       branch: r["Branch"] || null,
-      footprint: !!r["Footprint artifact"]
+      carveClass: klass,
+      footprint: klass !== "field"
     };
   });
+  if (unclassed.length) {
+    throw new Error("VIP Distributor Map has " + unclassed.length + " token(s) with an empty Carve class: " +
+      unclassed.join(", ") + ". Populate them on the Map (an Architect surface), then re-run. Nothing was written.");
+  }
   if (Object.keys(map).length === 0) throw new Error("VIP Distributor Map is empty — cannot map tokens.");
   return map;
 }

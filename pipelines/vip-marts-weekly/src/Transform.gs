@@ -74,11 +74,17 @@ function VIPW_computeMartC_(csv, distMap, brandMap) {
         cell = cells[key] = {
           cell: key, brand: brand, parent: dist.parent, segment: segment,
           weekIso: w.iso, weekLabel: w.label,
-          branches: {}, footprint: false,
+          branches: {}, carveClass: dist.carveClass, footprint: false,
           ce: 0, units: 0, didBuys: 0, effective: 0, placements: 0
         };
       }
       if (dist.branch) cell.branches[dist.branch] = true;
+      // Same invariant as Mart A: carve class is a property of the parent
+      // and parent is in the cell key, so a mixed cell is not carveable.
+      if (cell.carveClass !== dist.carveClass) {
+        throw new Error('MIXED CARVE CLASS in cell "' + key + '": "' + cell.carveClass +
+          '" vs "' + dist.carveClass + '". Needs an Architect ruling. Nothing was written.');
+      }
       cell.footprint = cell.footprint || dist.footprint;
       cell.ce += ce; cell.units += units; cell.didBuys += didBuys;
       cell.effective += effective; cell.placements += placements;
@@ -125,6 +131,7 @@ function VIPW_martCProps_(c) {
     "Did Buys":             STB_pNumber_(c.didBuys),
     "Effective":            STB_pNumber_(c.effective),
     "Placements":           STB_pNumber_(c.placements),
+    "Carve class":          STB_pSelect_(c.carveClass),
     "Footprint artifact":   VIPW_pCheckbox_(c.footprint)
   };
 }
@@ -138,5 +145,6 @@ function VIPW_martCEqual_(c, ex) {
     VIPW_eq_(c.brand, ex["Brand"]) && VIPW_eq_(c.parent, ex["Distributor (parent)"]) &&
     VIPW_eq_(c.segment, ex["Segment"]) && VIPW_eq_(c.weekIso, ex["Week"]) &&
     VIPW_eq_(c.weekLabel, ex["Week label"]) && VIPW_eq_(c.branch, ex["Branch"]) &&
+    VIPW_eq_(c.carveClass, ex["Carve class"]) &&
     (!!c.footprint === !!ex["Footprint artifact"]);
 }
