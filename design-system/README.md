@@ -73,13 +73,26 @@ here are identical to the ones the apps already use (`--navy-900`,
 `--brass-500`, `--cream`, `--ink`, `--muted`, `--line`, `--ok`/`--warn`/`--bad`),
 so syncing one is replacing a block, never a rename.
 
-The durable fix is a sync step, matching the mechanism `/refresh` already uses to
-self-heal the command files out of `stb-consumers/claude-commands` — copy the
-canonical block into each app repo on refresh, so drift is corrected on every
-machine automatically. Not built yet; it is the next piece of this.
+Drift between the copies is caught mechanically by
+**`tools/design-tokens/check-design-tokens.ps1`**, which runs as Step 0.6 of
+`/refresh` on every machine, every session.
 
-Until it exists, treat a change here as a change that needs pushing outward by
-hand, and say so in the commit that makes it.
+```bash
+pwsh stb-consumers/tools/design-tokens/check-design-tokens.ps1
+```
+
+It reports three states per app — **DRIFT** (token in both, values differ),
+**UNKNOWN** (token in an app but absent from canonical — new palette work that
+needs adopting), **OK** — and exits 1 on any problem, so it can gate.
+
+It deliberately does **not** auto-fix. Blind-copying a token block into a live
+app can delete a variable that app's rules still reference, and that fails
+silently at runtime as an unstyled element. Reporting drift is safe; repairing
+it unattended is not. When it fires, decide which side is right — sometimes the
+app is, which is exactly how the coffee palette became canonical.
+
+It also names what it *cannot* check (the Calculator's inline Tailwind config,
+the static notice pages), because silence there would read as coverage.
 
 **In a report or notice** — paste both files inline in a `<style>` block, and
 embed the logo from `stb-logo-on-dark.datauri.txt`.
@@ -169,31 +182,36 @@ Deliberately ordered so nothing live changes without being looked at.
 3. ~~Adopt the coffee palette as canonical~~ — **done 2026-07-31**, see below.
 4. **Every new report and notice** starts from `stb-document.css`. In effect
    immediately; nothing to migrate.
-5. **Build the sync step** so the vendored copies stop being hand-maintained.
-   This is now the largest remaining gap in the mechanism.
-6. **Fix brass-as-text** — five known spots, listed below.
-7. **Calculator Tailwind config** fed from `stb-tokens.json` rather than
-   hand-typed hexes. Lowest urgency; it has no `--muted` and is on-brand.
+5. ~~Build the drift gate~~ — **done 2026-07-31.** Runs as `/refresh` Step 0.6.
+6. ~~Fix brass-as-text~~ — **done 2026-07-31**, 29 spots, see below.
+7. ~~Align font stacks~~ — **done 2026-07-31.** Caught by the gate's first run.
+8. **Calculator Tailwind config** fed from `stb-tokens.json` rather than
+   hand-typed hexes — the last surface the gate cannot see. Lowest urgency; it
+   is on-brand and has no `--muted`.
 
-### Known remaining defects — brass used as text
+### Brass-as-text — fixed 2026-07-31
 
-Measured 2026-07-31, not yet fixed. All five are `--brass-600` at 3.51:1 on
-white (or 2.94:1 on `--brass-100`), against a 4.5:1 floor. Each is a one-token
-swap to `--brass-700`, which lands at 5.88:1 / 4.92:1.
+29 uses of `--brass-600` as a text color across the two apps: 6 in the Calendar
+(`.chip-reset`, `.ce-time`, `.ce-span`, `.ei-time` and two more), 23 in the
+Console (task priorities, due dates, links, chevrons, status chips, the
+assistant freshness badge). All measured 3.51:1 on white or 2.94:1 on
+`--brass-100`, against a 4.5:1 floor. All moved to `--brass-700`.
 
-| App | Selector | Now | Fixed |
-|---|---|---|---|
-| Calendar | `.chip-reset` | 3.51 | 5.88 |
-| Calendar | `.ce-time` | 3.51 | 5.88 |
-| Calendar | `.ei-time` | 3.51 | 5.88 |
-| Console | `.section-count.gold` | 2.94 | 4.92 |
-| Console | `.item-title-link:hover` | 3.51 | 5.88 |
+An early count of this put it at five. That was wrong — it came from a grep
+whose output was truncated at eight matches. The real number was found by
+counting properly before touching anything.
 
-Deliberately **not** on that list: `.hero-strip h2 .n` in the Console is
-`--brass-600` at 3.51 but sits at 19px/800, which qualifies as large text where
-the floor is 3:1 — it passes and should be left alone. The brass on the navy top
-bars (`--brass-400` at 7.60, `--brass-300` at 9.79) passes comfortably; light
-brass on dark navy is the one place brass is unambiguously safe for text.
+Two deliberate non-fixes, both verified rather than assumed:
+
+- `.hero-strip h2 .n` in the Console stays `--brass-600`. At 19px/800 it is
+  large text, where the floor is 3:1 and it already passes at 3.51 — so it keeps
+  the lighter brass it was designed with.
+- Brass on the navy top bars (`--brass-400` at 7.60, `--brass-300` at 9.79)
+  passes comfortably. Light brass on dark navy is the one place brass is
+  unambiguously safe for text.
+
+Before swapping, every rule was checked for a dark background — darkening brass
+on a navy ground would have *reduced* contrast. None were found.
 
 ### A note on how the coffee palette arrived
 

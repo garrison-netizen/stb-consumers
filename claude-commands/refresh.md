@@ -86,6 +86,22 @@ if (Test-Path $src) {
 
 Keeps `/pause`, `/refresh` and `/watch` identical on every machine automatically. **To CHANGE a command, edit the copy in `stb-consumers/claude-commands/` and commit — never the live copy (this step overwrites it).**
 
+## Step 0.6 — Design-token drift gate
+
+The apps cannot import the canonical stylesheet — each is its own repo built independently by Vercel from its own checkout — so they carry **vendored copies** of the brand token block, and vendored copies drift. On 2026-07-31 it drifted twice in one day: the Master Calendar introduced a whole coffee palette the canonical file did not know about, and `--muted` sat below the WCAG contrast floor in two live apps. Both were found by hand, late. This is the mechanical guard.
+
+```powershell
+$REPO = if ($env:STB_REPOS) { $env:STB_REPOS } else { $env:USERPROFILE }
+$gate = Join-Path $REPO 'stb-consumers\tools\design-tokens\check-design-tokens.ps1'
+if (Test-Path $gate) { & $gate } else { Write-Output "SKIP — token gate not present (stb-consumers may predate it)" }
+```
+
+Reports three states per app: **DRIFT** (token in both, values differ), **UNKNOWN** (token in an app but absent from canonical — new palette work that needs adopting), **OK**. Exit code 1 on any problem.
+
+It deliberately does NOT auto-fix. Blind-copying a token block into a live app can delete a variable that app's rules still reference, which fails silently at runtime as an unstyled element. When it reports drift, decide which side is right and say so — sometimes the app is, which is how the coffee palette became canonical.
+
+If it reports drift, surface it in the Step 3 report. Do not start brand or UI work on a drifting app without resolving it first.
+
 ## Step 0.7 — Multi-session protocol (repo claims + presence)
 
 Garrison runs multiple Code sessions at once. Three collisions have actually happened (commit-sweeps via the shared git index ×2, a memory-file clobber via blind sync), so these guards are mandatory, not etiquette:
