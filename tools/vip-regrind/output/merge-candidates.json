@@ -4,6 +4,7 @@
  "ruling": "Architect 2026-07-30 — generate only, no auto-merge, no handover assumption",
  "sectionA": [
   {
+   "key": "WHOLE FOODS MARKET · 11920 DOMAIN DR · AUSTIN [9105d823]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "Dynamo Specialty",
@@ -14,6 +15,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 320.95,
    "combinedCE": {
     "2021": 118.72,
     "2022": 320.95,
@@ -66,6 +70,7 @@
    ]
   },
   {
+   "key": "MARKET STREET · 11999 DALLAS PKWY · FRISCO [d119fb4e]",
    "family": "CHAIN:MARKET STREET",
    "distributors": [
     "FullClip",
@@ -76,6 +81,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 206.33,
    "combinedCE": {
     "2021": 69,
     "2022": 206.33,
@@ -128,6 +136,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 2857 KATY FWY 100 · HOUSTON [89e64a34]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -138,6 +147,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 203.33,
    "combinedCE": {
     "2021": 203.33,
     "2022": 136.33,
@@ -190,6 +202,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 1900 LAKE WOODLANDS DR · WOODLANDS [e499f96b]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -200,6 +213,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 194.33,
    "combinedCE": {
     "2021": 194.33,
     "2022": 139.33,
@@ -252,6 +268,7 @@
    ]
   },
   {
+   "key": "H E B CENTRAL MARKET · 1425 SOUTHLAKE BLVD · SOUTHLAKE [9d64755e]",
    "family": "CHAIN:H E B CENTRAL MARKET",
    "distributors": [
     "FullClip",
@@ -262,6 +279,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 178.67,
    "combinedCE": {
     "2021": 69.67,
     "2022": 178.67,
@@ -314,6 +334,7 @@
    ]
   },
   {
+   "key": "H E B CENTRAL MARKET · 4651 WEST FWY · FORT WORTH [b1b0c53f]",
    "family": "CHAIN:H E B CENTRAL MARKET",
    "distributors": [
     "FullClip",
@@ -324,6 +345,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 175.29,
    "combinedCE": {
     "2021": 47,
     "2022": 175.29,
@@ -376,6 +400,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 18740 GULF FRWY · HOUSTON [1ad24876]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -387,6 +412,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 167.67,
    "combinedCE": {
     "2021": 167.67,
     "2022": 121,
@@ -439,6 +467,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 7640 FM 1960 · HOUSTON [349a93e0]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -449,6 +478,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 162.29,
    "combinedCE": {
     "2021": 162.29,
     "2022": 69.29,
@@ -501,6 +533,7 @@
    ]
   },
   {
+   "key": "HEIGHTS BEER · 1433 SHEPHERD DR · HOUSTON [952b6f89]",
    "family": "NAME:HEIGHTS BEER",
    "distributors": [
     "Silver Eagle",
@@ -511,6 +544,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 160.7,
    "combinedCE": {
     "2021": 160.7,
     "2022": 117.08,
@@ -563,6 +599,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 2755 LEAGUE CITY PKWY · GALVESTON [6552d31b]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -574,6 +611,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 156.9333,
    "combinedCE": {
     "2021": 49.67,
     "2022": 152.67,
@@ -626,6 +666,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 1411 RENNER RD · RICHARDSON [8c89b9f9]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -636,6 +677,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 151.49,
    "combinedCE": {
     "2021": 61.48,
     "2022": 151.49,
@@ -688,6 +732,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 4041 WALLER CREEK · HIGHLAND VILLAGE [755660ad]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -698,6 +743,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 150.67,
    "combinedCE": {
     "2021": 63,
     "2022": 150.67,
@@ -750,6 +798,7 @@
    ]
   },
   {
+   "key": "H E B CENTRAL MARKET · 320 COIT RD · PLANO [a3fa715a]",
    "family": "CHAIN:H E B CENTRAL MARKET",
    "distributors": [
     "FullClip",
@@ -760,6 +809,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 139.33,
    "combinedCE": {
     "2021": 66.33,
     "2022": 139.33,
@@ -812,6 +864,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 105 STACY RD · FAIRVIEW [291e9037]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -822,6 +875,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 135.67,
    "combinedCE": {
     "2021": 16,
     "2022": 135.67,
@@ -874,6 +930,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 5472 GRAND PKWY · RICHMOND [5c56d4f1]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -884,6 +941,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 135.24,
    "combinedCE": {
     "2021": 133.76,
     "2022": 135.24,
@@ -936,6 +996,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 97 OYSTER CREEK DR · LAKE JACKSON [30824ffd]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -946,6 +1007,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 131,
    "combinedCE": {
     "2021": 22.33,
     "2022": 89.33,
@@ -998,6 +1062,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 7055 HWY 6 · HOUSTON [369ffb85]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -1008,6 +1073,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 122.33,
    "combinedCE": {
     "2021": 122.33,
     "2022": 71.33,
@@ -1060,6 +1128,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 12516 MEMORIAL DR · HOUSTON [8bda0df7]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -1070,6 +1139,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 122.33,
    "combinedCE": {
     "2021": 122.33,
     "2022": 85.33,
@@ -1122,6 +1194,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 2617 HOLCOMBE BLVD · HOUSTON [fbcbfc76]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -1132,6 +1205,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 120.33,
    "combinedCE": {
     "2021": 120.33,
     "2022": 62.33,
@@ -1184,6 +1260,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 9805 FM 1960 BYPASS RD · HUMBLE [098b38be]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -1194,6 +1271,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 116.68,
    "combinedCE": {
     "2021": 116.68,
     "2022": 53.92,
@@ -1246,6 +1326,7 @@
    ]
   },
   {
+   "key": "CRAFT 96 · 2575 LEAGUE CITY PKWY 100 · LEAGUE CITY [e56a88ec]",
    "family": "NAME:CRAFT 96",
    "distributors": [
     "FullClip",
@@ -1256,6 +1337,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 110.2044,
    "combinedCE": {
     "2021": 13.78,
     "2022": 45.91,
@@ -1308,6 +1392,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 4800 MAIN ST · FRISCO [9b30366c]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -1318,6 +1403,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 106.73,
    "combinedCE": {
     "2021": 0,
     "2022": 13,
@@ -1370,6 +1458,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 2955 GULF FWY · LEAGUE CITY [68d1b72b]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -1380,6 +1469,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 102.9333,
    "combinedCE": {
     "2021": 53,
     "2022": 100,
@@ -1432,6 +1524,7 @@
    ]
   },
   {
+   "key": "H E B CENTRAL MARKET · 5750 LOVERS LN · DALLAS [33ee2375]",
    "family": "CHAIN:H E B CENTRAL MARKET",
    "distributors": [
     "FullClip",
@@ -1442,6 +1535,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 101.33,
    "combinedCE": {
     "2021": 40.67,
     "2022": 101.33,
@@ -1494,6 +1590,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 16762 SW FRWY STE500 · SUGAR LAND [40be55b1]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -1505,6 +1602,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 101.29,
    "combinedCE": {
     "2021": 101.29,
     "2022": 66.63,
@@ -1557,6 +1657,7 @@
    ]
   },
   {
+   "key": "NOBI ASIAN · 3640 FM 528 EAST · FRIENDSWOOD [f3c281e1]",
    "family": "NAME:NOBI ASIAN",
    "distributors": [
     "Silver Eagle",
@@ -1567,6 +1668,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 100.91,
    "combinedCE": {
     "2021": 100.91,
     "2022": 91.73,
@@ -1619,6 +1723,7 @@
    ]
   },
   {
+   "key": "ROOSEVLETS AT · 821 MAIN ST · MCALLEN [3c07fff0]",
    "family": "NAME:ROOSEVLETS AT",
    "distributors": [
     "Dynamo Specialty",
@@ -1629,6 +1734,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 98.18,
    "combinedCE": {
     "2021": 7.96,
     "2022": 93.29,
@@ -1681,6 +1789,7 @@
    ]
   },
   {
+   "key": "D Q · 806 RICHMOND AVE · HOUSTON [48598412]",
    "family": "NAME:D Q",
    "distributors": [
     "Silver Eagle",
@@ -1691,6 +1800,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 97.96,
    "combinedCE": {
     "2021": 97.96,
     "2022": 68.96,
@@ -1743,6 +1855,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 2700 FREDDY GONZALEZ · EDINGBURG [3c8c005a]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty",
@@ -1754,6 +1867,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 94.07,
    "combinedCE": {
     "2021": 19.67,
     "2022": 75.33,
@@ -1806,6 +1922,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 5100 BELT LINE RD · ADDISON [92c101ff]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -1816,6 +1933,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 93.63,
    "combinedCE": {
     "2021": 26.33,
     "2022": 93.63,
@@ -1868,6 +1988,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 2805 BUSINESS CENTER DR · PEARLAND [700cde11]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "FullClip",
@@ -1878,6 +1999,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 91,
    "combinedCE": {
     "2021": 42.33,
     "2022": 91,
@@ -1930,6 +2054,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 8190 PARK LN · DALLAS [1d8e9e3e]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -1940,6 +2065,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 90.25,
    "combinedCE": {
     "2021": 45.21,
     "2022": 90.25,
@@ -1992,6 +2120,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 5016 SAN FELIPE ST · HOUSTON [4ba2c24b]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Silver Eagle",
@@ -2002,6 +2131,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 88,
    "combinedCE": {
     "2021": 88,
     "2022": 55,
@@ -2054,6 +2186,7 @@
    ]
   },
   {
+   "key": "AB BEER · 125 MAIN ST · ROYSE CITY [1882d1fe]",
    "family": "NAME:AB BEER",
    "distributors": [
     "FullClip",
@@ -2065,6 +2198,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 86.92,
    "combinedCE": {
     "2021": 29.76,
     "2022": 89.25,
@@ -2137,6 +2273,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 2118 ABRAMS RD · DALLAS [79d784f6]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -2147,6 +2284,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 86.67,
    "combinedCE": {
     "2021": 29,
     "2022": 86.67,
@@ -2199,6 +2339,7 @@
    ]
   },
   {
+   "key": "CRAFT BEER CELLAR · 11734 BARKER CYPRESS · CYPRESS [844b1229]",
    "family": "CHAIN:CRAFT BEER CELLAR",
    "distributors": [
     "Silver Eagle",
@@ -2209,6 +2350,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 82.4,
    "combinedCE": {
     "2021": 82.4,
     "2022": 38.99,
@@ -2261,6 +2405,7 @@
    ]
   },
   {
+   "key": "H E B CENTRAL MARKET · 4349 NW HWY · DALLAS [e42411cc]",
    "family": "CHAIN:H E B CENTRAL MARKET",
    "distributors": [
     "FullClip",
@@ -2271,6 +2416,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 78.33,
    "combinedCE": {
     "2021": 18,
     "2022": 78.33,
@@ -2323,6 +2471,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 6001 PRESTON RD · PLANO [651a56f6]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -2333,6 +2482,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 77.33,
    "combinedCE": {
     "2021": 0,
     "2022": 9.33,
@@ -2385,6 +2537,7 @@
    ]
   },
   {
+   "key": "HALLS WINE · 4200 GLADE RD · COLLEYVILLE [013b6252]",
    "family": "NAME:HALLS WINE",
    "distributors": [
     "FullClip",
@@ -2395,6 +2548,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 73,
    "combinedCE": {
     "2021": 25.67,
     "2022": 73,
@@ -2447,6 +2603,7 @@
    ]
   },
   {
+   "key": "HEB 675 · 2710 PEARLAND PKWY · PEARLAND [2f04a73d]",
    "family": "NAME:HEB 675",
    "distributors": [
     "FullClip",
@@ -2457,6 +2614,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 72.33,
    "combinedCE": {
     "2021": 28.33,
     "2022": 72.33,
@@ -2509,6 +2669,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 9100 WOODWAY DR · WOODWAY [e7b88f32]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "FullClip",
@@ -2519,6 +2680,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 72,
    "combinedCE": {
     "2021": 16.67,
     "2022": 72,
@@ -2571,6 +2735,7 @@
    ]
   },
   {
+   "key": "H E B CENTRAL MARKET · 10720 PRESTON RD · DALLAS [c13504a2]",
    "family": "CHAIN:H E B CENTRAL MARKET",
    "distributors": [
     "FullClip",
@@ -2581,6 +2746,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 70,
    "combinedCE": {
     "2021": 13,
     "2022": 70,
@@ -2633,6 +2801,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 801 LAMAR BLVD · ARLINGTON [b4641b26]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -2643,6 +2812,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 68.33,
    "combinedCE": {
     "2021": 12,
     "2022": 68.33,
@@ -2695,6 +2867,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 11700 PRESTON RD · DALLAS [7085334f]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -2706,6 +2879,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 66.67,
    "combinedCE": {
     "2021": 13.34,
     "2022": 83.67,
@@ -2798,6 +2974,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 5407 ANDREWS HWY · MIDLAND [165c7831]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -2808,6 +2985,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 66,
    "combinedCE": {
     "2021": 1,
     "2022": 1,
@@ -2860,6 +3040,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 3720 VISION DR · FORT WORTH [85618a79]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -2870,6 +3051,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 64.33,
    "combinedCE": {
     "2021": 29,
     "2022": 64.33,
@@ -2922,6 +3106,7 @@
    ]
   },
   {
+   "key": "HOPPY MONK · 4141 MESA ST · EL PASO [de309b23]",
    "family": "NAME:HOPPY MONK",
    "distributors": [
     "FullClip",
@@ -2932,6 +3117,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 62,
    "combinedCE": {
     "2021": 34.44,
     "2022": 34.44,
@@ -2984,6 +3172,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 8700 PRESTON RD · PLANO [7fcdaed7]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -2994,6 +3183,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 59.67,
    "combinedCE": {
     "2021": 19,
     "2022": 59.67,
@@ -3046,6 +3238,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 100 HUDSON OAKS DR · HUDSON OAKS [edb2f62c]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -3056,6 +3249,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 57.33,
    "combinedCE": {
     "2021": 12.33,
     "2022": 30,
@@ -3108,6 +3304,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 11990 WESTHEIMER RD · HOUSTON [d52f7238]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "Silver Eagle",
@@ -3120,6 +3317,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 57,
    "combinedCE": {
     "2021": 97,
     "2022": 66.67,
@@ -3212,6 +3412,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 9350 CENTRAL EXPWY · DALLAS [f0c42a9c]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -3222,6 +3423,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 55.67,
    "combinedCE": {
     "2021": 6.33,
     "2022": 55.67,
@@ -3274,6 +3478,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 5502 SHERWOOD WAY · SAN ANGELO [46d7b780]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -3285,6 +3490,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 55,
    "combinedCE": {
     "2021": 0,
     "2022": 11,
@@ -3357,6 +3565,7 @@
    ]
   },
   {
+   "key": "POGO S · 5360 LOVERS LN · DALLAS [2a0556ed]",
    "family": "NAME:POGO S",
    "distributors": [
     "FullClip",
@@ -3367,6 +3576,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 54,
    "combinedCE": {
     "2021": 17,
     "2022": 54,
@@ -3419,6 +3631,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 701 WEST PARKWOOD · FRIENDSWOOD [9d7f3920]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -3429,6 +3642,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 54,
    "combinedCE": {
     "2021": 22,
     "2022": 54,
@@ -3481,6 +3697,7 @@
    ]
   },
   {
+   "key": "HARLEYS CUT RATE LIQUOR · 1302 LOOP 281 WEST · LONGVIEW [ee9edf7d]",
    "family": "CHAIN:HARLEYS CUT RATE LIQUOR",
    "distributors": [
     "FullClip",
@@ -3491,6 +3708,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 53,
    "combinedCE": {
     "2021": 2,
     "2022": 53,
@@ -3543,6 +3763,7 @@
    ]
   },
   {
+   "key": "STOP BY · 6412 MAIN · HOUSTON [ac92219a]",
    "family": "NAME:STOP BY",
    "distributors": [
     "Silver Eagle",
@@ -3553,6 +3774,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 51,
    "combinedCE": {
     "2021": 51,
     "2022": 42,
@@ -3605,6 +3829,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 2510 MCKINNEY AVE · DALLAS [9b5ecc42]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -3615,6 +3840,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 49,
    "combinedCE": {
     "2021": 6,
     "2022": 49,
@@ -3667,6 +3895,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 4100 LOMO ALTO DR · HIGHLAND PARK [15249eed]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -3678,6 +3907,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 48.67,
    "combinedCE": {
     "2021": 10.33,
     "2022": 48.67,
@@ -3730,6 +3962,7 @@
    ]
   },
   {
+   "key": "GROWLER SPOT · 29615 FM 1093 · FULSHEAR [362d1868]",
    "family": "NAME:GROWLER SPOT",
    "distributors": [
     "Silver Eagle",
@@ -3740,6 +3973,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 48.17,
    "combinedCE": {
     "2021": 48.17,
     "2022": 44.28,
@@ -3792,6 +4028,7 @@
    ]
   },
   {
+   "key": "HERITAGE WINE · 2000 EASTMAN RD · LONGVIEW [ed6c2002]",
    "family": "NAME:HERITAGE WINE",
    "distributors": [
     "FullClip",
@@ -3802,6 +4039,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 46.67,
    "combinedCE": {
     "2021": 12.33,
     "2022": 46.67,
@@ -3854,6 +4094,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 165 NW JOHN JONES DR · BURLESON [600165b0]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "FullClip",
@@ -3864,6 +4105,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 46.67,
    "combinedCE": {
     "2021": 7.67,
     "2022": 46.67,
@@ -3916,6 +4160,7 @@
    ]
   },
   {
+   "key": "CHAPMAN S · 5102 19TH ST · WACO [988205ab]",
    "family": "NAME:CHAPMAN S",
    "distributors": [
     "FullClip",
@@ -3926,6 +4171,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 45.67,
    "combinedCE": {
     "2021": 11,
     "2022": 45.67,
@@ -3978,6 +4226,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 190 EAST STACY RD · ALLEN [01f6e160]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -3988,6 +4237,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 44.33,
    "combinedCE": {
     "2021": 14.33,
     "2022": 44.33,
@@ -4040,6 +4292,7 @@
    ]
   },
   {
+   "key": "CHUPACABRA CRAFT · 401 MAIN ST · SALADO [9c939405]",
    "family": "NAME:CHUPACABRA CRAFT",
    "distributors": [
     "FullClip",
@@ -4051,6 +4304,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 43.63,
    "combinedCE": {
     "2021": 0,
     "2022": 43.63,
@@ -4123,6 +4379,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 3101 TEXAS SAGE TRAIL · FORT WORTH [59b7b7a9]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -4133,6 +4390,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 42.33,
    "combinedCE": {
     "2021": 16,
     "2022": 42.33,
@@ -4185,6 +4445,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 4720 BRYANT IRVIN · FORT WORTH [4cba1df7]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "FullClip",
@@ -4195,6 +4456,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 42,
    "combinedCE": {
     "2021": 12.67,
     "2022": 42,
@@ -4247,6 +4511,7 @@
    ]
   },
   {
+   "key": "LIBRADO MIDLAND · 4610 GARFIELD ST · MIDLAND [528924d3]",
    "family": "NAME:LIBRADO MIDLAND",
    "distributors": [
     "FullClip",
@@ -4257,6 +4522,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 42,
    "combinedCE": {
     "2021": 9.96,
     "2022": 48.88,
@@ -4309,6 +4577,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 800 HWY 77 · WAXAHACHIE [f421f77e]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -4319,6 +4588,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 40.33,
    "combinedCE": {
     "2021": 3,
     "2022": 20.33,
@@ -4371,6 +4643,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 5313 SARATOGA · CORPUS CHRISTI [502906ab]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "Dynamo Specialty",
@@ -4383,6 +4656,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 40,
    "combinedCE": {
     "2021": 7.67,
     "2022": 22,
@@ -4475,6 +4751,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 1821 VALLEY MILLS DR · WACO [86a7d0b3]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "FullClip",
@@ -4485,6 +4762,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 39,
    "combinedCE": {
     "2021": 6.67,
     "2022": 56,
@@ -4557,6 +4837,7 @@
    ]
   },
   {
+   "key": "HUBCAP GRILL · 2021 STRAND ST 3 · GALVESTON [407f3013]",
    "family": "NAME:HUBCAP GRILL",
    "distributors": [
     "FullClip",
@@ -4567,6 +4848,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 38.9867,
    "combinedCE": {
     "2021": 0,
     "2022": 2.29,
@@ -4619,6 +4903,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 1453 COIT RD · PLANO [770b2bdc]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "FullClip",
@@ -4629,6 +4914,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 38,
    "combinedCE": {
     "2021": 5.33,
     "2022": 38,
@@ -4681,6 +4969,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 3301 SHERWOOD WAY · SAN ANGELO [47ae565e]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -4691,6 +4980,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 37,
    "combinedCE": {
     "2021": 0,
     "2022": 10,
@@ -4743,6 +5035,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 4320 ALAMEDA · CORPUS CHRISTI [01fd9b4f]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty",
@@ -4753,6 +5046,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 37,
    "combinedCE": {
     "2021": 2.33,
     "2022": 11,
@@ -4805,6 +5101,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 901 TRENTON RD · MCALLEN [ef67de45]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty",
@@ -4815,6 +5112,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 37,
    "combinedCE": {
     "2021": 3.33,
     "2022": 18,
@@ -4867,6 +5167,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 5200 HULEN ST · FORT WORTH [801f17f7]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -4877,6 +5178,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 36.67,
    "combinedCE": {
     "2021": 8.33,
     "2022": 36.67,
@@ -4929,6 +5233,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 2501 RIO GRANDE BLVD · EULESS [a7665056]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -4939,6 +5244,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 36.33,
    "combinedCE": {
     "2021": 13,
     "2022": 36.33,
@@ -4991,6 +5299,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 2990 HWY 190 EAST · COPPERAS COVE [44ecc857]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "FullClip",
@@ -5001,6 +5310,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 36,
    "combinedCE": {
     "2021": 4,
     "2022": 26.33,
@@ -5053,6 +5365,7 @@
    ]
   },
   {
+   "key": "BEER AND · 26 DEBBIE LN · MANSFIELD [d9bd040b]",
    "family": "NAME:BEER AND",
    "distributors": [
     "FullClip",
@@ -5063,6 +5376,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 36,
    "combinedCE": {
     "2021": 14.33,
     "2022": 36,
@@ -5115,6 +5431,7 @@
    ]
   },
   {
+   "key": "SPEEDY MART · 300 MAIN ST · BELTON [3e20ed66]",
    "family": "CHAIN:SPEEDY MART",
    "distributors": [
     "Dynamo Specialty",
@@ -5126,6 +5443,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 35.67,
    "combinedCE": {
     "2021": 20.67,
     "2022": 62.67,
@@ -5198,6 +5518,7 @@
    ]
   },
   {
+   "key": "HOLIDAY WINE LIQUOR · 1912 10TH ST · MCALLEN [564a0cec]",
    "family": "CHAIN:HOLIDAY WINE LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -5208,6 +5529,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 35.67,
    "combinedCE": {
     "2021": 11.67,
     "2022": 35.67,
@@ -5260,6 +5584,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 2750 HULEN ST · FORT WORTH [c312eea3]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "FullClip",
@@ -5270,6 +5595,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 35.33,
    "combinedCE": {
     "2021": 7.33,
     "2022": 35.33,
@@ -5322,6 +5650,7 @@
    ]
   },
   {
+   "key": "MOON TOWER · 3004 CANAL ST · HOUSTON [b737899c]",
    "family": "NAME:MOON TOWER",
    "distributors": [
     "Silver Eagle",
@@ -5332,6 +5661,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 34.4444,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -5384,6 +5716,7 @@
    ]
   },
   {
+   "key": "SKIPS BEER WINE AND LIQUOR · 18010 BULVERDE RD · SAN ANTONIO [471763dc]",
    "family": "CHAIN:SKIPS BEER WINE AND LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -5394,6 +5727,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 34.33,
    "combinedCE": {
     "2021": 0,
     "2022": 34.33,
@@ -5446,6 +5782,7 @@
    ]
   },
   {
+   "key": "BASTROP BEER · 1008 MAIN ST · BASTROP [9fdc4968]",
    "family": "NAME:BASTROP BEER",
    "distributors": [
     "Dynamo Specialty",
@@ -5456,6 +5793,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 33.17,
    "combinedCE": {
     "2021": 12.25,
     "2022": 33.17,
@@ -5508,6 +5848,7 @@
    ]
   },
   {
+   "key": "FUEL UP · 4331 KELLY ELLIOTT RD · ARLINGTON [910c576b]",
    "family": "NAME:FUEL UP",
    "distributors": [
     "FullClip",
@@ -5518,6 +5859,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 33,
    "combinedCE": {
     "2021": 5.67,
     "2022": 33,
@@ -5570,6 +5914,7 @@
    ]
   },
   {
+   "key": "SPECS WHOLESALE · 9500 CENTRAL EXPWY · DALLAS [b425b9dc]",
    "family": "CHAIN:SPECS WHOLESALE",
    "distributors": [
     "FullClip",
@@ -5580,6 +5925,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 33,
    "combinedCE": {
     "2021": 7,
     "2022": 33,
@@ -5632,6 +5980,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 1145 WALDRON RD · CORPUS CHRISTI [0511bce4]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "Dynamo Specialty",
@@ -5642,6 +5991,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 33,
    "combinedCE": {
     "2021": 26.67,
     "2022": 25,
@@ -5694,6 +6046,7 @@
    ]
   },
   {
+   "key": "LIQUID TOWN · 4141 ALAMEDA · CORPUS CHRISTI [4399ed24]",
    "family": "CHAIN:LIQUID TOWN",
    "distributors": [
     "FullClip",
@@ -5705,6 +6058,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 31.67,
    "combinedCE": {
     "2021": 1,
     "2022": 14.33,
@@ -5777,6 +6133,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 4801 COLLEYVILLE RD · COLLEYVILLE [2c0c8aa9]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -5787,6 +6144,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 31,
    "combinedCE": {
     "2021": 10,
     "2022": 31,
@@ -5839,6 +6199,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 6400 PLANO PKWY · PLANO [136c0adf]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -5849,6 +6210,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 31,
    "combinedCE": {
     "2021": 10.33,
     "2022": 31,
@@ -5901,6 +6265,7 @@
    ]
   },
   {
+   "key": "ZZBIG OWL · 1848 AIRLINE DR · HOUSTON [d9756576]",
    "family": "NAME:ZZBIG OWL",
    "distributors": [
     "Silver Eagle",
@@ -5911,6 +6276,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 30.81,
    "combinedCE": {
     "2021": 14.47,
     "2022": 30.81,
@@ -5963,6 +6331,7 @@
    ]
   },
   {
+   "key": "ROTOLOS PIZZERIA · 8970 BROADWAY AVE · TYLER [b41cecdb]",
    "family": "CHAIN:ROTOLOS PIZZERIA",
    "distributors": [
     "Green Light",
@@ -5973,6 +6342,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 30.81,
    "combinedCE": {
     "2021": 17.88,
     "2022": 53.14,
@@ -6045,6 +6417,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 2509 MAIN ST · BELTON [7e5da3e6]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "FullClip",
@@ -6055,6 +6428,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 30,
    "combinedCE": {
     "2021": 0,
     "2022": 17,
@@ -6107,6 +6483,7 @@
    ]
   },
   {
+   "key": "TRUE TEXAS BBQ · 4405 114TH ST · LUBBOCK [6de96c1a]",
    "family": "CHAIN:TRUE TEXAS BBQ",
    "distributors": [
     "FullClip",
@@ -6117,6 +6494,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 29.67,
    "combinedCE": {
     "2021": 7.33,
     "2022": 29.67,
@@ -6169,6 +6549,7 @@
    ]
   },
   {
+   "key": "PINT AND · 302 CRAWFORD ST · PALESTINE [7662de5e]",
    "family": "NAME:PINT AND",
    "distributors": [
     "FullClip",
@@ -6179,6 +6560,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 29.56,
    "combinedCE": {
     "2021": 6.89,
     "2022": 27.56,
@@ -6231,6 +6615,7 @@
    ]
   },
   {
+   "key": "DANCING BEAR · 1117 SPEIGHT AVE · WACO [a461a2bd]",
    "family": "NAME:DANCING BEAR",
    "distributors": [
     "Green Light",
@@ -6241,6 +6626,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 29.54,
    "combinedCE": {
     "2021": 3.63,
     "2022": 29.54,
@@ -6293,6 +6681,7 @@
    ]
   },
   {
+   "key": "SPECS WHOLESALE · 3404 CENTRAL EXPWY · PLANO [797bd163]",
    "family": "CHAIN:SPECS WHOLESALE",
    "distributors": [
     "FullClip",
@@ -6303,6 +6692,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 29.33,
    "combinedCE": {
     "2021": 6.33,
     "2022": 29.33,
@@ -6355,6 +6747,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 721 CENTRAL EXPWY · PLANO [ff988990]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -6365,6 +6758,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 29,
    "combinedCE": {
     "2021": 7.67,
     "2022": 29,
@@ -6417,6 +6813,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 7730 MACARTHUR BLVD · IRVING [b28277a9]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -6427,6 +6824,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 28.67,
    "combinedCE": {
     "2021": 5.67,
     "2022": 28.67,
@@ -6479,6 +6879,7 @@
    ]
   },
   {
+   "key": "CRAFT BREWS · 7500 STACY RD · MCKINNEY [0ddfea6c]",
    "family": "NAME:CRAFT BREWS",
    "distributors": [
     "FullClip",
@@ -6489,6 +6890,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 27.67,
    "combinedCE": {
     "2021": 0,
     "2022": 28.67,
@@ -6561,6 +6965,7 @@
    ]
   },
   {
+   "key": "ARAMARK · ONE RELIANT STADIUM · HOUSTON [028647e4]",
    "family": "CHAIN:ARAMARK",
    "distributors": [
     "Silver Eagle",
@@ -6573,6 +6978,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 27.56,
    "combinedCE": {
     "2021": 0,
     "2022": 1,
@@ -6645,6 +7053,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 4800 HWY 365 · PORT ARTHUR [72cbe718]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "FullClip",
@@ -6655,6 +7064,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 26.6667,
    "combinedCE": {
     "2021": 0,
     "2022": 18.33,
@@ -6707,6 +7119,7 @@
    ]
   },
   {
+   "key": "WALMART SUPERCENTER · 2500 DANIEL MCCALL DR · LUFKIN [c8a4bb45]",
    "family": "CHAIN:WALMART SUPERCENTER",
    "distributors": [
     "FullClip",
@@ -6717,6 +7130,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 25.6667,
    "combinedCE": {
     "2021": 0,
     "2022": 24,
@@ -6769,6 +7185,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 4901 SH 121 · COLONY [04f8bc5a]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "FullClip",
@@ -6779,6 +7196,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 25.33,
    "combinedCE": {
     "2021": 5.33,
     "2022": 25.33,
@@ -6831,6 +7251,7 @@
    ]
   },
   {
+   "key": "UNIVERSITY DRAFT · 100 US HWY 83 · MCALLEN [fc1b9a74]",
    "family": "NAME:UNIVERSITY DRAFT",
    "distributors": [
     "Dynamo Specialty",
@@ -6841,6 +7262,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 25.25,
    "combinedCE": {
     "2021": 1,
     "2022": 6.88,
@@ -6893,6 +7317,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 2325 STEMMONS FRWY · LEWISVILLE [d19b6af9]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -6903,6 +7328,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 24.33,
    "combinedCE": {
     "2021": 9.33,
     "2022": 24.33,
@@ -6955,6 +7383,7 @@
    ]
   },
   {
+   "key": "KING S · 6659 CAMP BOWIE BLVD · FORT WORTH [4e08d825]",
    "family": "NAME:KING S",
    "distributors": [
     "FullClip",
@@ -6965,6 +7394,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 24,
    "combinedCE": {
     "2021": 0,
     "2022": 24,
@@ -7017,6 +7449,7 @@
    ]
   },
   {
+   "key": "6S SPIRITS · 2003 HWY 114 · TROPHY CLUB [db4d68a9]",
    "family": "NAME:6S SPIRITS",
    "distributors": [
     "FullClip",
@@ -7027,6 +7460,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 24,
    "combinedCE": {
     "2021": 5,
     "2022": 20,
@@ -7079,6 +7515,7 @@
    ]
   },
   {
+   "key": "KEGS BARRELS · 1905 15TH ST · PLANO [0775370b]",
    "family": "NAME:KEGS BARRELS",
    "distributors": [
     "FullClip",
@@ -7089,6 +7526,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 23.55,
    "combinedCE": {
     "2021": 9.55,
     "2022": 23.55,
@@ -7141,6 +7581,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 613 EXPWY 83 · HARLINGEN [34efd63a]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty",
@@ -7151,6 +7592,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 23,
    "combinedCE": {
     "2021": 2,
     "2022": 4.33,
@@ -7203,6 +7647,7 @@
    ]
   },
   {
+   "key": "BIG HOPS · 4470 GREEN VALLEY RD · CIBOLO [bb69f6bb]",
    "family": "NAME:BIG HOPS",
    "distributors": [
     "Dynamo Specialty",
@@ -7213,6 +7658,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 22.96,
    "combinedCE": {
     "2021": 0,
     "2022": 34.07,
@@ -7305,6 +7753,7 @@
    ]
   },
   {
+   "key": "NORTHSIDE DRAFTHOUSE · 3000 NORTHSIDE BLVD · RICHARDSON [8d1e4620]",
    "family": "NAME:NORTHSIDE DRAFTHOUSE",
    "distributors": [
     "FullClip",
@@ -7315,6 +7764,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 22.96,
    "combinedCE": {
     "2021": 9.18,
     "2022": 4.59,
@@ -7367,6 +7819,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 6741 MACARTHUR BLVD · IRVING [66d3a6d4]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -7377,6 +7830,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 21.67,
    "combinedCE": {
     "2021": 3,
     "2022": 17,
@@ -7429,6 +7885,7 @@
    ]
   },
   {
+   "key": "DISTRICT · 610 MAIN ST · HOUSTON [41dcbd2c]",
    "family": "NAME:DISTRICT",
    "distributors": [
     "Silver Eagle",
@@ -7440,6 +7897,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 20.21,
    "combinedCE": {
     "2021": 0,
     "2022": 5,
@@ -7492,6 +7952,7 @@
    ]
   },
   {
+   "key": "SPECS WHOLESALE · 535 AMERICAN WAY · TERRELL [ad260c29]",
    "family": "CHAIN:SPECS WHOLESALE",
    "distributors": [
     "FullClip",
@@ -7502,6 +7963,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 19.67,
    "combinedCE": {
     "2021": 2.67,
     "2022": 19.67,
@@ -7554,6 +8018,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 981 I 20 · ARLINGTON [f4c90543]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -7564,6 +8029,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 19.67,
    "combinedCE": {
     "2021": 4.33,
     "2022": 19.67,
@@ -7616,6 +8084,7 @@
    ]
   },
   {
+   "key": "CHEER SPIRITS · 1201 LONGHORN RD · FORT WORTH [375a5b1c]",
    "family": "NAME:CHEER SPIRITS",
    "distributors": [
     "FullClip",
@@ -7626,6 +8095,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 19,
    "combinedCE": {
     "2021": 2,
     "2022": 19,
@@ -7678,6 +8150,7 @@
    ]
   },
   {
+   "key": "CULTURA BEER · 916 SALINAS AVE · LAREDO [d4429fc2]",
    "family": "NAME:CULTURA BEER",
    "distributors": [
     "Dynamo Specialty",
@@ -7688,6 +8161,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 18.29,
    "combinedCE": {
     "2021": 18.29,
     "2022": 0,
@@ -7740,6 +8216,7 @@
    ]
   },
   {
+   "key": "BIG PAPA · 880 LOOP 281 · LONGVIEW [ac877c47]",
    "family": "NAME:BIG PAPA",
    "distributors": [
     "FullClip",
@@ -7750,6 +8227,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 18,
    "combinedCE": {
     "2021": 3.33,
     "2022": 30,
@@ -7842,6 +8322,7 @@
    ]
   },
   {
+   "key": "HOLIDAY WINE LIQUOR · 703 DOVE AVE · MCALLEN [5caaf518]",
    "family": "CHAIN:HOLIDAY WINE LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -7852,6 +8333,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 17.67,
    "combinedCE": {
     "2021": 5,
     "2022": 17.67,
@@ -7904,6 +8388,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 725 VILLA MARIA RD · BRYAN [20e187bc]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Green Light",
@@ -7914,6 +8399,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 17.6,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -7966,6 +8454,7 @@
    ]
   },
   {
+   "key": "LIQUOR KING · 755 HWY 121 A300 · LEWISVILLE [bfa9df01]",
    "family": "NAME:LIQUOR KING",
    "distributors": [
     "FullClip",
@@ -7977,6 +8466,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 17.33,
    "combinedCE": {
     "2021": 28.66,
     "2022": 16,
@@ -8049,6 +8541,7 @@
    ]
   },
   {
+   "key": "KING S · 2810 WEST BERRY ST · FORT WORTH [11b288c5]",
    "family": "NAME:KING S",
    "distributors": [
     "FullClip",
@@ -8059,6 +8552,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 17,
    "combinedCE": {
     "2021": 0,
     "2022": 17,
@@ -8111,6 +8607,7 @@
    ]
   },
   {
+   "key": "LIQUORLAND ARGYLE · 1217 FM 407 · ARGYLE [d8ed749e]",
    "family": "NAME:LIQUORLAND ARGYLE",
    "distributors": [
     "FullClip",
@@ -8121,6 +8618,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 16.67,
    "combinedCE": {
     "2021": 3,
     "2022": 16.67,
@@ -8173,6 +8673,7 @@
    ]
   },
   {
+   "key": "EMPIRE CRAFT · 1205 MCDERMOTT DR · ALLEN [b9522503]",
    "family": "NAME:EMPIRE CRAFT",
    "distributors": [
     "FullClip",
@@ -8183,6 +8684,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 16.33,
    "combinedCE": {
     "2021": 12,
     "2022": 16.33,
@@ -8235,6 +8739,7 @@
    ]
   },
   {
+   "key": "HARVEST HOUSE · 331 HICKORY ST · DENTON [79bb12c4]",
    "family": "NAME:HARVEST HOUSE",
    "distributors": [
     "FullClip",
@@ -8245,6 +8750,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 16.07,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -8297,6 +8805,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 1800 SOUTH LOOP 288 · DENTON [c0c64c61]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -8307,6 +8816,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 16,
    "combinedCE": {
     "2021": 7.33,
     "2022": 16,
@@ -8359,6 +8871,7 @@
    ]
   },
   {
+   "key": "LONE STAR · 304 MAIN ST · LONE STAR [c489af7b]",
    "family": "NAME:LONE STAR",
    "distributors": [
     "FullClip",
@@ -8369,6 +8882,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 16,
    "combinedCE": {
     "2021": 0,
     "2022": 10,
@@ -8421,6 +8937,7 @@
    ]
   },
   {
+   "key": "WALMART SUPERCENTER · 6801 BROADWAY AVE · TYLER [0cabbea5]",
    "family": "CHAIN:WALMART SUPERCENTER",
    "distributors": [
     "FullClip",
@@ -8431,6 +8948,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 15.33,
    "combinedCE": {
     "2021": 0,
     "2022": 8,
@@ -8483,6 +9003,7 @@
    ]
   },
   {
+   "key": "HARVEY WASHBANGERS · 1802 TEXAS AVE · COLLEGE STATION [3b802570]",
    "family": "NAME:HARVEY WASHBANGERS",
    "distributors": [
     "FullClip",
@@ -8493,6 +9014,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 15.1733,
    "combinedCE": {
     "2021": 4.29,
     "2022": 12.33,
@@ -8545,6 +9069,7 @@
    ]
   },
   {
+   "key": "LIQUORLAND FORT · 4940 TARRANT PKWY · FORT WORTH [1508c11b]",
    "family": "NAME:LIQUORLAND FORT",
    "distributors": [
     "FullClip",
@@ -8555,6 +9080,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 15,
    "combinedCE": {
     "2021": 2,
     "2022": 15,
@@ -8607,6 +9135,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 8889 GATEWAY BLVD · EL PASO [935b6ca3]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -8617,6 +9146,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 14.67,
    "combinedCE": {
     "2021": 0.33,
     "2022": 14.67,
@@ -8669,6 +9201,7 @@
    ]
   },
   {
+   "key": "LIQUOR KING · 2801 MACARTHUR BLVD · LEWISVILLE [48ab6425]",
    "family": "NAME:LIQUOR KING",
    "distributors": [
     "FullClip",
@@ -8679,6 +9212,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 14.67,
    "combinedCE": {
     "2021": 0,
     "2022": 14,
@@ -8731,6 +9267,7 @@
    ]
   },
   {
+   "key": "HARLEYS CUT RATE LIQUOR · 4697 ESTES PKWY · LONGVIEW [ff55e5ec]",
    "family": "CHAIN:HARLEYS CUT RATE LIQUOR",
    "distributors": [
     "FullClip",
@@ -8741,6 +9278,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 14,
    "combinedCE": {
     "2021": 2,
     "2022": 14,
@@ -8793,6 +9333,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 2155 PAREDES LINE RD · BROWNSVILLE [3d0ecb55]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "Dynamo Specialty",
@@ -8803,6 +9344,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 14,
    "combinedCE": {
     "2021": 1,
     "2022": 10.67,
@@ -8855,6 +9399,7 @@
    ]
   },
   {
+   "key": "SCHNEIDERS GERMAN · 5507 WARE RD · MCALLEN [f023e1da]",
    "family": "NAME:SCHNEIDERS GERMAN",
    "distributors": [
     "L&F",
@@ -8865,6 +9410,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 13.89,
    "combinedCE": {
     "2021": 0,
     "2022": 10.17,
@@ -8917,6 +9465,7 @@
    ]
   },
   {
+   "key": "LLANO BEER · 105 MAIN ST · LLANO [66b52ab6]",
    "family": "NAME:LLANO BEER",
    "distributors": [
     "FullClip",
@@ -8928,6 +9477,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 13.78,
    "combinedCE": {
     "2021": 0,
     "2022": 16.07,
@@ -9000,6 +9552,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 200 HWY 83 WEST · MCALLEN [64499532]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty",
@@ -9010,6 +9563,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 13.33,
    "combinedCE": {
     "2021": 13.33,
     "2022": 5.67,
@@ -9062,6 +9618,7 @@
    ]
   },
   {
+   "key": "H E B PLUS · 1911 NE BOB BULLOCK · LAREDO [4363c621]",
    "family": "CHAIN:H E B PLUS",
    "distributors": [
     "Dynamo Specialty",
@@ -9072,6 +9629,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 13,
    "combinedCE": {
     "2021": 6.33,
     "2022": 1.33,
@@ -9124,6 +9684,7 @@
    ]
   },
   {
+   "key": "HOLIDAY WINE LIQUOR · 2714 GRIFFIN PKWY · MISSION [16b76302]",
    "family": "CHAIN:HOLIDAY WINE LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -9134,6 +9695,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 12.67,
    "combinedCE": {
     "2021": 4.33,
     "2022": 12,
@@ -9186,6 +9750,7 @@
    ]
   },
   {
+   "key": "HUNT S · 8118 WESLEY ST · GREENVILLE [f72390ea]",
    "family": "NAME:HUNT S",
    "distributors": [
     "FullClip",
@@ -9196,6 +9761,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 12.33,
    "combinedCE": {
     "2021": 0,
     "2022": 12.33,
@@ -9248,6 +9816,7 @@
    ]
   },
   {
+   "key": "SKIPS BEER WINE AND LIQUOR · 1174 TEXAS 337 LOOP · NEW BRAUNFELS [b70e4896]",
    "family": "CHAIN:SKIPS BEER WINE AND LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -9258,6 +9827,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 12,
    "combinedCE": {
     "2021": 0,
     "2022": 11.67,
@@ -9310,6 +9882,7 @@
    ]
   },
   {
+   "key": "WALMART NEIGHBORHOOD MARKET · 5976 OLD JACKSONVILLE HWY · TYLER [0b064528]",
    "family": "CHAIN:WALMART NEIGHBORHOOD MARKET",
    "distributors": [
     "FullClip",
@@ -9320,6 +9893,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 12,
    "combinedCE": {
     "2021": 0,
     "2022": 12,
@@ -9372,6 +9948,7 @@
    ]
   },
   {
+   "key": "HARWOOD BEER · 2906 BROWN TRAIL · BEDFORD [315bed52]",
    "family": "NAME:HARWOOD BEER",
    "distributors": [
     "FullClip",
@@ -9382,6 +9959,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 12,
    "combinedCE": {
     "2021": 3,
     "2022": 12,
@@ -9434,6 +10014,7 @@
    ]
   },
   {
+   "key": "QUICK TREAT · 2011 SPRING CREEK PKWY · PLANO [477c1a19]",
    "family": "NAME:QUICK TREAT",
    "distributors": [
     "FullClip",
@@ -9444,6 +10025,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 11.67,
    "combinedCE": {
     "2021": 3,
     "2022": 11.67,
@@ -9496,6 +10080,7 @@
    ]
   },
   {
+   "key": "ZZSTAR SAILOR · 1710 18TH ST · HOUSTON [f1932396]",
    "family": "NAME:ZZSTAR SAILOR",
    "distributors": [
     "Silver Eagle",
@@ -9506,6 +10091,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 11.59,
    "combinedCE": {
     "2021": 11.59,
     "2022": 5,
@@ -9558,6 +10146,7 @@
    ]
   },
   {
+   "key": "HOME SWEET · 307 PARK ST · BRENHAM [f7cf556e]",
    "family": "NAME:HOME SWEET",
    "distributors": [
     "Silver Eagle",
@@ -9568,6 +10157,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 11.47,
    "combinedCE": {
     "2021": 11.47,
     "2022": 6.88,
@@ -9620,6 +10212,7 @@
    ]
   },
   {
+   "key": "FOSSIL CREEK LIQUOR · 4130 BOWEN RD · DALWORTHINGTON GARDENS [eff44c41]",
    "family": "CHAIN:FOSSIL CREEK LIQUOR",
    "distributors": [
     "FullClip",
@@ -9631,6 +10224,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 11.33,
    "combinedCE": {
     "2021": 4,
     "2022": 11.33,
@@ -9683,6 +10279,7 @@
    ]
   },
   {
+   "key": "MCGARRITIES SALOON · 208 DALLAS ST · JEFFERSON [70192f99]",
    "family": "NAME:MCGARRITIES SALOON",
    "distributors": [
     "FullClip",
@@ -9693,6 +10290,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 11,
    "combinedCE": {
     "2021": 3,
     "2022": 11,
@@ -9745,6 +10345,7 @@
    ]
   },
   {
+   "key": "BOSQUE SPIRITS · 7321 BOSQUE BLVD · WACO [47a17ed1]",
    "family": "NAME:BOSQUE SPIRITS",
    "distributors": [
     "FullClip",
@@ -9755,6 +10356,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 10,
    "combinedCE": {
     "2021": 0,
     "2022": 8.33,
@@ -9807,6 +10411,7 @@
    ]
   },
   {
+   "key": "WALMART SUPERCENTER · 4810 NORTH ST · NACOGDOCHES [e64d974f]",
    "family": "CHAIN:WALMART SUPERCENTER",
    "distributors": [
     "FullClip",
@@ -9817,6 +10422,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 10,
    "combinedCE": {
     "2021": 0,
     "2022": 8,
@@ -9869,6 +10477,7 @@
    ]
   },
   {
+   "key": "HARLEYS CUT RATE LIQUOR · 600 MARSHALL AVE · LONGVIEW [2fbe1de0]",
    "family": "CHAIN:HARLEYS CUT RATE LIQUOR",
    "distributors": [
     "FullClip",
@@ -9879,6 +10488,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 10,
    "combinedCE": {
     "2021": 1,
     "2022": 10,
@@ -9951,6 +10563,7 @@
    ]
   },
   {
+   "key": "WALMART SUPERCENTER · 2223 LOOP 256 · PALESTINE [8643a157]",
    "family": "CHAIN:WALMART SUPERCENTER",
    "distributors": [
     "Green Light",
@@ -9961,6 +10574,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 9.33,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -10013,6 +10629,7 @@
    ]
   },
   {
+   "key": "HOLIDAY WINE LIQUOR · 305 UNIVERSITY DR · EDINBURG [92725e35]",
    "family": "CHAIN:HOLIDAY WINE LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -10023,6 +10640,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 9.33,
    "combinedCE": {
     "2021": 3,
     "2022": 7.67,
@@ -10075,6 +10695,7 @@
    ]
   },
   {
+   "key": "THE BRASS TAP · 1251 STATE ST · RICHARDSON [cb843aa3]",
    "family": "CHAIN:THE BRASS TAP",
    "distributors": [
     "FullClip",
@@ -10086,6 +10707,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 9.18,
    "combinedCE": {
     "2021": 0,
     "2022": 8.22,
@@ -10138,6 +10762,7 @@
    ]
   },
   {
+   "key": "LIQUORLAND HIGHLAND · 2630 MAIN ST JUSTIN RD · HIGHLAND VILLAGE [883fe37e]",
    "family": "NAME:LIQUORLAND HIGHLAND",
    "distributors": [
     "FullClip",
@@ -10148,6 +10773,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 9.17,
    "combinedCE": {
     "2021": 0,
     "2022": 3.33,
@@ -10220,6 +10848,7 @@
    ]
   },
   {
+   "key": "THE LIQUOR OUTPOST · 771 ROUND GROVE RD 150 · LEWISVILLE [a8fbb63f]",
    "family": "CHAIN:THE LIQUOR OUTPOST",
    "distributors": [
     "FullClip",
@@ -10230,6 +10859,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 9,
    "combinedCE": {
     "2021": 1,
     "2022": 6,
@@ -10282,6 +10914,7 @@
    ]
   },
   {
+   "key": "TANNINS WINE · 3855 ALAMEDA ST · CORPUS CHRISTI [f3ea0e33]",
    "family": "NAME:TANNINS WINE",
    "distributors": [
     "FullClip",
@@ -10292,6 +10925,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 9,
    "combinedCE": {
     "2021": 4,
     "2022": 4,
@@ -10344,6 +10980,7 @@
    ]
   },
   {
+   "key": "JACOB S · 5400 14TH ST · PLANO [ce0b2686]",
    "family": "NAME:JACOB S",
    "distributors": [
     "FullClip",
@@ -10354,6 +10991,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 8,
    "combinedCE": {
     "2021": 0,
     "2022": 8,
@@ -10406,6 +11046,7 @@
    ]
   },
   {
+   "key": "BEAR CREEK · 7101 COLLEYVILLE BLVD · COLLEYVILLE [5a26a804]",
    "family": "NAME:BEAR CREEK",
    "distributors": [
     "FullClip",
@@ -10416,6 +11057,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 8,
    "combinedCE": {
     "2021": 3,
     "2022": 7,
@@ -10468,6 +11112,7 @@
    ]
   },
   {
+   "key": "BROOKSHIRE FOOD STORE · 3354 GILMER RD · LONGVIEW [df61211d]",
    "family": "CHAIN:BROOKSHIRE FOOD STORE",
    "distributors": [
     "FullClip",
@@ -10478,6 +11123,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 8,
    "combinedCE": {
     "2021": 1,
     "2022": 8,
@@ -10530,6 +11178,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 3810 CONGRESS AVE · DALLAS [4e867c26]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -10540,6 +11189,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 8,
    "combinedCE": {
     "2021": 4.33,
     "2022": 8,
@@ -10592,6 +11244,7 @@
    ]
   },
   {
+   "key": "BEERHEAD BAR · 5805 PRESTON RD · PLANO [c40bd76c]",
    "family": "NAME:BEERHEAD BAR",
    "distributors": [
     "FullClip",
@@ -10602,6 +11255,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 7.89,
    "combinedCE": {
     "2021": 7.89,
     "2022": 0,
@@ -10654,6 +11310,7 @@
    ]
   },
   {
+   "key": "B J · 6335 PADRE ISLAND DR · CORPUS CHRISTI [218033bb]",
    "family": "NAME:B J",
    "distributors": [
     "L&F",
@@ -10664,6 +11321,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 7.63,
    "combinedCE": {
     "2021": 0,
     "2022": 8.96,
@@ -10716,6 +11376,7 @@
    ]
   },
   {
+   "key": "THE BRASS TAP · 1951 FM 423 · LITTLE ELM [7b4f6e2e]",
    "family": "CHAIN:THE BRASS TAP",
    "distributors": [
     "Green Light",
@@ -10727,6 +11388,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 7,
    "combinedCE": {
     "2021": 0,
     "2022": 3.29,
@@ -10799,6 +11463,7 @@
    ]
   },
   {
+   "key": "WALMART SUPERCENTER · 4006 ESTES PKWY · LONGVIEW [8a1bb58a]",
    "family": "CHAIN:WALMART SUPERCENTER",
    "distributors": [
     "FullClip",
@@ -10809,6 +11474,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 7,
    "combinedCE": {
     "2021": 0,
     "2022": 7,
@@ -10861,6 +11529,7 @@
    ]
   },
   {
+   "key": "LIQUOR 101 · 450 FRONTAGE RD · ALAMO [5256a696]",
    "family": "NAME:LIQUOR 101",
    "distributors": [
     "Dynamo Specialty",
@@ -10872,6 +11541,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 7,
    "combinedCE": {
     "2021": 6,
     "2022": 5,
@@ -10944,6 +11616,7 @@
    ]
   },
   {
+   "key": "UNDISPUTED CRAFT · 1881 SAUL KLEINFELD · EL PASO [98dcb86a]",
    "family": "NAME:UNDISPUTED CRAFT",
    "distributors": [
     "FullClip",
@@ -10954,6 +11627,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.89,
    "combinedCE": {
     "2021": 0,
     "2022": 6,
@@ -11006,6 +11682,7 @@
    ]
   },
   {
+   "key": "DISTRICT 9 · 718 BUCKNER · DALLAS [028772b3]",
    "family": "NAME:DISTRICT 9",
    "distributors": [
     "FullClip",
@@ -11016,6 +11693,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.89,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -11068,6 +11748,7 @@
    ]
   },
   {
+   "key": "POURING GLORY · 1001 BRYAN AVE · FORT WORTH [f74f1ec9]",
    "family": "NAME:POURING GLORY",
    "distributors": [
     "FullClip",
@@ -11078,6 +11759,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.89,
    "combinedCE": {
     "2021": 6.89,
     "2022": 6.89,
@@ -11130,6 +11814,7 @@
    ]
   },
   {
+   "key": "SECRET GROUP · 2101 POLK ST · HOUSTON [9ac8187b]",
    "family": "NAME:SECRET GROUP",
    "distributors": [
     "Silver Eagle",
@@ -11140,6 +11825,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.8889,
    "combinedCE": {
     "2021": 0,
     "2022": 4.59,
@@ -11192,6 +11880,7 @@
    ]
   },
   {
+   "key": "KATY TRAIL · 3111 MONTICELLO AVE · DALLAS [2fd12dcd]",
    "family": "NAME:KATY TRAIL",
    "distributors": [
     "FullClip",
@@ -11202,6 +11891,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.88,
    "combinedCE": {
     "2021": 2.29,
     "2022": 6.88,
@@ -11254,6 +11946,7 @@
    ]
   },
   {
+   "key": "KELLY S · 190 STACY RD · ALLEN [c67e3916]",
    "family": "NAME:KELLY S",
    "distributors": [
     "FullClip",
@@ -11264,6 +11957,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.88,
    "combinedCE": {
     "2021": 0,
     "2022": 6.88,
@@ -11316,6 +12012,7 @@
    ]
   },
   {
+   "key": "OLD TEXAS · 6333 CAMP BOWIE BLVD · FORT WORTH [07a8b62f]",
    "family": "NAME:OLD TEXAS",
    "distributors": [
     "FullClip",
@@ -11326,6 +12023,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.88,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -11378,6 +12078,7 @@
    ]
   },
   {
+   "key": "LIQUOR KING · 1900 WESTERN CENTER BLVD · FORT WORTH [6a5e9d83]",
    "family": "NAME:LIQUOR KING",
    "distributors": [
     "FullClip",
@@ -11388,6 +12089,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.33,
    "combinedCE": {
     "2021": 1.33,
     "2022": 6.33,
@@ -11440,6 +12144,7 @@
    ]
   },
   {
+   "key": "HOLIDAY WINE LIQUOR · 1425 RUBEN TORRES BLVD · BROWNSVILLE [04a8c5fd]",
    "family": "CHAIN:HOLIDAY WINE LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -11450,6 +12155,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.33,
    "combinedCE": {
     "2021": 6.33,
     "2022": -0.33,
@@ -11502,6 +12210,7 @@
    ]
   },
   {
+   "key": "SPECS WHOLESALE · 2315 COLORADO BLVD · DENTON [1712f1be]",
    "family": "CHAIN:SPECS WHOLESALE",
    "distributors": [
     "FullClip",
@@ -11512,6 +12221,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6,
    "combinedCE": {
     "2021": 2,
     "2022": 6,
@@ -11564,6 +12276,7 @@
    ]
   },
   {
+   "key": "WALMART NEIGHBORHOOD MARKET · 1030 UNIVERSITY DR · NACOGDOCHES [4e7007e7]",
    "family": "CHAIN:WALMART NEIGHBORHOOD MARKET",
    "distributors": [
     "Green Light",
@@ -11574,6 +12287,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -11626,6 +12342,7 @@
    ]
   },
   {
+   "key": "FIREWATER LIQUOR · 1011 10TH ST · WACO [d7801b26]",
    "family": "NAME:FIREWATER LIQUOR",
    "distributors": [
     "FullClip",
@@ -11637,6 +12354,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 5.67,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -11709,6 +12429,7 @@
    ]
   },
   {
+   "key": "LIQUORLAND HURST · 1842 PRECINCT LINE RD · HURST [c23e9912]",
    "family": "NAME:LIQUORLAND HURST",
    "distributors": [
     "FullClip",
@@ -11719,6 +12440,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 5.33,
    "combinedCE": {
     "2021": 0,
     "2022": 5.33,
@@ -11771,6 +12495,7 @@
    ]
   },
   {
+   "key": "SKIPS BEER WINE AND LIQUOR · 1187 COUNTY LINE RD · NEW BRAUNFELS [d328c3e8]",
    "family": "CHAIN:SKIPS BEER WINE AND LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -11781,6 +12506,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 5,
    "combinedCE": {
     "2021": 0,
     "2022": 5,
@@ -11833,6 +12561,7 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 100 PITT ST · EL PASO [a725292c]",
    "family": "CHAIN:WHOLE FOODS MARKET",
    "distributors": [
     "FullClip",
@@ -11843,6 +12572,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 5,
    "combinedCE": {
     "2021": 2,
     "2022": 2,
@@ -11895,6 +12627,7 @@
    ]
   },
   {
+   "key": "ANDY FOOD · 3704 GRANBURY RD · FORT WORTH [5c97f862]",
    "family": "NAME:ANDY FOOD",
    "distributors": [
     "FullClip",
@@ -11905,6 +12638,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 5,
    "combinedCE": {
     "2021": 0,
     "2022": 5,
@@ -11957,6 +12693,7 @@
    ]
   },
   {
+   "key": "LIQUOR KING · 3000 7TH ST · FORT WORTH [460d1ecc]",
    "family": "NAME:LIQUOR KING",
    "distributors": [
     "Green Light",
@@ -11967,6 +12704,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 5,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -12019,6 +12759,7 @@
    ]
   },
   {
+   "key": "FAST RUN · 5141 INTERSTATE 20 SERVICE RD · WILLOW PARK [5a140e07]",
    "family": "NAME:FAST RUN",
    "distributors": [
     "FullClip",
@@ -12029,6 +12770,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4.67,
    "combinedCE": {
     "2021": 2.67,
     "2022": 4.67,
@@ -12081,6 +12825,7 @@
    ]
   },
   {
+   "key": "REX S · 6713 NW HWY · DALLAS [65d4f8a3]",
    "family": "NAME:REX S",
    "distributors": [
     "FullClip",
@@ -12091,6 +12836,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4.59,
    "combinedCE": {
     "2021": 2.29,
     "2022": 2.29,
@@ -12143,6 +12891,7 @@
    ]
   },
   {
+   "key": "ARMOURY D · 2714 ELM ST · DALLAS [b34b1fb0]",
    "family": "NAME:ARMOURY D",
    "distributors": [
     "FullClip",
@@ -12153,6 +12902,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4.59,
    "combinedCE": {
     "2021": 0,
     "2022": 2.29,
@@ -12205,6 +12957,7 @@
    ]
   },
   {
+   "key": "SKALLYWAG SUDS · 600 6TH ST · KEMAH [648ba164]",
    "family": "NAME:SKALLYWAG SUDS",
    "distributors": [
     "FullClip",
@@ -12215,6 +12968,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4.59,
    "combinedCE": {
     "2021": 1.33,
     "2022": 5.92,
@@ -12267,6 +13023,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 1450 TEXAS AVE · COLLEGE STATION [70258757]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "FullClip",
@@ -12278,6 +13035,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 0,
     "2022": 4,
@@ -12350,6 +13110,7 @@
    ]
   },
   {
+   "key": "AERO CRAFTERS · 309 CRESTWOOD DR · VICTORIA [60b72a8c]",
    "family": "NAME:AERO CRAFTERS",
    "distributors": [
     "FullClip",
@@ -12360,6 +13121,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 0,
     "2022": 4,
@@ -12412,6 +13176,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 5425 PADRE ISLAND DR · CORPUS CHRISTI [b8b73501]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Dynamo Specialty",
@@ -12423,6 +13188,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 4,
     "2022": 2,
@@ -12495,6 +13263,7 @@
    ]
   },
   {
+   "key": "S K · 101 SPRING CREEK PKWY · PLANO [a46aa192]",
    "family": "NAME:S K",
    "distributors": [
     "FullClip",
@@ -12505,6 +13274,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 4,
     "2022": 4,
@@ -12557,6 +13329,7 @@
    ]
   },
   {
+   "key": "FIREWATER LIQUOR · 6500 WOODWAY DR · WACO [e0a87396]",
    "family": "NAME:FIREWATER LIQUOR",
    "distributors": [
     "FullClip",
@@ -12567,6 +13340,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 0,
     "2022": 1,
@@ -12619,6 +13395,7 @@
    ]
   },
   {
+   "key": "BIG S · 528 MAIN ST · FREDERICKSBURG [9224fe9a]",
    "family": "NAME:BIG S",
    "distributors": [
     "Dynamo Specialty",
@@ -12630,6 +13407,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 2.33,
     "2022": 5,
@@ -12682,6 +13462,7 @@
    ]
   },
   {
+   "key": "GAME THEORY · 804 MAIN ST · FORT WORTH [a74af414]",
    "family": "NAME:GAME THEORY",
    "distributors": [
     "Green Light",
@@ -12693,6 +13474,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 3.67,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -12745,6 +13529,7 @@
    ]
   },
   {
+   "key": "ROUNDABOUT SAN · 1710 BLANCO RD · SAN ANTONIO [587d5c34]",
    "family": "NAME:ROUNDABOUT SAN",
    "distributors": [
     "Green Light",
@@ -12755,6 +13540,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3.2933,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -12807,6 +13595,7 @@
    ]
   },
   {
+   "key": "LAKESIDE URBAN · 2500 LAKESIDE PKWY · FLOWER MOUND [497e05f0]",
    "family": "NAME:LAKESIDE URBAN",
    "distributors": [
     "FullClip",
@@ -12817,6 +13606,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3.29,
    "combinedCE": {
     "2021": 2,
     "2022": 1,
@@ -12869,6 +13661,7 @@
    ]
   },
   {
+   "key": "SNACK TACKLE · 5102 KNICKERBOCKER RD · SAN ANGELO [38b15114]",
    "family": "NAME:SNACK TACKLE",
    "distributors": [
     "FullClip",
@@ -12879,6 +13672,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3,
    "combinedCE": {
     "2021": 0,
     "2022": 2,
@@ -12931,6 +13727,7 @@
    ]
   },
   {
+   "key": "B J · 6662 STAPLES ST · CORPUS CHRISTI [5b06c6ad]",
    "family": "NAME:B J",
    "distributors": [
     "Dynamo Specialty",
@@ -12941,6 +13738,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3,
    "combinedCE": {
     "2021": 2.33,
     "2022": 1.33,
@@ -12993,6 +13793,7 @@
    ]
   },
   {
+   "key": "COST PLUS WORLD MARKET · 3888 OAK LAWN AVE · DALLAS [1ec8c0a5]",
    "family": "CHAIN:COST PLUS WORLD MARKET",
    "distributors": [
     "FullClip",
@@ -13003,6 +13804,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3,
    "combinedCE": {
     "2021": 0,
     "2022": 3,
@@ -13055,6 +13859,7 @@
    ]
   },
   {
+   "key": "DER DAIWEL · 321 MAIN ST · FREDERICKSBURG [7ebf106a]",
    "family": "NAME:DER DAIWEL",
    "distributors": [
     "Dynamo Specialty",
@@ -13066,6 +13871,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 3,
    "combinedCE": {
     "2021": 0,
     "2022": 3,
@@ -13118,6 +13926,7 @@
    ]
   },
   {
+   "key": "LUCY S · 312 CHAPARRAL ST · CORPUS CHRISTI [d0b3fb37]",
    "family": "NAME:LUCY S",
    "distributors": [
     "Dynamo Specialty",
@@ -13128,6 +13937,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3,
    "combinedCE": {
     "2021": 1,
     "2022": 1.33,
@@ -13180,6 +13992,7 @@
    ]
   },
   {
+   "key": "MIKEY V · 112 8TH ST · GEORGETOWN [d6655c9c]",
    "family": "NAME:MIKEY V",
    "distributors": [
     "Dynamo Specialty",
@@ -13191,6 +14004,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 2.29,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -13243,6 +14059,7 @@
    ]
   },
   {
+   "key": "COMMERCE DOWNTOWN · 1136 MAIN ST · COMMERCE [5bd7c6aa]",
    "family": "NAME:COMMERCE DOWNTOWN",
    "distributors": [
     "FullClip",
@@ -13253,6 +14070,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2.29,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -13305,6 +14125,7 @@
    ]
   },
   {
+   "key": "FORT WORTH · 306 7TH ST · FORT WORTH [586650ef]",
    "family": "NAME:FORT WORTH",
    "distributors": [
     "FullClip",
@@ -13315,6 +14136,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2.29,
    "combinedCE": {
     "2021": 2.29,
     "2022": 0,
@@ -13367,6 +14191,7 @@
    ]
   },
   {
+   "key": "SKIPS BEER WINE AND LIQUOR · 1761 STATE HWY 46 · SEGUIN [d91a8b58]",
    "family": "CHAIN:SKIPS BEER WINE AND LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -13378,6 +14203,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 0,
     "2022": 1,
@@ -13430,6 +14258,7 @@
    ]
   },
   {
+   "key": "SPANKYS LIQUOR · 501 ALISTER ST · PORT ARANSAS [b17ff22f]",
    "family": "CHAIN:SPANKYS LIQUOR",
    "distributors": [
     "FullClip",
@@ -13440,6 +14269,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 1,
     "2022": 2,
@@ -13492,6 +14324,7 @@
    ]
   },
   {
+   "key": "SKIPS BEER WINE AND LIQUOR · 350 GUADALUPE ST · SAN MARCOS [5cf9991d]",
    "family": "CHAIN:SKIPS BEER WINE AND LIQUOR",
    "distributors": [
     "Dynamo Specialty",
@@ -13502,6 +14335,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -13554,6 +14390,7 @@
    ]
   },
   {
+   "key": "COST PLUS WORLD MARKET · 3350 SONCY RD · AMARILLO [f3694220]",
    "family": "CHAIN:COST PLUS WORLD MARKET",
    "distributors": [
     "FullClip",
@@ -13564,6 +14401,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 0,
     "2022": 2,
@@ -13616,6 +14456,7 @@
    ]
   },
   {
+   "key": "PINE WINE · 2810 O CONNOR RD · IRVING [2af6847b]",
    "family": "NAME:PINE WINE",
    "distributors": [
     "FullClip",
@@ -13626,6 +14467,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 1,
     "2022": 2,
@@ -13678,6 +14522,7 @@
    ]
   },
   {
+   "key": "TARRANT LIQUOR · 121 HARWOOD RD · HURST [0a6c5bbb]",
    "family": "NAME:TARRANT LIQUOR",
    "distributors": [
     "FullClip",
@@ -13688,6 +14533,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 0,
     "2022": 2,
@@ -13740,6 +14588,7 @@
    ]
   },
   {
+   "key": "RESACA CITY · 7097 HWY 77N · OLMITO [2ebc25a3]",
    "family": "NAME:RESACA CITY",
    "distributors": [
     "FullClip",
@@ -13750,6 +14599,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 0,
     "2022": 3,
@@ -13802,6 +14654,7 @@
    ]
   },
   {
+   "key": "LIQUID COURAGE · 930 15TH ST · PLANO [a08b84ce]",
    "family": "NAME:LIQUID COURAGE",
    "distributors": [
     "FullClip",
@@ -13812,6 +14665,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1,
    "combinedCE": {
     "2021": 1,
     "2022": 1,
@@ -13864,6 +14720,7 @@
    ]
   },
   {
+   "key": "COST PLUS WORLD MARKET · 239 CURTIS MATHIS WAY · ARLINGTON [a50b7b4d]",
    "family": "CHAIN:COST PLUS WORLD MARKET",
    "distributors": [
     "FullClip",
@@ -13874,6 +14731,9 @@
    ],
    "exactAddress": false,
    "yearsOverlap": false,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1,
    "combinedCE": {
     "2021": 0,
     "2022": 1,
@@ -13926,6 +14786,7 @@
    ]
   },
   {
+   "key": "COST PLUS WORLD MARKET · 5500 GREENVILLE AVE · DALLAS [801a5a6c]",
    "family": "CHAIN:COST PLUS WORLD MARKET",
    "distributors": [
     "FullClip",
@@ -13936,6 +14797,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1,
    "combinedCE": {
     "2021": 0,
     "2022": 1,
@@ -13988,6 +14852,7 @@
    ]
   },
   {
+   "key": "COST PLUS WORLD MARKET · 8700 PRESTON RD · PLANO [2b0b1c14]",
    "family": "CHAIN:COST PLUS WORLD MARKET",
    "distributors": [
     "FullClip",
@@ -13998,6 +14863,9 @@
    ],
    "exactAddress": true,
    "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1,
    "combinedCE": {
     "2021": 0,
     "2022": 1,
@@ -14052,6 +14920,7 @@
  ],
  "sectionB": [
   {
+   "key": "SSP AMERICA INC · 3875 TERMINAL RD · HOUSTON [0f8eadf5]",
    "family": "CHAIN:SSP AMERICA INC",
    "distributors": [
     "Silver Eagle"
@@ -14060,6 +14929,10 @@
     "HOUSTON"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 355.32,
    "combinedCE": {
     "2021": 44,
     "2022": 255.63,
@@ -14132,6 +15005,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 2400 CONGRESS AVE · AUSTIN [6574f2be]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty"
@@ -14140,6 +15014,10 @@
     "AUSTIN"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 178.67,
    "combinedCE": {
     "2021": 84,
     "2022": 179.67,
@@ -14232,6 +15110,7 @@
    ]
   },
   {
+   "key": "H E B CENTRAL MARKET · 4477 LAMAR BLVD · AUSTIN [173a9f5e]",
    "family": "CHAIN:H E B CENTRAL MARKET",
    "distributors": [
     "Dynamo Specialty"
@@ -14240,6 +15119,10 @@
     "AUSTIN"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 157.67,
    "combinedCE": {
     "2021": 147.33,
     "2022": 301.34,
@@ -14292,6 +15175,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 1801 51ST ST · AUSTIN [b55d78eb]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty"
@@ -14300,6 +15184,10 @@
     "AUSTIN"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 137,
    "combinedCE": {
     "2021": 87.33,
     "2022": 140,
@@ -14352,6 +15240,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 17119 HWY 6 · MANVEL [a5b9c460]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Green Light"
@@ -14360,6 +15249,10 @@
     "MANVEL"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 136,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -14412,6 +15305,7 @@
    ]
   },
   {
+   "key": "SUNRISE MINI MART · 8925 ANDERSON MILL RD · AUSTIN [7e65054e]",
    "family": "CHAIN:SUNRISE MINI MART",
    "distributors": [
     "Dynamo Specialty"
@@ -14420,6 +15314,10 @@
     "AUSTIN"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 134.67,
    "combinedCE": {
     "2021": 68,
     "2022": 158,
@@ -14472,6 +15370,7 @@
    ]
   },
   {
+   "key": "ONE STOP · 456 COUNTY CLUB RD · WYLIE [89a4d7fd]",
    "family": "NAME:ONE STOP",
    "distributors": [
     "Green Light"
@@ -14480,6 +15379,10 @@
     "WYLIE"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 118.67,
    "combinedCE": {
     "2021": 46.67,
     "2022": 118.67,
@@ -14532,6 +15435,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 14635 MEMORIAL DR · HOUSTON [95efb793]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "Silver Eagle"
@@ -14540,6 +15444,10 @@
     "HOUSTON"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 116,
    "combinedCE": {
     "2021": 131,
     "2022": 107.33,
@@ -14592,6 +15500,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 1000 41ST ST · AUSTIN [125d8745]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty"
@@ -14600,6 +15509,10 @@
     "AUSTIN"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 115.67,
    "combinedCE": {
     "2021": 72,
     "2022": 115.67,
@@ -14652,6 +15565,7 @@
    ]
   },
   {
+   "key": "BREWTIQUE · 401 CYPRESS CREEK RD · CEDAR PARK [902a3523]",
    "family": "NAME:BREWTIQUE",
    "distributors": [
     "Dynamo Specialty"
@@ -14660,6 +15574,10 @@
     "CEDAR PARK"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 94.33,
    "combinedCE": {
     "2021": 47,
     "2022": 103.51,
@@ -14712,6 +15630,7 @@
    ]
   },
   {
+   "key": "POSTINO WINE CAFE · 23501 CINCO RANCH BLVD · KATY [3601e479]",
    "family": "CHAIN:POSTINO WINE CAFE",
    "distributors": [
     "Silver Eagle"
@@ -14720,6 +15639,10 @@
     "KATY"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 89.56,
    "combinedCE": {
     "2021": 0,
     "2022": 89.56,
@@ -14772,6 +15695,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 17410 NORTHWEST FWY · HOUSTON [f81724aa]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "Silver Eagle"
@@ -14781,6 +15705,10 @@
     "HUMBLE"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 86.67,
    "combinedCE": {
     "2021": 86.67,
     "2022": 39.67,
@@ -14833,6 +15761,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 500 CANYON RIDGE DR · AUSTIN [3cbd5450]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Dynamo Specialty"
@@ -14841,6 +15770,10 @@
     "AUSTIN"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 86.67,
    "combinedCE": {
     "2021": 37.33,
     "2022": 87.67,
@@ -14893,6 +15826,7 @@
    ]
   },
   {
+   "key": "OTG COMPANY · 3321 TERMINAL RD GATE C12 · HOUSTON [45922f08]",
    "family": "CHAIN:OTG COMPANY",
    "distributors": [
     "Silver Eagle"
@@ -14901,6 +15835,10 @@
     "HOUSTON"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 75.78,
    "combinedCE": {
     "2021": 6,
     "2022": 5,
@@ -14953,6 +15891,7 @@
    ]
   },
   {
+   "key": "SHELLMANS BARTONVILLE · 3501 FM 407 · BARTONVILLE [a7d4b5b8]",
    "family": "NAME:SHELLMANS BARTONVILLE",
    "distributors": [
     "FullClip"
@@ -14961,6 +15900,10 @@
     "BARTONVILLE"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 70.67,
    "combinedCE": {
     "2021": 31.33,
     "2022": 70.67,
@@ -15013,6 +15956,7 @@
    ]
   },
   {
+   "key": "600 DEGREES · 124 EAST 8TH ST · GEORGETOWN [33fc73ae]",
    "family": "NAME:600 DEGREES",
    "distributors": [
     "Dynamo Specialty"
@@ -15022,6 +15966,10 @@
     "ROUND ROCK"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 65.29,
    "combinedCE": {
     "2021": 32.84,
     "2022": 97.25,
@@ -15094,6 +16042,7 @@
    ]
   },
   {
+   "key": "CALANDRO S · 12732 PERKINS RD · BATON ROUGE [cd3b3ac0]",
    "family": "NAME:CALANDRO S",
    "distributors": [
     "International Wine and Spirits"
@@ -15102,6 +16051,10 @@
     "BATON ROUGE"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 61.11,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -15154,6 +16107,7 @@
    ]
   },
   {
+   "key": "PIZZA LOUNGE · 10555 PEARLAND PKWY · HOUSTON [7749f388]",
    "family": "NAME:PIZZA LOUNGE",
    "distributors": [
     "Silver Eagle"
@@ -15162,6 +16116,10 @@
     "HOUSTON"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 53,
    "combinedCE": {
     "2021": 55.29,
     "2022": 35.88,
@@ -15214,6 +16172,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 3335 HWY 6 · SUGAR LAND [6998eced]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "Silver Eagle"
@@ -15223,6 +16182,10 @@
     "HOUSTON"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 51,
    "combinedCE": {
     "2021": 66,
     "2022": 70,
@@ -15295,6 +16258,7 @@
    ]
   },
   {
+   "key": "SEGUNDO COFFEE · 711 MILBY ST · HOUSTON [81f7ffcd]",
    "family": "NAME:SEGUNDO COFFEE",
    "distributors": [
     "Silver Eagle"
@@ -15303,6 +16267,10 @@
     "HOUSTON"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 50.2,
    "combinedCE": {
     "2021": 4,
     "2022": 0,
@@ -15355,6 +16323,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 7034 FM 1960 RD · HUMBLE [d444236a]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "Silver Eagle"
@@ -15364,6 +16333,10 @@
     "HOUSTON"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 49,
    "combinedCE": {
     "2021": 69,
     "2022": 40,
@@ -15416,6 +16389,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 28595 TOMBALL PKWY · TOMBALL [8eea52f7]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "Silver Eagle"
@@ -15425,6 +16399,10 @@
     "HOUSTON"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 48,
    "combinedCE": {
     "2021": 70,
     "2022": 33.96,
@@ -15477,6 +16455,7 @@
    ]
   },
   {
+   "key": "BOOTLEGGERS LIQUOR · 2611 MOODY RD · WARNER ROBINS [0870dab4]",
    "family": "NAME:BOOTLEGGERS LIQUOR",
    "distributors": [
     "Modern Hops"
@@ -15485,6 +16464,10 @@
     "WARNER ROBINS"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 45.9,
    "combinedCE": {
     "2021": 18.39,
     "2022": 64.23,
@@ -15537,6 +16520,7 @@
    ]
   },
   {
+   "key": "BEER GEEK · 2051 FM1626 · MANCHACA [9712c597]",
    "family": "NAME:BEER GEEK",
    "distributors": [
     "Dynamo Specialty"
@@ -15545,6 +16529,10 @@
     "MANCHACA"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 44.22,
    "combinedCE": {
     "2021": 26,
     "2022": 35.25,
@@ -15597,6 +16585,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 10491 KUYKENDAHL · SPRING [aac31abb]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "Silver Eagle"
@@ -15606,6 +16595,10 @@
     "HOUSTON"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 41,
    "combinedCE": {
     "2021": 41,
     "2022": 24,
@@ -15658,6 +16651,7 @@
    ]
   },
   {
+   "key": "VIA 313 PIZZERIA · 1541 SHEPHERD DR · HOUSTON [dc1a21b4]",
    "family": "CHAIN:VIA 313 PIZZERIA",
    "distributors": [
     "Silver Eagle"
@@ -15667,6 +16661,10 @@
     "WEBSTER"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 39.03,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -15739,6 +16737,7 @@
    ]
   },
   {
+   "key": "PARRYS PIZZERIA AND TAPHOUSE · 5752 GRANDSCAPE BLVD · COLONY [ce6d8235]",
    "family": "CHAIN:PARRYS PIZZERIA AND TAPHOUSE",
    "distributors": [
     "Green Light"
@@ -15747,6 +16746,10 @@
     "COLONY"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 34.4444,
    "combinedCE": {
     "2021": 0,
     "2022": 2.29,
@@ -15819,6 +16822,7 @@
    ]
   },
   {
+   "key": "TOTAL WINE MORE · 5601 BRODIE LN · SUNSET VALLEY [671182bd]",
    "family": "CHAIN:TOTAL WINE MORE",
    "distributors": [
     "Dynamo Specialty"
@@ -15828,6 +16832,10 @@
     "AUSTIN"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 32.33,
    "combinedCE": {
     "2021": 16,
     "2022": 35.33,
@@ -15900,6 +16908,7 @@
    ]
   },
   {
+   "key": "ROUSES SUPERMARKET · 14635 AIRLINE HWY · GONZALES [c5bd898c]",
    "family": "CHAIN:ROUSES SUPERMARKET",
    "distributors": [
     "International Wine and Spirits"
@@ -15908,6 +16917,10 @@
     "GONZALES"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 32.33,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -15960,6 +16973,7 @@
    ]
   },
   {
+   "key": "TWIN LIQUOR · 5910 BABCOCK RD · SAN ANTONIO [248ff9a9]",
    "family": "CHAIN:TWIN LIQUOR",
    "distributors": [
     "Dynamo Specialty"
@@ -15968,6 +16982,10 @@
     "SAN ANTONIO"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 28,
    "combinedCE": {
     "2021": 0,
     "2022": 8,
@@ -16020,6 +17038,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 7314 LOUETTA RD · SPRING [176b0d11]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "Silver Eagle"
@@ -16028,6 +17047,10 @@
     "SPRING"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 28,
    "combinedCE": {
     "2021": 43,
     "2022": 22,
@@ -16080,6 +17103,7 @@
    ]
   },
   {
+   "key": "FOOD HALL · 312 PEARL PKWY · SAN ANTONIO [f8709c01]",
    "family": "NAME:FOOD HALL",
    "distributors": [
     "Dynamo Specialty"
@@ -16088,6 +17112,10 @@
     "SAN ANTONIO"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 27,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -16140,6 +17168,7 @@
    ]
   },
   {
+   "key": "EVEREST GROCERY · 1900 UNIVERSITY BLVD · ROUND ROCK [3fd923ee]",
    "family": "NAME:EVEREST GROCERY",
    "distributors": [
     "Dynamo Specialty"
@@ -16148,6 +17177,10 @@
     "ROUND ROCK"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 24,
    "combinedCE": {
     "2021": 17.67,
     "2022": 24,
@@ -16200,6 +17233,7 @@
    ]
   },
   {
+   "key": "BREEZE MARKET · 17250 LAKE HOUSTON PKWY · HUMBLE [fa5ca265]",
    "family": "NAME:BREEZE MARKET",
    "distributors": [
     "Silver Eagle"
@@ -16208,6 +17242,10 @@
     "HUMBLE"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 24,
    "combinedCE": {
     "2021": 24,
     "2022": 1,
@@ -16260,6 +17298,7 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 899 UNIVERSITY DR · FRISCO [4816e0fd]",
    "family": "CHAIN:H E B FOOD STORE",
    "distributors": [
     "Green Light"
@@ -16268,6 +17307,10 @@
     "FRISCO"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 23.67,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -16320,6 +17363,7 @@
    ]
   },
   {
+   "key": "KIRANS RESTAURANT · 2925 RICHMOND AVE · HOUSTON [d92f76fb]",
    "family": "NAME:KIRANS RESTAURANT",
    "distributors": [
     "Silver Eagle"
@@ -16328,6 +17372,10 @@
     "HOUSTON"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 21.64,
    "combinedCE": {
     "2021": 5.59,
     "2022": 21.64,
@@ -16380,6 +17428,7 @@
    ]
   },
   {
+   "key": "IZZI MARKET · 2503 YALE ST · HOUSTON [0adadb67]",
    "family": "NAME:IZZI MARKET",
    "distributors": [
     "Silver Eagle"
@@ -16388,6 +17437,10 @@
     "HOUSTON"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 20,
    "combinedCE": {
     "2021": 0,
     "2022": 20,
@@ -16440,6 +17493,7 @@
    ]
   },
   {
+   "key": "MERCADO DISTRICT · 4400 23RD ST · MCALLEN [8c4f5272]",
    "family": "NAME:MERCADO DISTRICT",
    "distributors": [
     "L&F"
@@ -16448,6 +17502,10 @@
     "MCALLEN"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 20,
    "combinedCE": {
     "2021": 0,
     "2022": 4,
@@ -16500,6 +17558,7 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 1743 FRY RD · KATY [dc936a14]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
    "distributors": [
     "Silver Eagle"
@@ -16508,6 +17567,10 @@
     "KATY"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 18,
    "combinedCE": {
     "2021": 31,
     "2022": 23,
@@ -16560,6 +17623,7 @@
    ]
   },
   {
+   "key": "ZZLIBERTY STATION · 2101 WASHINGTON · HOUSTON [8a04047e]",
    "family": "NAME:ZZLIBERTY STATION",
    "distributors": [
     "Silver Eagle"
@@ -16568,6 +17632,10 @@
     "HOUSTON"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 16.07,
    "combinedCE": {
     "2021": 4.59,
     "2022": 0,
@@ -16620,6 +17688,7 @@
    ]
   },
   {
+   "key": "FILO S · 4301 MESA DR · ABILENE [4b96579d]",
    "family": "NAME:FILO S",
    "distributors": [
     "Green Light"
@@ -16628,6 +17697,10 @@
     "ABILENE"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 15.67,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -16680,6 +17753,7 @@
    ]
   },
   {
+   "key": "YETI LIQUOR · 2900 QUINLAN PARK RD · AUSTIN [6217b8f7]",
    "family": "NAME:YETI LIQUOR",
    "distributors": [
     "Dynamo Specialty"
@@ -16688,6 +17762,10 @@
     "AUSTIN"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 14.67,
    "combinedCE": {
     "2021": 0,
     "2022": 2.33,
@@ -16740,6 +17818,7 @@
    ]
   },
   {
+   "key": "BREAKTIME C · 12131 NORTH POINTE BLVD · TOMBALL [f482d993]",
    "family": "NAME:BREAKTIME C",
    "distributors": [
     "Silver Eagle"
@@ -16748,6 +17827,10 @@
     "TOMBALL"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 14,
    "combinedCE": {
     "2021": 15,
     "2022": 10,
@@ -16800,6 +17883,7 @@
    ]
   },
   {
+   "key": "HUGH O · 7620 KATY FWY · HOUSTON [490eb3e6]",
    "family": "NAME:HUGH O",
    "distributors": [
     "Silver Eagle"
@@ -16808,6 +17892,10 @@
     "HOUSTON"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 13.78,
    "combinedCE": {
     "2021": 4.59,
     "2022": 0,
@@ -16880,6 +17968,7 @@
    ]
   },
   {
+   "key": "MOLLYS PUB · 29803 LOOP 494 · KINGWOOD [6fa4c26e]",
    "family": "CHAIN:MOLLYS PUB",
    "distributors": [
     "Silver Eagle"
@@ -16889,6 +17978,10 @@
     "CONROE"
    ],
    "exactAddress": false,
+   "yearsOverlap": false,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 13.78,
    "combinedCE": {
     "2021": 1,
     "2022": 0,
@@ -16941,6 +18034,7 @@
    ]
   },
   {
+   "key": "BRASS TAP · 815 47TH ST · AUSTIN [3b9ca154]",
    "family": "NAME:BRASS TAP",
    "distributors": [
     "Dynamo Specialty"
@@ -16949,6 +18043,10 @@
     "AUSTIN"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 13.7778,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -17001,6 +18099,7 @@
    ]
   },
   {
+   "key": "FOX DOG · 209 7TH ST · TEMPLE [9ff052b7]",
    "family": "NAME:FOX DOG",
    "distributors": [
     "Dynamo Specialty"
@@ -17009,6 +18108,10 @@
     "TEMPLE"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 13,
    "combinedCE": {
     "2021": 3.29,
     "2022": 0,
@@ -17061,6 +18164,7 @@
    ]
   },
   {
+   "key": "BOUDREAUX EXPRESS · 14701 BOUDREAUX RD · CYPRESS [68cfc444]",
    "family": "NAME:BOUDREAUX EXPRESS",
    "distributors": [
     "Silver Eagle"
@@ -17070,6 +18174,10 @@
     "TOMBALL"
    ],
    "exactAddress": false,
+   "yearsOverlap": false,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 13,
    "combinedCE": {
     "2021": 8,
     "2022": 13,
@@ -17122,6 +18230,7 @@
    ]
   },
   {
+   "key": "FM 1660 · 133 FRONT ST · HUTTO [5e9fd5ef]",
    "family": "NAME:FM 1660",
    "distributors": [
     "Dynamo Specialty"
@@ -17130,6 +18239,10 @@
     "HUTTO"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "store_code_match",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 12,
    "combinedCE": {
     "2021": 5,
     "2022": 14,
@@ -17182,6 +18295,7 @@
    ]
   },
   {
+   "key": "BLUFFALO WINGS · 5802 YORKTOWN BLVD · CORPUS CHRISTI [56a4acb8]",
    "family": "NAME:BLUFFALO WINGS",
    "distributors": [
     "L&F"
@@ -17190,6 +18304,10 @@
     "CORPUS CHRISTI"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 9.17,
    "combinedCE": {
     "2021": 0,
     "2022": 4.59,
@@ -17242,6 +18360,7 @@
    ]
   },
   {
+   "key": "ROUSES SUPERMARKET · 4041 WILLIAMS BLVD · METAIRIE [fd228514]",
    "family": "CHAIN:ROUSES SUPERMARKET",
    "distributors": [
     "International Wine and Spirits"
@@ -17251,6 +18370,10 @@
     "KENNER"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 7.33,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -17303,6 +18426,7 @@
    ]
   },
   {
+   "key": "NEU HUB · 410 HWY 290 · ELGIN [aed39c65]",
    "family": "CHAIN:NEU HUB",
    "distributors": [
     "Dynamo Specialty"
@@ -17312,6 +18436,10 @@
     "MANOR"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 7,
    "combinedCE": {
     "2021": 1,
     "2022": 7,
@@ -17364,6 +18492,7 @@
    ]
   },
   {
+   "key": "SAMPLES INTERNATIONAL · 4927 BLOOMFIELD ST · JEFFERSON [d7269f5c]",
    "family": "NAME:SAMPLES INTERNATIONAL",
    "distributors": [
     "International Wine and Spirits"
@@ -17372,6 +18501,10 @@
     "JEFFERSON"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.92,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -17424,6 +18557,7 @@
    ]
   },
   {
+   "key": "LIBERTY HILL · 15120 STATE HWY 29 · LIBERTY HILL [8b5b3c53]",
    "family": "NAME:LIBERTY HILL",
    "distributors": [
     "Dynamo Specialty"
@@ -17432,6 +18566,10 @@
     "LIBERTY HILL"
    ],
    "exactAddress": false,
+   "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.89,
    "combinedCE": {
     "2021": 0,
     "2022": 1,
@@ -17484,6 +18622,7 @@
    ]
   },
   {
+   "key": "BATTLE BREW · 5920 ROSWELL RD · SANDY SPRINGS [670a0209]",
    "family": "NAME:BATTLE BREW",
    "distributors": [
     "Modern Hops"
@@ -17492,6 +18631,10 @@
     "SANDY SPRINGS"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6.89,
    "combinedCE": {
     "2021": 0,
     "2022": 9.18,
@@ -17544,6 +18687,7 @@
    ]
   },
   {
+   "key": "SOHO GARDEN · 409 TRAVIS ST · HOUSTON [62377217]",
    "family": "NAME:SOHO GARDEN",
    "distributors": [
     "Silver Eagle"
@@ -17552,6 +18696,10 @@
     "HOUSTON"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 6,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -17604,6 +18752,7 @@
    ]
   },
   {
+   "key": "ZZGRAND LIQUOR · 469 FM 1488 · CONROE [3b431cde]",
    "family": "NAME:ZZGRAND LIQUOR",
    "distributors": [
     "Silver Eagle"
@@ -17612,6 +18761,10 @@
     "CONROE"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 5,
    "combinedCE": {
     "2021": 2,
     "2022": 5,
@@ -17664,6 +18817,7 @@
    ]
   },
   {
+   "key": "POND SPRING · 13125 POND SPRINGS RD · AUSTIN [f35ecff5]",
    "family": "NAME:POND SPRING",
    "distributors": [
     "Dynamo Specialty"
@@ -17672,6 +18826,10 @@
     "AUSTIN"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 5,
    "combinedCE": {
     "2021": 4,
     "2022": 5,
@@ -17724,6 +18882,7 @@
    ]
   },
   {
+   "key": "TAP 65 · 515 MOUTON ST · BATON ROUGE [84f3f4be]",
    "family": "NAME:TAP 65",
    "distributors": [
     "International Wine and Spirits"
@@ -17732,6 +18891,10 @@
     "BATON ROUGE"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4.59,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -17784,6 +18947,7 @@
    ]
   },
   {
+   "key": "AL S · 200B US 287 · DECATUR [2b8fc232]",
    "family": "NAME:AL S",
    "distributors": [
     "Green Light"
@@ -17792,6 +18956,10 @@
     "DECATUR"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4.33,
    "combinedCE": {
     "2021": 1,
     "2022": 4.33,
@@ -17844,6 +19012,7 @@
    ]
   },
   {
+   "key": "WEIRDO AUSTIN · 4829 HWY 183 · AUSTIN [d491a88b]",
    "family": "NAME:WEIRDO AUSTIN",
    "distributors": [
     "Dynamo Specialty"
@@ -17852,6 +19021,10 @@
     "AUSTIN"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -17904,6 +19077,7 @@
    ]
   },
   {
+   "key": "TWIN LIQUOR · 9234 LOOP 1604 WEST · SAN ANTONIO [eb66e60f]",
    "family": "CHAIN:TWIN LIQUOR",
    "distributors": [
     "Dynamo Specialty"
@@ -17912,6 +19086,10 @@
     "SAN ANTONIO"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -17964,6 +19142,7 @@
    ]
   },
   {
+   "key": "BEVLAND · 5932 DENTON HWY · WATAUGA [ed7b1985]",
    "family": "NAME:BEVLAND",
    "distributors": [
     "Green Light"
@@ -17972,6 +19151,10 @@
     "WATAUGA"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -18024,6 +19207,7 @@
    ]
   },
   {
+   "key": "DYN1 UNCLASSIFIED · 1551 CLOVIS R BARKER RD · SAN MARCOS [d6a25f3c]",
    "family": "NAME:DYN1 UNCLASSIFIED",
    "distributors": [
     "Dynamo Specialty"
@@ -18032,6 +19216,10 @@
     "SAN MARCOS"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 4,
    "combinedCE": {
     "2021": 1.33,
     "2022": 8,
@@ -18084,6 +19272,7 @@
    ]
   },
   {
+   "key": "PINKIES LIQUOR · 7232 HILLSIDE · AMARILLO [2600f683]",
    "family": "CHAIN:PINKIES LIQUOR",
    "distributors": [
     "Green Light"
@@ -18092,6 +19281,10 @@
     "AMARILLO"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -18144,6 +19337,7 @@
    ]
   },
   {
+   "key": "MANOR EXPRESS · 2101 MANOR RD · AUSTIN [8d8f45b5]",
    "family": "NAME:MANOR EXPRESS",
    "distributors": [
     "Dynamo Specialty"
@@ -18152,6 +19346,10 @@
     "AUSTIN"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3,
    "combinedCE": {
     "2021": 0,
     "2022": 3,
@@ -18204,6 +19402,7 @@
    ]
   },
   {
+   "key": "FUEL MAXX · 5418 FM 2100 · CROSBY [bc2b94f2]",
    "family": "CHAIN:FUEL MAXX",
    "distributors": [
     "Wismer"
@@ -18212,6 +19411,10 @@
     "CROSBY"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3,
    "combinedCE": {
     "2021": 4,
     "2022": 0,
@@ -18264,6 +19467,7 @@
    ]
   },
   {
+   "key": "TEXAS BORDERS · 26440 FM 1093 · RICHMOND [a929323b]",
    "family": "NAME:TEXAS BORDERS",
    "distributors": [
     "Silver Eagle"
@@ -18272,6 +19476,10 @@
     "RICHMOND"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2.29,
    "combinedCE": {
     "2021": 1,
     "2022": 0,
@@ -18324,6 +19532,7 @@
    ]
   },
   {
+   "key": "WHISKEY CHARLIE · 9818 FRY RD · CYPRESS [f52b1c23]",
    "family": "NAME:WHISKEY CHARLIE",
    "distributors": [
     "Silver Eagle"
@@ -18333,6 +19542,10 @@
     "KATY"
    ],
    "exactAddress": false,
+   "yearsOverlap": false,
+   "matchBasis": "city_adjacency",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 1,
     "2022": 2,
@@ -18385,6 +19598,7 @@
    ]
   },
   {
+   "key": "EXPRESS MART · 2659 RILEY FUZZELL RD · SPRING [a04d896c]",
    "family": "NAME:EXPRESS MART",
    "distributors": [
     "Silver Eagle"
@@ -18393,6 +19607,10 @@
     "SPRING"
    ],
    "exactAddress": false,
+   "yearsOverlap": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 1,
     "2022": 0,
@@ -18445,6 +19663,7 @@
    ]
   },
   {
+   "key": "ANNIE · 3700 TERMINAL RD · HOUSTON [30c7daf1]",
    "family": "NAME:ANNIE",
    "distributors": [
     "Silver Eagle"
@@ -18453,6 +19672,10 @@
     "HOUSTON"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -18505,6 +19728,7 @@
    ]
   },
   {
+   "key": "STAR CONVENIENCE · 3915 WILLIAMS BLVD · KENNER [4ff324cf]",
    "family": "NAME:STAR CONVENIENCE",
    "distributors": [
     "International Wine and Spirits"
@@ -18513,6 +19737,10 @@
     "KENNER"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 2,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -18565,6 +19793,7 @@
    ]
   },
   {
+   "key": "RAMIREZ JUSTIN · RDD BULK · REGION 1 [67dab432]",
    "family": "NAME:RAMIREZ JUSTIN",
    "distributors": [
     "Silver Eagle"
@@ -18574,6 +19803,10 @@
     "BULK REGION 1"
    ],
    "exactAddress": true,
+   "yearsOverlap": false,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": true,
+   "peakCE": 1.88,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -18626,6 +19859,7 @@
    ]
   },
   {
+   "key": "RAYMOND S · 8111 HWY 287 · ARLINGTON [252101ea]",
    "family": "NAME:RAYMOND S",
    "distributors": [
     "Green Light"
@@ -18634,6 +19868,10 @@
     "ARLINGTON"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1.3333,
    "combinedCE": {
     "2021": 0,
     "2022": 1,
@@ -18686,6 +19924,7 @@
    ]
   },
   {
+   "key": "WAREHOUSE BREAKAGE · 701 ALAMO · SAN ANTONIO [32db076c]",
    "family": "NAME:WAREHOUSE BREAKAGE",
    "distributors": [
     "Dynamo Specialty"
@@ -18694,6 +19933,10 @@
     "SAN ANTONIO"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1.33,
    "combinedCE": {
     "2021": 2.33,
     "2022": 0,
@@ -18746,6 +19989,7 @@
    ]
   },
   {
+   "key": "EZ XPRESS · 18911 SAN MARCOS HWY · MARTINDALE [f1e0e84c]",
    "family": "NAME:EZ XPRESS",
    "distributors": [
     "Dynamo Specialty"
@@ -18754,6 +19998,10 @@
     "MARTINDALE"
    ],
    "exactAddress": false,
+   "yearsOverlap": true,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -18806,6 +20054,7 @@
    ]
   },
   {
+   "key": "ROADTRAC 8 · 30668 ALDINE WESTFIELD RD · SPRING [d5710efd]",
    "family": "NAME:ROADTRAC 8",
    "distributors": [
     "Silver Eagle"
@@ -18814,6 +20063,10 @@
     "SPRING"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -18866,6 +20119,7 @@
    ]
   },
   {
+   "key": "BUFFALO CHIP · 13290 IH 27 · AMARILLO [be8e1f0f]",
    "family": "NAME:BUFFALO CHIP",
    "distributors": [
     "Green Light"
@@ -18874,6 +20128,10 @@
     "AMARILLO"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1,
    "combinedCE": {
     "2021": 0,
     "2022": 0,
@@ -18926,6 +20184,7 @@
    ]
   },
   {
+   "key": "SHADY S · 9661 AUDELIA RD · DALLAS [eb08b34f]",
    "family": "NAME:SHADY S",
    "distributors": [
     "FullClip"
@@ -18934,6 +20193,10 @@
     "DALLAS"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 1,
    "combinedCE": {
     "2021": 1,
     "2022": 2,
@@ -18986,6 +20249,7 @@
    ]
   },
   {
+   "key": "JORDAN SAMPLES · NO ADDRESS · ALPHARETTA [260ddee3]",
    "family": "NAME:JORDAN SAMPLES",
    "distributors": [
     "Modern Hops"
@@ -18994,6 +20258,10 @@
     "ALPHARETTA"
    ],
    "exactAddress": true,
+   "yearsOverlap": true,
+   "matchBasis": "cross_family_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 0.47,
    "combinedCE": {
     "2021": 0,
     "2022": 0.83,
@@ -19168,8 +20436,20 @@
  ],
  "sectionC": [
   {
+   "key": "WHOLE FOODS MARKET · 801 EAST LAMAR · ARLINGTON [df77c3ac]",
    "family": "CHAIN:WHOLE FOODS MARKET",
-   "token": "LAMAR",
+   "distributors": [
+    "Green Light",
+    "Dynamo Specialty"
+   ],
+   "cities": [
+    "ARLINGTON",
+    "AUSTIN"
+   ],
+   "exactAddress": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 192.84,
    "rows": [
     {
      "id": "37c1c57a-c02b-8173-a7f0-f00bd525cdb9",
@@ -19214,8 +20494,20 @@
    ]
   },
   {
+   "key": "WHOLE FOODS MARKET · 801 LAMAR BLVD · ARLINGTON [7d70e712]",
    "family": "CHAIN:WHOLE FOODS MARKET",
-   "token": "LAMAR",
+   "distributors": [
+    "FullClip",
+    "Dynamo Specialty"
+   ],
+   "cities": [
+    "ARLINGTON",
+    "AUSTIN"
+   ],
+   "exactAddress": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 192.84,
    "rows": [
     {
      "id": "37c1c57a-c02b-817e-9f4e-c4d42ebfebca",
@@ -19260,8 +20552,20 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 2341 US 377 · WESTLAKE [79f4347a]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
-   "token": "US",
+   "distributors": [
+    "FullClip",
+    "Dynamo Specialty"
+   ],
+   "cities": [
+    "WESTLAKE",
+    "AUSTIN"
+   ],
+   "exactAddress": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 28,
    "rows": [
     {
      "id": "37c1c57a-c02b-8162-815d-f73bfc357ebb",
@@ -19306,8 +20610,20 @@
    ]
   },
   {
+   "key": "H E B FOOD STORE · 1314 WEST ADAMS · TEMPLE [b551148f]",
    "family": "CHAIN:H E B FOOD STORE",
-   "token": "ADAMS",
+   "distributors": [
+    "Green Light",
+    "Dynamo Specialty"
+   ],
+   "cities": [
+    "TEMPLE",
+    "FREDERICKSBURG"
+   ],
+   "exactAddress": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 24,
    "rows": [
     {
      "id": "37c1c57a-c02b-814b-bb59-fdf23d5276bb",
@@ -19352,8 +20668,20 @@
    ]
   },
   {
+   "key": "SPECS WINE SPIRITS FINER FOO · 9900 IH 35 SOUTH · AUSTIN [82fc2676]",
    "family": "CHAIN:SPECS WINE SPIRITS FINER FOO",
-   "token": "IH",
+   "distributors": [
+    "Dynamo Specialty",
+    "Silver Eagle"
+   ],
+   "cities": [
+    "AUSTIN",
+    "OAK RIDGE NORTH"
+   ],
+   "exactAddress": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 15,
    "rows": [
     {
      "id": "37c1c57a-c02b-81bf-a116-c93dede145e4",
@@ -19398,8 +20726,20 @@
    ]
   },
   {
+   "key": "BROOKSHIRE FOOD STORE · 3354 GILMER RD · LONGVIEW [162a2bb0]",
    "family": "CHAIN:BROOKSHIRE FOOD STORE",
-   "token": "GILMER",
+   "distributors": [
+    "Green Light",
+    "FullClip"
+   ],
+   "cities": [
+    "LONGVIEW",
+    "SULPHUR SPRINGS"
+   ],
+   "exactAddress": false,
+   "matchBasis": "street_token",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 3,
    "rows": [
     {
      "id": "37c1c57a-c02b-8100-b09a-eaf73902e46a",
@@ -19442,6 +20782,242 @@
      }
     }
    ]
+  }
+ ],
+ "sectionD": [
+  {
+   "key": "COST PLUS WORLD MARKET · 8700 PRESTON RD · PLANO [5e1bf6b3]",
+   "family": "CHAIN:COST PLUS WORLD MARKET",
+   "distributors": [
+    "Green Light",
+    "FullClip"
+   ],
+   "cities": [
+    "PLANO"
+   ],
+   "exactAddress": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 59.67,
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-814c-9431-e8d4209c45ed",
+     "uid": "acct_146a0985",
+     "name": "COST PLUS WORLD MARKET #104",
+     "address": "8700 PRESTON RD",
+     "city": "PLANO",
+     "distributor": "Green Light",
+     "first": 2023,
+     "last": 2023,
+     "peak": 1,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 1,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8162-8d16-cb1f69ffe11a",
+     "uid": "acct_835bd8ba",
+     "name": "TOTAL WINE #506 - PRESTON ROAD",
+     "address": "8700 PRESTON ROAD  SUITE 113",
+     "city": "PLANO",
+     "distributor": "FullClip",
+     "first": 2021,
+     "last": 2023,
+     "peak": 59.67,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 19,
+      "2022": 59.67,
+      "2023": 9,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ],
+   "ruling": "Not a merge",
+   "rulingRationale": "Section D: same address, different store code. Not a duplicate. Retained as evidence of raw-feed address defects."
+  },
+  {
+   "key": "COST PLUS WORLD MARKET · 8700 PRESTON RD · PLANO [345960d3]",
+   "family": "CHAIN:COST PLUS WORLD MARKET",
+   "distributors": [
+    "FullClip"
+   ],
+   "cities": [
+    "PLANO"
+   ],
+   "exactAddress": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 59.67,
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-814e-8286-ef93fc5767a1",
+     "uid": "acct_544d9fcc",
+     "name": "WORLD MARKET #104 - PLANO",
+     "address": "8700 PRESTON ROAD",
+     "city": "PLANO",
+     "distributor": "FullClip",
+     "first": 2022,
+     "last": 2022,
+     "peak": 1,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 1,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-8162-8d16-cb1f69ffe11a",
+     "uid": "acct_835bd8ba",
+     "name": "TOTAL WINE #506 - PRESTON ROAD",
+     "address": "8700 PRESTON ROAD  SUITE 113",
+     "city": "PLANO",
+     "distributor": "FullClip",
+     "first": 2021,
+     "last": 2023,
+     "peak": 59.67,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 19,
+      "2022": 59.67,
+      "2023": 9,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ],
+   "ruling": "Not a merge",
+   "rulingRationale": "Section D: same address, different store code. Not a duplicate. Retained as evidence of raw-feed address defects."
+  },
+  {
+   "key": "COST PLUS WORLD MARKET · 8700 PRESTON RD · PLANO [4677bb3e]",
+   "family": "CHAIN:COST PLUS WORLD MARKET",
+   "distributors": [
+    "Green Light"
+   ],
+   "cities": [
+    "PLANO"
+   ],
+   "exactAddress": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 9,
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-814c-9431-e8d4209c45ed",
+     "uid": "acct_146a0985",
+     "name": "COST PLUS WORLD MARKET #104",
+     "address": "8700 PRESTON RD",
+     "city": "PLANO",
+     "distributor": "Green Light",
+     "first": 2023,
+     "last": 2023,
+     "peak": 1,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 1,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-81de-bac6-fd2c4ed3cbe6",
+     "uid": "acct_32df0837",
+     "name": "TOTAL WINE & MORE 506",
+     "address": "8700 PRESTON RD.",
+     "city": "PLANO",
+     "distributor": "Green Light",
+     "first": 2023,
+     "last": 2025,
+     "peak": 9,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 8,
+      "2024": 9,
+      "2025": 3,
+      "2026 YTD": 0
+     }
+    }
+   ],
+   "ruling": "Not a merge",
+   "rulingRationale": "Section D: same address, different store code. Not a duplicate. Retained as evidence of raw-feed address defects."
+  },
+  {
+   "key": "TOTAL WINE MORE · 8700 PRESTON RD · PLANO [a45e1a75]",
+   "family": "CHAIN:TOTAL WINE MORE",
+   "distributors": [
+    "Green Light",
+    "FullClip"
+   ],
+   "cities": [
+    "PLANO"
+   ],
+   "exactAddress": true,
+   "matchBasis": "identical_address",
+   "addressOnlyNonAdjacent": false,
+   "peakCE": 9,
+   "rows": [
+    {
+     "id": "37c1c57a-c02b-81de-bac6-fd2c4ed3cbe6",
+     "uid": "acct_32df0837",
+     "name": "TOTAL WINE & MORE 506",
+     "address": "8700 PRESTON RD.",
+     "city": "PLANO",
+     "distributor": "Green Light",
+     "first": 2023,
+     "last": 2025,
+     "peak": 9,
+     "trajectory": "Lapsed 2026",
+     "ce": {
+      "2021": 0,
+      "2022": 0,
+      "2023": 8,
+      "2024": 9,
+      "2025": 3,
+      "2026 YTD": 0
+     }
+    },
+    {
+     "id": "37c1c57a-c02b-814e-8286-ef93fc5767a1",
+     "uid": "acct_544d9fcc",
+     "name": "WORLD MARKET #104 - PLANO",
+     "address": "8700 PRESTON ROAD",
+     "city": "PLANO",
+     "distributor": "FullClip",
+     "first": 2022,
+     "last": 2022,
+     "peak": 1,
+     "trajectory": "Lapsed earlier",
+     "ce": {
+      "2021": 0,
+      "2022": 1,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026 YTD": 0
+     }
+    }
+   ],
+   "ruling": "Not a merge",
+   "rulingRationale": "Section D: same address, different store code. Not a duplicate. Retained as evidence of raw-feed address defects."
   }
  ]
 }

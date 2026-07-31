@@ -33,6 +33,7 @@
 import { queryAll, plain } from './notion.js'
 import { normAddr, chainStoreKey, isPseudo } from './identity.js'
 import fs from 'fs'
+import crypto from 'crypto'
 
 const MART_B = 'e75409d7238a49cea390bbfe123bfc45'
 const YEARS = [2021, 2022, 2023, 2024, 2025]
@@ -260,6 +261,22 @@ for (const [, g] of byAddr) {
   }
 }
 
+// A cluster's identity is the set of accounts in it. account_uid is the mart's
+// own stable id, so a rerun that produces the same membership produces the same
+// key even if row order, generation order or cluster numbering all change.
+// The readable prefix is for the Architect; the hash is what guarantees it.
+function clusterKey(c) {
+  const ids = c.map(r => r.uid || r.id).sort()
+  const h = crypto.createHash('sha1').update(ids.join('|')).digest('hex').slice(0, 8)
+  const fam = (c[0].family || '').replace(/^(CHAIN|NAME):/, '')
+  const where = [c[0].canonAddr, c[0].city].filter(Boolean).join(' · ')
+  return `${fam} · ${where} [${h}]`.replace(/\s+/g, ' ').trim()
+}
+const anyPair = (c, fn) => {
+  for (let i = 0; i < c.length; i++) for (let j = i + 1; j < c.length; j++) if (fn(c[i], c[j])) return true
+  return false
+}
+
 // ---- assemble clusters ------------------------------------------
 const clusters = new Map()
 for (const r of rows) {
@@ -281,6 +298,20 @@ for (const c of cands) {
   c.ce = {}
   for (const y of [...YEARS, '2026 YTD']) c.ce[y] = Math.round(c.reduce((s, r) => s + r.ce[y], 0) * 10000) / 10000
   c.goody = c.some(r => chainStoreKey(r.name))
+  c.peakCE = Math.max(...c.map(r => r.peak))
+
+  // Stable across reruns: derived from cluster MEMBERSHIP, not from row order
+  // or generation sequence, so the same set of accounts always yields the same
+  // key and the Architect's ruling stays attached to it across a regenerate.
+  c.key = clusterKey(c)
+
+  // Which path caught it. A cluster can satisfy several; report the most
+  // specific, since that is what the Architect is weighting when he rules.
+  if (c.some(r => addrOnly.has(r.canonAddr))) c.basis = 'cross_family_address'
+  else if (c.exactAddr) c.basis = 'identical_address'
+  else if (anyPair(c, codeMatches)) c.basis = 'store_code_match'
+  else if (c.cities.length > 1) c.basis = 'city_adjacency'
+  else c.basis = 'street_token'
 }
 
 // The ruling's fourth criterion. A cluster with only ONE distributor is not
@@ -384,13 +415,42 @@ const slim = r => ({
   id: r.id, uid: r.uid, name: r.name, address: r.addr, city: r.city, distributor: r.dist,
   first: r.first, last: r.last, peak: r.peak, trajectory: r.traj, ce: r.ce
 })
+// A pair (Section C / D) is shaped as a cluster so the loader has one contract.
+const asPair = (a, b, basis) => {
+  const c = [a, b]
+  c.dists = [...new Set(c.map(r => r.dist))]
+  c.cities = [...new Set(c.map(r => r.city))]
+  c.exactAddr = a.canonAddr === b.canonAddr
+  return {
+    key: clusterKey(c), family: a.family, distributors: c.dists, cities: c.cities,
+    exactAddress: c.exactAddr, matchBasis: basis,
+    addressOnlyNonAdjacent: false,
+    peakCE: Math.max(a.peak, b.peak), rows: [slim(a), slim(b)]
+  }
+}
+const pack = c => ({
+  key: c.key, family: c[0].family, distributors: c.dists, cities: c.cities,
+  exactAddress: c.exactAddr, yearsOverlap: c.overlap, matchBasis: c.basis,
+  // Tagged so the Architect can weight the clusters that lean on address alone.
+  addressOnlyNonAdjacent: c.cities.length > 1 && !c.cities.every(x => cityAdjacent(x, c.cities[0])),
+  peakCE: c.peakCE, combinedCE: c.ce, rows: c.map(slim)
+})
+
 fs.writeFileSync(new URL('./output/merge-candidates.json', import.meta.url), JSON.stringify({
   generated: 'run node generate-merge-candidates.mjs',
   martBRows: rows.length,
   ruling: 'Architect 2026-07-30 — generate only, no auto-merge, no handover assumption',
-  sectionA: multiDist.map(c => ({ family: c[0].family, distributors: c.dists, cities: c.cities, exactAddress: c.exactAddr, yearsOverlap: c.overlap, combinedCE: c.ce, rows: c.map(slim) })),
-  sectionB: singleDist.map(c => ({ family: c[0].family, distributors: c.dists, cities: c.cities, exactAddress: c.exactAddr, combinedCE: c.ce, rows: c.map(slim) })),
-  sectionC: nearMiss.map(p => ({ family: p.fam, token: p.tok, rows: [slim(p.a), slim(p.b)] }))
+  sectionA: multiDist.map(pack),
+  sectionB: singleDist.map(pack),
+  sectionC: nearMiss.map(p => asPair(p.a, p.b, 'street_token')),
+  // Architect ruling 2026-07-31 (Decision 3): loaded PRE-RULED "Not a merge".
+  // His ruling, transcribed — not authored here.
+  sectionD: codeAnomaly.map(p => ({
+    ...asPair(p.a, p.b, 'identical_address'),
+    ruling: 'Not a merge',
+    rulingRationale: 'Section D: same address, different store code. Not a duplicate. ' +
+      'Retained as evidence of raw-feed address defects.'
+  }))
 }, null, 1))
 
 say('')
