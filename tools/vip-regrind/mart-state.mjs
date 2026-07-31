@@ -1,7 +1,26 @@
 // Read-only state-of-the-marts check. Answers "are all three marts correct
 // right now" from live data rather than from run reports. Writes nothing.
 import { queryAll, plain } from './notion.js'
-import { idKey, ceCol, norm, chainStoreKey, buildResolver } from './identity.js'
+import { idKey, ceCol, norm, normAddr, chainStoreKey, buildResolver } from './identity.js'
+import fs from 'fs'
+
+// The adjudicated-merge alias map the LIVE LOADER uses (MergedIdentities.gs).
+// This check has to resolve identities the same way the pipeline does or it
+// measures its own blind spot: after the 2026-07-31 merges, 199 survivors carry
+// canonical names that match no raw row, so without the alias every one of
+// their raw identities reads as `absent` while the survivor's stored volume
+// reads as `phantom`. Those offset and the totals still tie — which is exactly
+// the danger, because a real defect could hide inside a term inflated by
+// ~3,200 CE. Parsed from the generated file rather than duplicated, so the
+// check cannot drift from what the loader actually does.
+const MERGED = (() => {
+  try {
+    const src = fs.readFileSync(new URL('../../pipelines/vip-marts/src/MergedIdentities.gs', import.meta.url), 'utf8')
+    const m = new Map()
+    for (const [, k, v] of src.matchAll(/"((?:[^"\\]|\\.)*)":\s*"(acct_[a-z0-9]+)"/g)) m.set(k, v)
+    return m
+  } catch { return new Map() }
+})()
 
 const MART_A = 'dffa9e55b1df445ca00c84f0da92c142'
 const MART_B = 'e75409d7238a49cea390bbfe123bfc45'
@@ -74,13 +93,18 @@ for (const p of B) {
   const ck = `${csk}|${norm(plain(p.properties['City']))}`
   byChainStore.set(ck, byChainStore.has(ck) ? null : p)
 }
+const byUid = new Map(B.map(p => [plain(p.properties['account_uid']), p]).filter(([u]) => u))
 function resolveRow(name, address, city) {
   const hit = resolve(name, address, city)
   if (hit) return hit.row
   const csk = chainStoreKey(name)
   if (csk) { const cs = byChainStore.get(`${csk}|${norm(city)}`); if (cs) return cs }
+  const k = `${norm(name)}|${normAddr(address)}`
+  const uid = MERGED.get(`${k}|${norm(city)}`) || MERGED.get(k)
+  if (uid && byUid.has(uid)) return byUid.get(uid)
   return null
 }
+console.log(`  alias map: ${MERGED.size} merged raw identities known to the loader`)
 
 // Accounting identity, exact by construction:
 //   oracle = Σ(raw CE) = Σ(raw resolving to a row) + absent
