@@ -214,6 +214,15 @@ function VM_computeMartB_(existing, detailCsv, distMap, year) {
       var cs = byChainStore[csk + "|" + VM_norm_(city)];
       if (cs) return cs;
     }
+    // Adjudicated merges (MergedIdentities.gs). Without this the loader
+    // re-splits every executed merge on the next run — the same failure the
+    // chain-store index above prevents for Goody Goody, generalized to the
+    // classes that have no mechanical invariant. The map is keyed on the RAW
+    // identity as VIP spells it, so it also survives the survivor being
+    // renamed to the Architect's canonical spelling (whose name matches no
+    // raw row at all). Exact lookup only — never fuzzy.
+    var alias = VM_mergedSurvivorUid_(name, address, city);
+    if (alias && byUid[alias]) return byUid[alias];
     var nc = byNameCity[VM_norm_(name) + "|" + VM_norm_(city)];
     if (nc && VM_addrOverlap_(address, nc["Address"]) >= 0.5) return nc;
     return null;

@@ -78,6 +78,26 @@ function VM_identityKey_(name, address) {
   return VM_norm_(name) + "|" + VM_normAddr_(address);
 }
 
+// Adjudicated-merge alias lookup. Returns the surviving row's account_uid for
+// a raw identity that was merged away, or null.
+//
+// The map itself is GENERATED — tools/vip-regrind/execute-merges.mjs writes
+// MergedIdentities.gs from the executed plan. Do not hand-edit it, and do not
+// add fuzzy matching here: a merge is an adjudicated ruling on a specific pair
+// of raw identities, so the lookup must be exact or the loader starts merging
+// accounts nobody ruled on.
+//
+// City-qualified first, because two same-named stores in different cities must
+// never share a survivor. The unqualified key is a fallback and is emitted only
+// where it is unambiguous across the whole map.
+function VM_mergedSurvivorUid_(name, address, city) {
+  if (typeof VM_MERGED_IDENTITIES_ === "undefined") return null;
+  var k = VM_identityKey_(name, address);
+  var hit = VM_MERGED_IDENTITIES_[k + "|" + VM_norm_(city)];
+  if (hit) return hit;
+  return VM_MERGED_IDENTITIES_[k] || null;
+}
+
 // Chain store-number identity (Architect merge rule, 2026-07-30).
 //
 // VIP renamed the Goody Goody chain partway through the series. The

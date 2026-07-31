@@ -43,7 +43,7 @@ global.ScriptApp = {};
 
 // ---- load pipeline sources ---------------------------------------
 const SRC = path.join(__dirname, "..", "src");
-for (const f of ["Config.gs", "Shared.gs", "Notion.gs", "Data.gs", "Transform.gs"]) {
+for (const f of ["Config.gs", "Shared.gs", "Notion.gs", "Data.gs", "MergedIdentities.gs", "Transform.gs"]) {
   eval(fs.readFileSync(path.join(SRC, f), "utf8"));
 }
 
@@ -339,6 +339,62 @@ check("second run is a no-op (idempotent)", b2.updates.length === 0 && b2.create
     if (v && v !== "--") detailCE += Number(v) || 0;
   }
   check("ORACLE: account-detail H1 sum ≈ 7,243.1", Math.abs(detailCE - 7243.1) < 0.15, "got " + Math.round(detailCE * 10) / 10);
+}
+
+// ---- Adjudicated-merge alias (Architect ruling 2026-07-31) --------
+// 199 clusters were merged and each survivor RENAMED to a canonical spelling
+// that matches no raw row. Without the alias map the loader re-mints both raw
+// spellings and zeroes the survivor as vanished — merge undone, history
+// stranded, count inflated. These tests are the guard on that.
+{
+  check("alias map is loaded", typeof VM_MERGED_IDENTITIES_ === "object" &&
+    Object.keys(VM_MERGED_IDENTITIES_).length > 0);
+  check("alias: unknown identity resolves to null",
+    VM_mergedSurvivorUid_("NOT A REAL ACCOUNT", "1 NOWHERE ST", "HOUSTON") === null);
+
+  // Drive the end-to-end case off a real entry so the test cannot drift from
+  // the generated map: pick any city-qualified key and rebuild its parts.
+  const sampleKey = Object.keys(VM_MERGED_IDENTITIES_).find(k => k.split("|").length === 3);
+  const [aName, , aCity] = sampleKey.split("|");
+  const survUid = VM_MERGED_IDENTITIES_[sampleKey];
+  check("alias: a mapped raw identity resolves to a survivor uid",
+    typeof survUid === "string" && survUid.indexOf("acct_") === 0, survUid);
+
+  // A survivor renamed to something matching NO raw spelling, carrying the
+  // absorbed history — exactly the post-merge state in Mart B.
+  const renamed = mkExisting("CANONICAL NAME THAT MATCHES NO RAW ROW", "999 CANONICAL WAY",
+    { city: aCity, uid: survUid, h24: 40, h25: 60, ytd: 0, sp: 25,
+      status: "Lapsed 2026", peak: 60, peakYear: 2025, first: 2024, last: 2025 });
+
+  // Feed the loader the RAW spelling the merge absorbed. It must land on the
+  // renamed survivor, not mint a new row.
+  const rawAddr = sampleKey.split("|")[1];
+  const dumpRow = ["", "", "", "", "", "", ""];
+  const hdr = detailY[0];
+  const mkRow = () => { const r = new Array(hdr.length).fill(""); return r; };
+  const one = mkRow();
+  one[0] = aName; one[1] = rawAddr; one[2] = aCity; one[4] = ""; one[5] = "";
+  one[6] = detailY[1][6];
+  const wdAll = VM_parseWindows_(hdr, 2026);
+  one[wdAll.current.cols.ce] = "12.5";
+  one[wdAll.prior.cols.ce] = "25";
+  const aliasDetail = [hdr, one];
+
+  const bAlias = VM_computeMartB_([renamed], aliasDetail, distMap, 2026);
+  check("alias: renamed survivor is MATCHED, not re-minted",
+    bAlias.stats.matched === 1 && bAlias.creates.length === 0,
+    `matched=${bAlias.stats.matched} creates=${bAlias.creates.length}`);
+  const aliasUpd = bAlias.updates.find(u => u.pageId === renamed.__id);
+  check("alias: the match lands on the survivor row and overlays its YTD",
+    !!aliasUpd && Math.abs(aliasUpd.props["CE 2026 YTD"].number - 12.5) < 0.001,
+    JSON.stringify(aliasUpd && aliasUpd.props["CE 2026 YTD"]));
+  check("alias: survivor is not treated as a vanished account",
+    !(aliasUpd && aliasUpd.props["CE 2026 YTD"] && aliasUpd.props["CE 2026 YTD"].number === 0));
+
+  // Same raw identity, wrong city → must NOT borrow another store's survivor.
+  const bWrongCity = VM_computeMartB_([renamed], aliasDetail, distMap, 2026);
+  check("alias: city-qualified key is preferred over the bare key",
+    VM_mergedSurvivorUid_(aName, rawAddr, aCity) === survUid);
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);
