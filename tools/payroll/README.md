@@ -27,8 +27,8 @@ the register's own Report Totals block and verifies gross − taxes − deductio
 | DR | `Wages - General` | everyone else except the contractor, same basis |
 | DR | `Commission` | `COMM` code |
 | DR | `Mileage Stipend` | `AUTO` code |
-| DR | *contractor account* | Design LLC, Johnnyo — paid via payroll, not wages |
-| DR | *tips account* | `TIPCC` — customer money passing through payroll |
+| DR | `Accounts Payable` | Design LLC, Johnnyo — paid via payroll, not wages. **Name = Johnnyo Design** |
+| DR | `Employee Tips Payable` | `TIPCC` — customer money passing through payroll |
 | CR | `Employer Taxes` | employee withholding |
 | CR | `401K` | `401K` deduction code only |
 | CR | `Employee Benefits` | every other deduction code |
@@ -40,10 +40,19 @@ withholding that is already sitting inside gross wages; the actual Paylocity tax
 5/15 draft 5,241.34 − 3,129.30 = 2,112.04 against employee FICA of 1,927.85, leaving
 184.19 of FUTA/SUTA. 5/29 gives 181.02 on the same basis.
 
-**Two accounts are still placeholders** (`<<CONTRACTOR ACCOUNT - CONFIRM>>`,
-`<<TIPS ACCOUNT - CONFIRM>>`). They live outside `4) Payroll Expenses` so they were not
-visible in the transaction report used to derive this. Read them off a posted entry in
-QBO and hard-code them in `generate-je.js`.
+**Both former placeholders are now confirmed** (Garrison, 2026-07-31) and hard-coded. They
+live outside `4) Payroll Expenses`, which is why neither appeared in the transaction report
+this method was derived from — and both are BALANCE-SHEET accounts, which is the part worth
+understanding rather than memorising:
+
+- **`Accounts Payable`** — Johnnyo bills STB, the bill posts DR expense / CR A/P, and the
+  payroll draft pays it. This line **clears the bill**. It must never be re-expensed as
+  wages, or the cost is counted twice.
+- **`Employee Tips Payable`** — customer money held as a liability until it is paid out
+  through payroll. This line **clears the liability**; tips are not an STB expense.
+
+⚠️ **QBO refuses to save a journal entry with an Accounts Payable line and no Name.** The
+generator emits `Name = Johnnyo Design` on that line for exactly this reason.
 
 ## Gotchas that cost time
 

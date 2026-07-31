@@ -28,8 +28,16 @@ const ACCT = {
   general: '4) Payroll Expenses:Wages - General',
   commission: '4) Payroll Expenses:Commission',
   mileage: '4) Payroll Expenses:Mileage Stipend',
-  contractor: '<<CONTRACTOR ACCOUNT - CONFIRM>>',
-  tips: '<<TIPS ACCOUNT - CONFIRM>>',
+  // Confirmed by Garrison 2026-07-31. Both sit OUTSIDE `4) Payroll Expenses`,
+  // which is why neither was visible in the transaction report the method was
+  // derived from. Both are balance-sheet accounts, and that is the point:
+  //   Accounts Payable    — Johnnyo bills STB, the bill posts DR expense / CR A/P,
+  //                         and the payroll draft pays it. This line CLEARS the bill,
+  //                         so it must not be re-expensed as wages.
+  //   Employee Tips Payable — customer money held as a liability until paid out
+  //                         through payroll. This line CLEARS the liability.
+  contractor: 'Accounts Payable',
+  tips: 'Employee Tips Payable',
   erTaxes: '4) Payroll Expenses:Employer Taxes',
   k401: '4) Payroll Expenses:401K',
   benefits: '4) Payroll Expenses:Employee Benefits',
@@ -64,7 +72,9 @@ function buildJE(txtPath) {
     { acct: ACCT.general, debit: g.general },
     { acct: ACCT.commission, debit: g.commission },
     { acct: ACCT.mileage, debit: g.mileage },
-    { acct: ACCT.contractor, debit: g.contractor },
+    // QBO REQUIRES a Name on any Accounts Payable journal line — it refuses to
+    // save without one. Carried here so the entry does not fail at keying time.
+    { acct: ACCT.contractor, debit: g.contractor, name: 'Johnnyo Design' },
     { acct: ACCT.tips, debit: g.tips },
     { acct: ACCT.erTaxes, credit: totals.taxTotal },
     { acct: ACCT.k401, credit: k401 },
@@ -113,10 +123,11 @@ if (require.main === module) {
     console.log('\n' + '='.repeat(84));
     console.log(`JOURNAL ENTRY — payroll ${je.meta.checkDate}   (pay period ${je.meta.periodStart} to ${je.meta.periodEnd})`);
     console.log('='.repeat(84));
-    console.log('Account'.padEnd(46) + 'Debit'.padStart(14) + 'Credit'.padStart(16));
+    console.log('Account'.padEnd(46) + 'Debit'.padStart(14) + 'Credit'.padStart(16) + '   Name');
     console.log('-'.repeat(84));
     for (const l of je.lines) {
-      console.log(l.acct.padEnd(46) + money(l.debit).padStart(14) + money(l.credit).padStart(16));
+      console.log(l.acct.padEnd(46) + money(l.debit).padStart(14) + money(l.credit).padStart(16) +
+        (l.name ? '   ' + l.name : ''));
     }
     console.log('-'.repeat(84));
     console.log('TOTAL'.padEnd(46) + money(je.dr).padStart(14) + money(je.cr).padStart(16));
