@@ -102,6 +102,36 @@ It deliberately does NOT auto-fix. Blind-copying a token block into a live app c
 
 If it reports drift, surface it in the Step 3 report. Do not start brand or UI work on a drifting app without resolving it first.
 
+## Step 0.65 — Deploy-drift gate (Apps Script pipelines)
+
+**The GAS pipelines do NOT auto-deploy from main.** Repo state and live-pipeline state are separate claims, and on 2026-07-31 they had been separate for two days across *two* pipelines without anyone knowing — the live `vip-marts` loader was missing the chain-store merge key, the carve-class support and the corrected airport predicate; `vip-marts-weekly` was missing carve class entirely and would have written Mart C rows with none. Both were committed and verified days earlier and simply never pushed. The next scheduled run would have re-split 15 adjudicated account merges.
+
+```powershell
+$REPO = if ($env:STB_REPOS) { $env:STB_REPOS } else { $env:USERPROFILE }
+$gate = Join-Path $REPO 'stb-consumers\tools\deploy-drift\check-deploy-drift.ps1'
+if (Test-Path $gate) { & $gate -Quiet } else { Write-Output "SKIP — deploy gate not present" }
+```
+
+Reports **DRIFT** (live differs from repo), **ONLY-REPO** (committed, never deployed), **ONLY-LIVE** (edited in the GAS editor; a push will delete it). Exit 0 clean, 1 drift, 2 could not verify.
+
+It deliberately does NOT push — auto-deploying a working tree is how half-finished work reaches production. When it reports drift, read the diff before pushing: confirm live is strictly *behind* rather than carrying edits made in the GAS editor, then `cd pipelines/<name>; clasp push`.
+
+**Never treat a commit as evidence that a pipeline changed.** If this gate cannot verify a pipeline, say so in the Step 3 report rather than implying it is clean.
+
+## Step 0.66 — Category-semantics gate
+
+STB deliberately repurposes POS category codes — Arryved's `RETAIL_CIDER` holds **THC**, not cider, because STB sells no cider and that was the only clean way to split THC out from beer. Sound decision, but the label lies about its contents, and on 2026-07-31 it reached an analysis spec written as "RETAIL_BEER + RETAIL_CIDER" that would have flipped Feb-2025 from −25% to +23% and scored a promo a success on THC volume.
+
+```powershell
+$REPO = if ($env:STB_REPOS) { $env:STB_REPOS } else { $env:USERPROFILE }
+$gate = Join-Path $REPO 'stb-consumers\tools\category-gate\check-category-semantics.mjs'
+if (Test-Path $gate) { node $gate --quiet } else { Write-Output "SKIP — category gate not present" }
+```
+
+The conventions live in `tools/category-gate/category-conventions.json` as machine-readable data. The gate classifies from **item names**, never the category label, and fails when an item lands somewhere the convention says it should not.
+
+**Read the register before writing any analysis that groups by category.** Adding a convention there is how an intentional repurposing is made safe; deleting one to silence the gate reintroduces the bug.
+
 ## Step 0.7 — Multi-session protocol (repo claims + presence)
 
 Garrison runs multiple Code sessions at once. Three collisions have actually happened (commit-sweeps via the shared git index ×2, a memory-file clobber via blind sync), so these guards are mandatory, not etiquette:

@@ -1,0 +1,86 @@
+{
+  "_README": [
+    "Machine-readable register of STB product-category conventions.",
+    "",
+    "WHY THIS FILE EXISTS. STB deliberately repurposes POS category codes: the",
+    "cleanest available way to split THC out from beer was to book it under a",
+    "category the business does not otherwise use. That is a sound operational",
+    "decision, but it means the CATEGORY LABEL LIES ABOUT ITS CONTENTS, and a",
+    "label that lies is invisible to anyone who was not in the room. On",
+    "2026-07-31 it reached an analysis spec written as 'RETAIL_BEER +",
+    "RETAIL_CIDER' for a beer-to-go test; running it as written would have",
+    "flipped Feb-2025 from -25% to +23% and scored a promo a success on THC",
+    "volume.",
+    "",
+    "So the convention is recorded HERE, as data a checker can read, rather than",
+    "living in someone's memory. check-category-semantics.mjs enforces it.",
+    "",
+    "Adding a convention is how you make an intentional repurposing safe.",
+    "Deleting one to silence the gate is how you reintroduce the bug."
+  ],
+
+  "product_lines": {
+    "THC": {
+      "description": "Hemp-derived THC beverages. A distinct product line, never beer.",
+      "item_patterns": [
+        "thc", "cannabis", "hemp", "delta",
+        "mai tai", "el rancho", "rancho grande", "ranch water",
+        "cotton mouth", "zombie zen", "mas grande", "honey suckle", "only dank"
+      ],
+      "not_item_patterns": [
+        "tee", "t-shirt", "shirt", "tacker", "hat", "cap", "glass", "koozie",
+        "sticker", "hoodie", "tie dye", "tie-dye", "pint", "crewneck", "tote"
+      ],
+      "not_item_note": "Branded merch carrying a THC SKU's name is merch, not THC revenue. 'Tacker' is a tin sign; keep this list ahead of item_patterns or every branded shirt reads as a THC misfile."
+    },
+    "CIDER": {
+      "description": "Actual cider. STB has never sold it as a retail/to-go line.",
+      "item_patterns": ["cider"],
+      "known_items": ["Pineapple Cider", "Hazy Gold Cider", "Cherry Red Cider"],
+      "note": "These three exist only as on-premise cans (Arryved pos_type TR:_ONSITE_CANS). Any RETAIL cider is unexpected and should be investigated, not assumed."
+    }
+  },
+
+  "conventions": [
+    {
+      "id": "arryved-retail-cider-is-thc",
+      "system": "Arryved",
+      "era": "2021-08-11 .. 2025-03-13",
+      "surface": "arryved_category_month.csv, category = RETAIL_CIDER",
+      "label_says": "cider",
+      "actually_contains": "THC",
+      "intentional": true,
+      "authority": "Garrison, 2026-07-31",
+      "why": "STB sold no cider, so the unused CIDER category was the only available way to split THC out from beer in the POS. A deliberate business convention, not a data error.",
+      "effective_from": "2024-09",
+      "before_that": "Zero. THC did not exist as a line before mid-2024, so RETAIL_CIDER reads 0 in every earlier month and enters any 2024-25 comparison as pure growth.",
+      "consequences": [
+        "NEVER sum RETAIL_BEER + RETAIL_CIDER as 'to-go beer'. That is beer + THC.",
+        "To-go beer in the Arryved era = item_day pos_type TR:_PKG + TR_SINGLE_TOGO + TR:_CROW/GROWL. Ties to RETAIL_BEER (Dec-2023 $13,794 vs $13,781).",
+        "TR:_ONSITE_CANS is on-premise despite being cans, and is where the real ciders live."
+      ]
+    },
+    {
+      "id": "clover-thc-category",
+      "system": "Clover",
+      "era": "2025-03-13 .. present",
+      "surface": "Clover item categories -> CLV_mapCategory_ -> Notion Category select",
+      "intentional": true,
+      "authority": "Garrison, 2026-07-31",
+      "why": "Same need carried into Clover: THC must be separable from beer. CLV_mapCategory_ tests for thc/cannabis/hemp BEFORE the beer test, so a correctly-named category resolves to THC.",
+      "fragility": "The mapper reads the CLOVER CATEGORY NAME, not the item name. A THC item filed under a category whose name lacks a THC token falls through to 'Beer' (if the name contains cider/beer/tap/draft/brew) or to 'Other'. Found live 2026-07-31: 'thc draft 5oz' sits in Other.",
+      "consequences": [
+        "A new THC SKU is only classified correctly if someone files it under a THC-named Clover category.",
+        "This gate is the check on that, because nothing in the pipeline validates it."
+      ]
+    }
+  ],
+
+  "allowed_categories": {
+    "clover_notion": ["Beer", "THC", "Coffee", "Food", "Merch", "Other"],
+    "arryved_category_month": [
+      "BEER", "RETAIL_BEER", "RETAIL_CIDER", "MERCHANDISE", "COFFEE", "WINE",
+      "FOOD", "BEVERAGE", "EVENT", "KEG", "GIFT_CARDS", "GENERAL"
+    ]
+  }
+}
