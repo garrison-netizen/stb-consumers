@@ -132,6 +132,20 @@ The conventions live in `tools/category-gate/category-conventions.json` as machi
 
 **Read the register before writing any analysis that groups by category.** Adding a convention there is how an intentional repurposing is made safe; deleting one to silence the gate reintroduces the bug.
 
+## Step 0.67 — Fabricated-zero gate
+
+A pipeline that cannot measure something must write **NULL, never 0**. Null says "we don't know"; zero says "it was nothing." They chart identically and sum identically, and only one is a lie. The Clover daily rebuild wrote `0` for discounts across **356 days** because the source payments carry no discount data — while the SKU-by-Month table reported ~**$132,500** for the same months. Two Brain surfaces contradicting each other, with the Console rendering the zero as fact. Nothing errored.
+
+```powershell
+$REPO = if ($env:STB_REPOS) { $env:STB_REPOS } else { $env:USERPROFILE }
+$gate = Join-Path $REPO 'stb-consumers\tools\fake-zero-gate\check-fake-zeros.mjs'
+if (Test-Path $gate) { node $gate --quiet } else { Write-Output "SKIP — fake-zero gate not present" }
+```
+
+Two detectors: **zero-run** (a long contiguous span of exact 0 in a field that is non-zero elsewhere) and **cross-surface** (two surfaces describing the same period, one reporting $0 and the other real money). It flags `0` and never `null` — null is the correct representation of unknown and must not be "fixed" into a number.
+
+`node check-fake-zeros.mjs --selftest` replays the detector against the pre-fix snapshot and must still fire; if it ever passes silently, the gate has rotted and should not be trusted.
+
 ## Step 0.7 — Multi-session protocol (repo claims + presence)
 
 Garrison runs multiple Code sessions at once. Three collisions have actually happened (commit-sweeps via the shared git index ×2, a memory-file clobber via blind sync), so these guards are mandatory, not etiquette:

@@ -107,9 +107,17 @@ function CLV_aggregateDaily_(orders, tenderMap) {
 // Payments-only variant of the daily aggregation, for the pre-2026-03
 // history rebuild (order records purged from the API; payments survive).
 // Same output shape as CLV_aggregateDaily_ with two limitations:
-//   - discounts unknowable without orders → 0
+//   - discounts unknowable without orders → NULL, never 0
 //   - txCount = distinct order refs on payments (equals order count for
 //     fully-paid orders, which is all that paid orders can be)
+//
+// The discount field WAS written as 0 here, and that was the bug: zero is a
+// claim ("we ran no promotions"), null is the truth ("payments cannot tell
+// us"). It made Taproom Daily report $0.00 of discounts across ~340 days
+// while the SKU-by-Month table, built from Garrison's item exports over the
+// SAME period, reported about $132,500. Two Brain surfaces flatly
+// contradicting each other, and the Console rendered the zero as fact.
+// This mirrors the NULL-BY-NATURE rule already applied to the Arryved era.
 function CLV_aggregateDailyFromPayments_(payments, tenderMap) {
   tenderMap = tenderMap || {};
   var days = {};
@@ -123,7 +131,7 @@ function CLV_aggregateDailyFromPayments_(payments, tenderMap) {
     var d = CLV_dateISO_(pmt.createdTime);
     if (!days[d]) {
       days[d] = { grossRev: 0, netRev: 0, txCount: 0, tax: 0, tips: 0,
-                  discounts: 0, card: 0, cash: 0, other: 0 };
+                  discounts: null, card: 0, cash: 0, other: 0 };
       seenOrders[d] = {};
     }
     var day = days[d];
@@ -159,7 +167,10 @@ function CLV_dailyProps_(dateISO, agg) {
   p[CLOVER.DAILY.TX_COUNT]     = STB_pNumber_(agg.txCount);
   p[CLOVER.DAILY.TAX]          = STB_pNumber_(CLV_round2_(agg.tax));
   p[CLOVER.DAILY.TIPS]         = STB_pNumber_(CLV_round2_(agg.tips));
-  p[CLOVER.DAILY.DISCOUNTS]    = STB_pNumber_(CLV_round2_(agg.discounts));
+  // null must survive to Notion as null. Rounding it would turn "unknowable"
+  // back into 0, which is the whole defect.
+  p[CLOVER.DAILY.DISCOUNTS]    = STB_pNumber_(
+    (agg.discounts === null || agg.discounts === undefined) ? null : CLV_round2_(agg.discounts));
   p[CLOVER.DAILY.TENDER_CARD]  = STB_pNumber_(CLV_round2_(agg.card));
   p[CLOVER.DAILY.TENDER_CASH]  = STB_pNumber_(CLV_round2_(agg.cash));
   p[CLOVER.DAILY.TENDER_OTHER] = STB_pNumber_(CLV_round2_(agg.other));
