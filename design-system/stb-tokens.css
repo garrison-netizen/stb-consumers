@@ -49,6 +49,22 @@
   --brass-300: #e3cb9d;
   --brass-100: #f4ead6;
 
+  /* --- Coffee -------------------------------------------------------------
+     The coffee side of the house. Espresso browns, deliberately outside the
+     brewery's brass range so the two businesses never read as the same thing
+     on a shared surface. Originated in the Master Calendar's Brewery/Coffee
+     classification (2026-07-31) and adopted here as canonical.
+
+     Separation from brass is verified, not assumed: coffee-500 sits ΔE 16.1
+     from brass-600 and 26.0 from brass-500 (OKLab ×100), both clear of the
+     15-point floor where two hues start reading as the same color.
+
+     Same discipline as brass — 700 and 500 are safe for text, 300 is not.  */
+  --coffee-700: #4a3123;  /* 11.97 white / 10.61 cream — text anywhere      */
+  --coffee-500: #7b5334;  /*  6.71 white /  5.95 cream — text-safe          */
+  --coffee-300: #b08c67;  /*  3.09 white — MARKS AND BORDERS ONLY           */
+  --coffee-100: #f1e7dc;  /*  card tint for coffee-attributed items         */
+
   /* --- Ground + ink -------------------------------------------------------
      Cream is the house page ground. White cards float on it. This is the
      established behavior in the console and calendar (body { background:

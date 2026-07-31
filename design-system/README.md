@@ -62,16 +62,24 @@ treatment now matches. One identity, one set of screenshots, one thing to check.
 
 ## Using it
 
-**In an app** — import the tokens and delete the local `:root` block:
+**In an app.** Each app is its own GitHub repo, built independently by Vercel
+from its own checkout — so a relative `@import` reaching across into
+`stb-consumers` **will not work**. That folder does not exist on the build
+machine, and the build fails or silently drops the import.
 
-```css
-@import "../../stb-consumers/design-system/stb-tokens.css";
-```
+So the apps carry a **vendored copy** of the token block, and the job is keeping
+the copies in step. Today that is done by hand, deliberately: the token names
+here are identical to the ones the apps already use (`--navy-900`,
+`--brass-500`, `--cream`, `--ink`, `--muted`, `--line`, `--ok`/`--warn`/`--bad`),
+so syncing one is replacing a block, never a rename.
 
-The variable names here are deliberately identical to the ones the apps already
-use (`--navy-900`, `--brass-500`, `--cream`, `--ink`, `--muted`, `--line`,
-`--ok`/`--warn`/`--bad`), so adoption is a deletion, not a rename. No
-find-and-replace, no churn.
+The durable fix is a sync step, matching the mechanism `/refresh` already uses to
+self-heal the command files out of `stb-consumers/claude-commands` — copy the
+canonical block into each app repo on refresh, so drift is corrected on every
+machine automatically. Not built yet; it is the next piece of this.
+
+Until it exists, treat a change here as a change that needs pushing outward by
+hand, and say so in the commit that makes it.
 
 **In a report or notice** — paste both files inline in a `<style>` block, and
 embed the logo from `stb-logo-on-dark.datauri.txt`.
@@ -121,9 +129,9 @@ Audited when this folder was created, so the starting point is on the record.
 
 | Surface | State |
 |---|---|
-| STB Console | On-brand. Token block matches the calendar exactly, plus `--ok`/`--warn`/`--bad`. Still a private copy. |
-| Master Calendar | On-brand. Still a private copy. |
-| Private Event Calculator | On-brand via an inline Tailwind config. Still a private copy. |
+| STB Console | On-brand. `--muted` contrast fix applied 2026-07-31 (`6ad3ebf`). Still a vendored copy. |
+| Master Calendar | On-brand. `--muted` contrast fix applied 2026-07-31 (`a6168b8`). Still a vendored copy. |
+| Private Event Calculator | On-brand via an inline Tailwind config. No `--muted` token, so unaffected by that fix. |
 | Email Channel Review | Built on this treatment. First adopter. |
 | `close-automation.html` | **Was off-brand** — fixed 2026-07-31. |
 | `eula.html` | **Was off-brand** — fixed 2026-07-31. |
@@ -153,20 +161,49 @@ fixed in the tokens but **not yet pulled into the apps** — see below.
 
 Deliberately ordered so nothing live changes without being looked at.
 
-1. ~~Notice pages onto canonical tokens~~ — **done 2026-07-31.** Static, no
-   functional risk, and they were the genuinely broken ones.
-2. **Master Calendar** — delete its `:root`, import the tokens. Picks up the
-   `--muted` contrast fix. Verify the top bar, the grid and the denial screens,
-   then deploy.
-3. **STB Console** — same, keeping its `--ok`/`--warn`/`--bad` (now in the
-   canonical file). Widest surface, so it goes after the calendar has proven the
-   import path.
-4. **Private Event Calculator** — feed its Tailwind config from
-   `stb-tokens.json` instead of the hand-typed hexes in `calculator.html`.
-5. **Every new report and notice** — starts from `stb-document.css`. In effect
+1. ~~Notice pages onto canonical tokens~~ — **done 2026-07-31.** They were the
+   genuinely broken ones.
+2. ~~`--muted` contrast fix into the Calendar and Console~~ — **done
+   2026-07-31.** Both built and deployed. This was the only live defect the
+   apps were actually carrying.
+3. ~~Adopt the coffee palette as canonical~~ — **done 2026-07-31**, see below.
+4. **Every new report and notice** starts from `stb-document.css`. In effect
    immediately; nothing to migrate.
+5. **Build the sync step** so the vendored copies stop being hand-maintained.
+   This is now the largest remaining gap in the mechanism.
+6. **Fix brass-as-text** — five known spots, listed below.
+7. **Calculator Tailwind config** fed from `stb-tokens.json` rather than
+   hand-typed hexes. Lowest urgency; it has no `--muted` and is on-brand.
 
-Steps 2–4 are each a small change to a live, gated app, so each one wants its own
-verification pass and its own deploy. They are not urgent — those apps are
-already on-brand. The only thing genuinely waiting on them is the `--muted`
-contrast fix.
+### Known remaining defects — brass used as text
+
+Measured 2026-07-31, not yet fixed. All five are `--brass-600` at 3.51:1 on
+white (or 2.94:1 on `--brass-100`), against a 4.5:1 floor. Each is a one-token
+swap to `--brass-700`, which lands at 5.88:1 / 4.92:1.
+
+| App | Selector | Now | Fixed |
+|---|---|---|---|
+| Calendar | `.chip-reset` | 3.51 | 5.88 |
+| Calendar | `.ce-time` | 3.51 | 5.88 |
+| Calendar | `.ei-time` | 3.51 | 5.88 |
+| Console | `.section-count.gold` | 2.94 | 4.92 |
+| Console | `.item-title-link:hover` | 3.51 | 5.88 |
+
+Deliberately **not** on that list: `.hero-strip h2 .n` in the Console is
+`--brass-600` at 3.51 but sits at 19px/800, which qualifies as large text where
+the floor is 3:1 — it passes and should be left alone. The brass on the navy top
+bars (`--brass-400` at 7.60, `--brass-300` at 9.79) passes comfortably; light
+brass on dark navy is the one place brass is unambiguously safe for text.
+
+### A note on how the coffee palette arrived
+
+It was not designed here. It came in from the Master Calendar's Brewery/Coffee
+classification on 2026-07-31 and was found during a rebase — the canonical file
+did not know a second brand palette existed. It was adopted rather than
+reinvented because it was already right: 500 and 700 clear the text floor on
+every ground in use, 300 is correctly marks-only, and it sits far enough from
+brass (ΔE 16.1–26.0) that the two businesses never read as one.
+
+That is the failure mode this folder exists to prevent, and it still happened on
+day one — because the sync in step 5 does not exist yet. Palette work done in an
+app repo will keep arriving here late until it does.

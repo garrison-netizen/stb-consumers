@@ -5,6 +5,7 @@
   "color": {
     "navy":  { "950": "#101a2e", "900": "#16243f", "800": "#1d2f52", "700": "#264070", "200": "#c3cfe3", "100": "#e2e8f2", "50": "#eef1f7" },
     "brass": { "700": "#7d6027", "600": "#a98338", "500": "#c9a35c", "400": "#d4b171", "300": "#e3cb9d", "100": "#f4ead6" },
+    "coffee": { "700": "#4a3123", "500": "#7b5334", "300": "#b08c67", "100": "#f1e7dc" },
     "cream": "#f4f1ea",
     "white": "#ffffff",
     "ink":   "#26303f",
@@ -30,7 +31,9 @@
     "bodyText": ["ink", "ink2"],
     "secondaryText": "muted",
     "linkText": "brass.700",
-    "neverUseAsText": ["brass.500", "brass.600"],
+    "neverUseAsText": ["brass.500", "brass.600", "coffee.300"],
+    "brewery": "brass.*",
+    "coffee": "coffee.* — the second business; never render it in brass",
     "darkMode": "none — the house system is a single cream identity across apps and documents"
   },
   "contrastOnCream": {
